@@ -1,0 +1,15 @@
+@use '@angular/material' as mat;
+@import './custom-palettes.scss';
+/* ======== Angular material custom themes ======== */  
+
+$custom-theme-primary: mat.define-palette($primary-palette);
+$custom-theme-accent: mat.define-palette($accent-palette);
+$custom-theme-warn: mat.define-palette($warn-palette);
+
+$custom-theme: mat.define-light-theme((
+    color: (
+        primary: $custom-theme-primary,
+        accent: $custom-theme-accent,
+        warn: $custom-theme-warn
+    )
+));

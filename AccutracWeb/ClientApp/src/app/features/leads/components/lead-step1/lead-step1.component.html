@@ -1,0 +1,153 @@
+<div class="container" fxLayout.xs="column" fxLayout.sm="column">
+    <form [formGroup]="formStep1" class="form">
+        <div>
+            <h2>1. This is {{ userName }}, how can I help you?</h2>
+            <mat-tab-group (selectedTabChange)="toggleNameGroups()">
+                <mat-tab label="Residential">
+                    <h2 style="padding-top: 1rem;">Name</h2>
+                    <mat-divider></mat-divider>
+                    <div class="form-group name" formGroupName="residential">
+                        <mat-form-field appearance="standard">
+                            <mat-label>First Name</mat-label>
+                            <input matInput name="firstName" formControlName="firstName" />
+                            <mat-error *ngIf="formStep1.get('residential.firstName')?.invalid">First name must be
+                                at least 3 characters</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput name="lastName" formControlName="lastName">
+                            <mat-error *ngIf="formStep1.get('residential.lastName')?.invalid">Last name must be at
+                                least 3 characters</mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Commercial">
+                    <h2 style="padding-top: 1rem;">Company Name</h2>
+                    <mat-divider></mat-divider>
+                    <div class="form-group commercial" formGroupName="commercial">
+                        <mat-form-field appearance="standard">
+                            <mat-label>Company Name</mat-label>
+                            <input matInput name="companyName" formControlName="companyName">
+                            <mat-error *ngIf="formStep1.get('commercial.companyName')?.invalid">Company Name is required
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="standard">
+                            <mat-label>First Name</mat-label>
+                            <input matInput name="firstName" formControlName="firstName" />
+                            <mat-error *ngIf="formStep1.get('commercial.firstName')?.invalid">First name must be
+                                at least 3 characters</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput name="lastName" formControlName="lastName">
+                            <mat-error *ngIf="formStep1.get('commercial.lastName')?.invalid">Last name must be at
+                                least 3 characters</mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+        <h2>2. Are you the property owner? What is the property address? Is your mailing address the same?</h2>
+        <mat-divider></mat-divider>
+        <div class="form-group" id="job-address" formGroupName="jobAddress">
+            <mat-form-field appearance="standard">
+                <mat-label>Street Address</mat-label>
+                <input id="job-input" matInput ngx-google-places-autocomplete [options]="autoCompleteOptions"
+                    formControlName="street" #test1 (onAddressChange)="handleAddressChange($event, test1)">
+                <mat-error *ngIf="formStep1.get('jobAddress.street')?.invalid">Street address is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>City</mat-label>
+                <input matInput name="city" formControlName="city">
+                <mat-error *ngIf="formStep1.get('jobAddress.city')?.invalid">City is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>State</mat-label>
+                <mat-select name="state" formControlName="state">
+                    <mat-option></mat-option>
+                    <mat-option *ngFor="let state of states" [value]="state.abbreviation">
+                        {{ state.name }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="formStep1.get('jobAddress.state')?.invalid">State is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Zip Code</mat-label>
+                <input matInput name="zip" formControlName="zip">
+                <mat-error *ngIf="formStep1.get('jobAddress.street')?.invalid">
+                    Please enter a valid Zip code</mat-error>
+            </mat-form-field>
+            <mat-checkbox [checked]="false" (change)="toggleMailingAddress()" appearance="standard">Mailing Address
+                different
+                from
+                Job Address?</mat-checkbox>
+        </div>
+        <div *ngIf="differentAddress">
+            <h2>Mailing Address</h2>
+            <mat-divider></mat-divider>
+        </div>
+        <div class="form-group" id="mailing-address" *ngIf="differentAddress" formGroupName="mailingAddress">
+            <mat-form-field appearance="standard">
+                <mat-label>Street Address</mat-label>
+                <input id="mailing-input" matInput ngx-google-places-autocomplete [options]="autoCompleteOptions"
+                    formControlName="street" #test2 (onAddressChange)="handleAddressChange($event, test2)">
+                <mat-error *ngIf="formStep1.get('mailingAddress.street')?.invalid">Street address is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>City</mat-label>
+                <input matInput name="city" formControlName="city">
+                <mat-error *ngIf="formStep1.get('mailingAddress.city')?.invalid">City is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>State</mat-label>
+                <mat-select name="state" formControlName="state">
+                    <mat-option></mat-option>
+                    <mat-option *ngFor="let state of states" [value]="state.abbreviation">
+                        {{ state.name }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="formStep1.get('mailingAddress.state')?.invalid">State is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Zip Code</mat-label>
+                <input matInput name="zip" formControlName="zip">
+                <mat-error *ngIf="formStep1.get('mailingAddress.zip')?.invalid">
+                    Please enter a valid Zip code</mat-error>
+            </mat-form-field>
+        </div>
+        <h2>3. What is a good phone number to reach you at during the day? Do you have an alternate number if we cannot
+            reach you at that one?</h2>
+        <mat-divider></mat-divider>
+        <div class="form-group contact" formGroupName="contact">
+            <mat-form-field appearance="standard">
+                <mat-label>Phone Number</mat-label>
+                <input matInput name="phone" formControlName="phone" mask='(000) 000-0000'>
+                <mat-error *ngIf="formStep1.get('contact.phone')?.invalid">
+                    Please enter a valid phone number</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Phone Type</mat-label>
+                <mat-select name="phoneType" formControlName="phoneType">
+                    <mat-option value="mobile">Mobile</mat-option>
+                    <mat-option value="home">Home</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <h2>4. May I have your email address so we can send you a photo and information about the estimator who will
+            come out?</h2>
+        <mat-divider></mat-divider>
+        <div class="form-group email" formGroupName="contact">
+            <mat-form-field appearance="standard">
+                <mat-label>Email Address</mat-label>
+                <input matInput name="email" formControlName="email">
+                <mat-error *ngIf="formStep1.get('contact.email')?.invalid">
+                    Please enter a valid email</mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+    <footer>
+        <button class="nav-btn" mat-raised-button (click)="createCustomer()" color="accent">Create Customer</button>
+    </footer>
+</div>

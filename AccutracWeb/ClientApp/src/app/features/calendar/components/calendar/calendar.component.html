@@ -1,0 +1,97 @@
+<div class="calendar-header">
+    <div class="buttons">
+        <mat-button-toggle-group>
+            <mat-button-toggle mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">Previous
+            </mat-button-toggle>
+            <mat-button-toggle mwlCalendarToday [(viewDate)]="viewDate">Today</mat-button-toggle>
+            <mat-button-toggle mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">Next</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+    <div class="date">
+        <h2>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h2>
+    </div>
+
+    <div class="buttons">
+        <mat-button-toggle-group>
+            <mat-button-toggle (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month">Month
+            </mat-button-toggle>
+            <mat-button-toggle (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week">Week
+            </mat-button-toggle>
+            <mat-button-toggle (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">Day
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+</div>
+
+<div *ngIf="events$ | async; else loading; let events">
+    <div class="calendar" [ngSwitch]="view">
+        <mwl-calendar-month-view (dayClicked)="dayClicked($event.day)" *ngSwitchCase="CalendarView.Month"
+            [viewDate]="viewDate" [events]="events" [cellTemplate]="customCellTemplate"
+            [ngClass]="{ mobile: media.isActive('xs'), tablet: media.isActive(['sm', 'md']), desktop: media.isActive(['lg', 'xl']) }">
+        </mwl-calendar-month-view>
+    
+        <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events">
+        </mwl-calendar-week-view>
+    
+        <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events">
+        </mwl-calendar-day-view>
+    </div>
+</div>
+
+<ng-template 
+    #customCellTemplate 
+    let-day="day" 
+    let-openDay="openDay" 
+    let-locale="locale"
+    let-tooltipPlacement="tooltipPlacement" 
+    let-highlightDay="highlightDay" 
+    let-unhighlightDay="unhighlightDay"
+    let-eventClicked="eventClicked" 
+    let-tooltipTemplate="tooltipTemplate" 
+    let-tooltipAppendToBody="tooltipAppendToBody"
+    let-tooltipDelay="tooltipDelay" 
+    let-trackByEventId="trackByEventId" 
+    let-validateDrag="validateDrag"
+>
+    <div class="cal-cell-top" [attr.aria-label]="
+          { day: day, locale: locale } | calendarA11y: 'monthCell'">
+        <span aria-hidden="true" class="count-numbers">
+            <span class="count" *ngIf="day.badgeTotal > 0">
+                {{ day.badgeTotal }} appointments
+            </span>
+            <span class="cal-day-number">
+                {{ day.date | calendarDate: 'monthViewDayNumber':locale }}
+            </span>
+        </span>
+    </div>
+    <ng-container *ngIf="day.events.length > 0">
+        <div *ngFor="let event of day.events; trackBy: trackByEventId"
+        [ngStyle]="{ backgroundColor: event.color?.primary, 'margin': '0.5rem' }"
+        [ngClass]="event?.cssClass"
+        (mouseenter)="highlightDay.emit({ event: event })"
+        (mouseleave)="unhighlightDay.emit({ event: event })"
+        [mwlCalendarTooltip]="event.title | calendarEventTitle: 'monthTooltip':event"
+        [tooltipPlacement]="tooltipPlacement"
+        [tooltipEvent]="event"
+        [tooltipTemplate]="tooltipTemplate"
+        [tooltipAppendToBody]="tooltipAppendToBody"
+        [tooltipDelay]="tooltipDelay" mwlDraggable
+        [class.cal-draggable]="event.draggable" 
+        dragActiveClass="cal-drag-active"
+        [dropData]="{ event: event, draggedFrom: day }" 
+        [dragAxis]="{ x: event.draggable, y: event.draggable }"
+        [validateDrag]="validateDrag" 
+        [touchStartLongPress]="{ delay: 300, delta: 30 }"
+        (mwlClick)="eventClicked.emit({ event: event, sourceEvent: $event })"
+        [attr.aria-hidden]="{} | calendarA11y: 'hideMonthCellEvents'">
+        <app-calendar-appointment [eventCheck]="event"></app-calendar-appointment>
+    </div>
+    </ng-container>
+</ng-template>
+
+<ng-template #loading>
+    <div *ngIf="isLoading" class="spinner">
+        <mat-spinner color="accent" mode="indeterminate"></mat-spinner>
+    </div>
+</ng-template>

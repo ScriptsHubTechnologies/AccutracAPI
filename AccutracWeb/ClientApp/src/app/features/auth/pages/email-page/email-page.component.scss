@@ -1,0 +1,61 @@
+.logo {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.logo img {
+    max-width: 150px;
+}
+
+.email-container {
+    padding: 1rem;
+}
+
+.form-container {
+    padding: 1rem;
+    margin: 10% auto;
+    width: 50%;
+}
+
+.submit {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+}
+
+.submit button {
+    min-width: 10%;
+}
+
+p {
+    text-align: left;
+    font-size: 14px;
+    margin-top: 0.5rem;
+}
+
+h1 {
+    margin: 0 0 0.5rem;
+}
+
+.cancel-btn {
+    background-color: #f0f2f5;
+}
+
+.submit-btn {
+    color: white;
+}
+
+.login-link {
+    margin: 1rem 0 0 0;
+    display: inline-block;
+}
+
+.card-header {
+    text-align: left;
+}
+
+mat-form-field {
+    width: 100%;
+}

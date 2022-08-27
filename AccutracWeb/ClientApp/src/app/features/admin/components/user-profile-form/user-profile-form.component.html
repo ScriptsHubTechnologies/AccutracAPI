@@ -1,0 +1,53 @@
+<ng-container *ngIf="!isLoading else loading">
+    <form [formGroup]="userForm" (submit)="onSubmit()">
+        <div class="form-section card" formGroupName="profile">
+            <h2 class="section-header">User Profile</h2>
+            <mat-divider></mat-divider>
+            <mat-form-field appearance="standard">
+                <mat-label>First Name</mat-label>
+                <input matInput name="firstName" formControlName="firstName">
+                <mat-error *ngIf="userForm.get('profile.firstName')?.invalid">First Name is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Last Name</mat-label>
+                <input matInput name="lastName" formControlName="lastName">
+                <mat-error *ngIf="userForm.get('profile.lastName')?.invalid">Last Name is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Spectrum Employee ID</mat-label>
+                <input matInput name="spectrumID" formControlName="spectrumID">
+                <mat-error *ngIf="userForm.get('profile.spectrumID')?.invalid">Spectrum ID is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-section card" formGroupName="loginInfo">
+            <h2 class="section-header">User Login Info</h2>
+            <mat-divider></mat-divider>
+            <mat-form-field appearance="standard">
+                <mat-label>User Email</mat-label>
+                <input matInput name="userEmail" formControlName="userEmail">
+                <mat-error *ngIf="userForm.get('loginInfo.userEmail')?.invalid">Email is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>User Password</mat-label>
+                <input matInput name="userPassword" formControlName="userPassword">
+                <mat-error *ngIf="userForm.get('loginInfo.userPassword')?.invalid">Password is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-section card" formGroupName="roles" formGroupName="roles">
+            <h2 class="section-header">User Roles</h2>
+            <mat-divider></mat-divider>
+            <ng-container *ngFor="let role of roles">
+                <mat-checkbox [name]="role.name" [formControlName]="role.name" appearance="standard">{{ role.name }}</mat-checkbox>
+            </ng-container>
+        </div>
+        <div class="submit" *ngIf="!userData"> 
+            <button mat-raised-button color="accent" type="submit">Create User</button>
+        </div>
+    </form>
+</ng-container>
+
+<ng-template #loading>
+    <div class="spinner">
+        <mat-spinner color="accent" mode="indeterminate"></mat-spinner>
+    </div>
+</ng-template>

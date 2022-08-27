@@ -1,0 +1,15 @@
+<!-- <mat-form-field appearance="fill" class="estimator-select">
+    <mat-label>Select Zone</mat-label>
+    <mat-select [(value)]="selectedZone" (selectionChange)="selectEstimator($event)">
+        <mat-option></mat-option>
+        <mat-option [value]="zone" *ngFor="let zone of zones">{{ zone }}</mat-option>
+    </mat-select>
+</mat-form-field> -->
+
+<mat-form-field appearance="fill" class="estimator-select">
+    <mat-label>Select Estimator</mat-label>
+    <mat-select [(value)]="selectedEstimator" (selectionChange)="selectEstimator($event)">
+        <mat-option></mat-option>
+        <mat-option [value]="estimator" *ngFor="let estimator of estimators">{{ estimator.username }}</mat-option>
+    </mat-select>
+</mat-form-field>

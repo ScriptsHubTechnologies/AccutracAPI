@@ -1,0 +1,30 @@
+<div class="address-container">
+    <h2>Select the desired job address</h2>
+
+    <table mat-table [dataSource]="dataSource" class="address-table">
+        <ng-container matColumnDef="jobAddress">
+            <th mat-header-cell *matHeaderCellDef>Address</th>
+            <td mat-cell *matCellDef="let element"> {{element.jobAddress}} </td>
+        </ng-container>
+        <ng-container matColumnDef="city">
+            <th mat-header-cell *matHeaderCellDef>City</th>
+            <td mat-cell *matCellDef="let element"> {{element.jobCity}} </td>
+        </ng-container>
+        <ng-container matColumnDef="state">
+            <th mat-header-cell *matHeaderCellDef>State</th>
+            <td mat-cell *matCellDef="let element"> {{element.jobState}} </td>
+        </ng-container>
+        <ng-container matColumnDef="zip">
+            <th mat-header-cell *matHeaderCellDef>Zip Code</th>
+            <td mat-cell *matCellDef="let element"> {{element.jobZip}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectedAddress = row"></tr>
+    </table>
+
+    <div class="buttons">
+        <button mat-raised-button (click)="closeDialog()">Cancel</button>
+        <button mat-raised-button class="confirm-button" [disabled]="!selectedAddress" (click)="confirmSelection()">Confirm</button>
+    </div>
+</div>

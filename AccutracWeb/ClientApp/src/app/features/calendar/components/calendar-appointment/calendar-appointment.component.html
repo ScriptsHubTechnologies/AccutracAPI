@@ -1,0 +1,15 @@
+<mat-expansion-panel class="appointment">
+    <mat-expansion-panel-header class="event-header">
+        <span>{{ event.title | titlecase }}</span>
+        <span>{{ event.start | date: 'shortTime'}} - {{ event.end | date: 'shortTime' }}</span>
+    </mat-expansion-panel-header>
+    <div class="event-body">
+        <div class="details">
+            <span>Customer: {{ event.meta.salesEvent.customerName | titlecase }}</span>
+            <span>Phone: {{ event.meta.salesEvent.phone | mask: '(000)-000-0000' }}</span>
+            <span>{{ event.meta.salesEvent.jobAddress | titlecase }}</span>
+            <span>Type: {{ event.meta.salesEvent.appointmentTypeName | titlecase }}</span>
+            <button mat-raised-button color="accent" [routerLink]="['/walkthrough/' + event.meta.salesEvent.appointmentId]">Go to Appointment</button>
+        </div>
+    </div>
+</mat-expansion-panel>

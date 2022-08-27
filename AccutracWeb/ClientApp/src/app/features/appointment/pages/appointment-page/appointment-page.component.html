@@ -1,0 +1,18 @@
+<div class="appointment-container">
+    <div class="header">
+        <h1>Book Appointment</h1>
+    </div>
+
+    <div class="content">
+        <ng-container [ngSwitch]="component">
+            <ng-container *ngSwitchCase="'smart'">
+                <app-smart-scheduler></app-smart-scheduler>
+            </ng-container>
+            <ng-container *ngSwitchDefault="">
+                <div class="card">
+                    <p>Placeholder</p>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>

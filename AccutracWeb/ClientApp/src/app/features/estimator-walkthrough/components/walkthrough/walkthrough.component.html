@@ -1,0 +1,43 @@
+<div class="header">
+    <h2>{{ headerLabel }}</h2>
+    <div class="buttons">
+        <button mat-button (click)="previousStep()" *ngIf="stepCounter > 0"><mat-icon>arrow_backward</mat-icon>{{ prevButtonLabel }}</button>
+        <button mat-button (click)="nextStep()" *ngIf="stepCounter < 9">{{ nextButtonLabel }}<mat-icon>arrow_forward</mat-icon></button>
+    </div>
+</div>
+
+<!-- Attempt to get a dynamic loop here -->
+<ng-container>
+    <ng-container [ngSwitch]="currentStep.stepNumber">
+        <ng-container *ngSwitchCase="0">
+            <app-details></app-details>
+        </ng-container>
+        <ng-container *ngSwitchCase="1">
+            <app-photo></app-photo>
+        </ng-container>
+        <ng-container *ngSwitchCase="2">
+            <app-video></app-video>
+        </ng-container>
+        <ng-container *ngSwitchCase="3">
+            <app-initial-walkthrough></app-initial-walkthrough>
+        </ng-container>
+        <ng-container *ngSwitchCase="4">
+            <app-checklist></app-checklist>
+        </ng-container>
+        <ng-container *ngSwitchCase="5">
+            <app-proposal></app-proposal>
+        </ng-container>
+        <ng-container *ngSwitchCase="6">
+            <app-attachments></app-attachments>
+        </ng-container>
+        <ng-container *ngSwitchCase="7">
+            <app-sketch></app-sketch>
+        </ng-container>
+        <ng-container *ngSwitchCase="8">
+            <app-review-and-sign></app-review-and-sign>
+        </ng-container>
+        <ng-container *ngSwitchCase="9">
+            <app-follow-up></app-follow-up>
+        </ng-container>
+    </ng-container>
+</ng-container>

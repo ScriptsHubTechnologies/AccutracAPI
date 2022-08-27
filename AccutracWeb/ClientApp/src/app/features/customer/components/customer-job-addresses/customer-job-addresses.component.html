@@ -1,0 +1,9 @@
+<div class="header">
+    <h2>Properties</h2>
+    <button mat-raised-button color="accent" (click)="addJobAddress()">Add Property</button>
+</div>
+<mat-divider></mat-divider>
+
+<ng-container *ngFor="let jobAddress of jobAddresses; index as i">
+    <app-job-address-form [jobAddress]="jobAddress" [geoZones]="geoZones" [zones]="zones" [index]="i"></app-job-address-form>
+</ng-container>

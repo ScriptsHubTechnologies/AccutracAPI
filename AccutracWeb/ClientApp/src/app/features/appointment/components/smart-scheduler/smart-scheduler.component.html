@@ -1,0 +1,132 @@
+<div class="smart-container">
+    <div class="card filters" matTooltip="Click the icons to the right to show time pickers"
+        [matTooltipShowDelay]="1000" [matTooltipHideDelay]="1000">
+        <form [formGroup]="filterForm" class="filter-form">
+            <div class="form-header">
+                <h2>Filters</h2>
+                <mat-divider></mat-divider>
+            </div>
+
+            <!-- <mat-form-field appearance="standard">
+                    <mat-label>Date range</mat-label>
+                    <mat-date-range-input formGroupName="dateRange" [rangePicker]="picker">
+                        <input matStartDate formControlName="startDate" placeholder="Start Date">
+                        <input matEndDate formControlName="endDate" placeholder="End Date">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+    
+                    <mat-error *ngIf="filterForm.get('dateRange.startDate')?.invalid">Invalid start date</mat-error>
+                    <mat-error *ngIf="filterForm.get('dateRange.endDate')?.invalid">Invalid end date</mat-error>
+                </mat-form-field> -->
+            <mat-form-field appearance="standard">
+                <mat-label>Order by</mat-label>
+                <mat-select formControlName="orderBy">
+                    <mat-option></mat-option>
+                    <mat-option *ngFor="let option of orderByOptions" [value]="option">
+                        {{ option }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Preferred Days</mat-label>
+                <mat-select formControlName="preferredDays" multiple>
+                    <mat-option *ngFor="let day of days" [value]="day.wkDayNumber">
+                        {{ day.wkDayName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="time-range" formGroupName="timeRange">
+                <mat-form-field class="time-field" appearance="standard">
+                    <mat-label>Start time</mat-label>
+                    <input matInput type="time" class="start-time" placeholder="Start time" formControlName="startTime">
+                </mat-form-field>
+                <mat-form-field class="time-field" appearance="standard">
+                    <mat-label>End time</mat-label>
+                    <input matInput type="time" class="end-time" placeholder="End time" formControlName="endTime">
+                </mat-form-field>
+            </div>
+
+            <div class="buttons">
+                <button mat-raised-button (click)="resetFilters()">Reset Filters</button>
+                <button mat-raised-button class="apply-filters" (click)="filterAvailability(availabilityData)">Apply
+                    Filters</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="schedule-container" *ngIf="filteredData.length < 1 else filtered">
+        <div *ngFor="let date of displayData">
+            <p class="day-header">{{ date.date | date: 'fullDate' }}</p>
+            <div class="card schedule" *ngFor="let employee of date.employees">
+                <app-schedule [dataCheck]="employee" [leadDataCheck]="lead"
+                    (appointmentData)="finalizeAppointment($event)"></app-schedule>
+            </div>
+        </div>
+
+        <div *ngIf="isLoading" class="spinner">
+            <mat-spinner color="accent" mode="indeterminate"></mat-spinner>
+        </div>
+    </div>
+
+    <ng-template #filtered>
+        <div class="schedule-container">
+            <div *ngFor="let date of displayData">
+                <p class="day-header">{{ date.date | date: 'fullDate' }}</p>
+                <div class="card schedule" *ngFor="let employee of date.employees">
+                    <app-schedule [dataCheck]="employee" [leadDataCheck]="lead"
+                        (appointmentData)="finalizeAppointment($event)"></app-schedule>
+                </div>
+            </div>
+
+            <div *ngIf="isLoading" class="spinner">
+                <mat-spinner color="accent" mode="indeterminate"></mat-spinner>
+            </div>
+        </div>
+    </ng-template>
+
+    <div *ngIf="jobInfo && !slotSelected else selected">
+        <div class="info-card card">
+            <p class="card-title">{{ jobInfo?.customer | titlecase }}</p>
+            <p><b>Property Address:</b></p>
+            <p>{{ jobInfo?.jobAddress }} {{ jobInfo?.jobCity }}, {{ jobInfo?.jobState
+                }}, {{ jobInfo?.jobZip}}</p>
+            <p><b>Mobile:</b> {{ jobInfo.phone | mask: '(000) 000-0000' }}</p>
+            <p><b>Email Address:</b> {{ jobInfo?.email }}</p>
+            <p *ngIf="lead"><b>Lead Type:</b> {{ lead?.confirmLeadType }} </p>
+            <p><b>Zone/Geo Zone</b> {{ jobInfo?.zoneName }} / {{ jobInfo?.geoZoneName }}</p>
+        </div>
+    </div>
+
+    <ng-template #selected>
+        <div *ngIf="jobInfo">
+            <div class="info-card card">
+                <p class="card-title">{{ jobInfo?.customer | titlecase }}</p>
+                <p><b>Property Address:</b></p>
+                <p>{{ jobInfo?.jobAddress }} {{ jobInfo?.jobCity }}, {{ jobInfo?.jobState
+                    }}, {{ jobInfo?.jobZip}}</p>
+                <p><b>Mobile:</b> {{ jobInfo.phone | mask: '(000) 000-0000' }}</p>
+                <p><b>Email Address:</b> {{ jobInfo?.email }}</p>
+                <p *ngIf="lead"><b>Lead Type:</b> {{ lead?.confirmLeadType }} </p>
+                <p><b>Zone/Geo Zone</b> {{ jobInfo?.zoneName }} / {{ jobInfo?.geoZoneName }}</p>
+            </div>
+            <div class="info-card card details-card">
+                <p class="card-title">Review Appointment Details</p>
+                <p><b>Estimator:</b> {{ appointment.assignedName }}</p>
+                <p><b>Appt. Date:</b> {{ appointment.date | date:'fullDate' }}</p>
+                <p><b>Start Time:</b> {{ appointment.startTime }}</p>
+                <p><b>End Time:</b> {{ appointment.endTime }}</p>
+                <mat-form-field class="appointment-type-select">
+                    <mat-label>Appointment Type:</mat-label>
+                    <mat-select (selectionChange)="updateTypeValue($event)">
+                        <mat-option [value]="type.value" *ngFor="let type of appointmentTypes">{{ type.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-raised-button color="accent" class="book-appointment-button"
+                    (click)="scheduleAppointment(appointment)">Book Appointment</button>
+            </div>
+        </div>
+    </ng-template>
+
+</div>

@@ -1,0 +1,53 @@
+.user-table {
+    width: 100%;
+    padding: 1rem;
+}
+
+.content {
+    padding: 1rem;
+}
+
+.mat-header-row {
+    background-color: #fafafa;
+}
+
+.mat-row {
+    text-align: left;
+}
+
+.mat-row:hover {
+    background-color: #fafafa;
+    cursor: pointer;
+}
+
+.mat-no-data-row:hover {
+    cursor: default;
+}
+
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.filter {
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter .mat-form-field {
+    width: 33%;
+}
+
+.filter button {
+    padding: 0 1rem;
+    margin: 1rem 0;
+    color: white;
+}

@@ -1,0 +1,46 @@
+<div class="content">
+    <div class="filter">
+        <mat-form-field appearance="standard">
+            <mat-label>Filter Users</mat-label>
+            <input matInput (keyup)="filterUsers($event)" #input placeholder="ex. John Doe">
+        </mat-form-field>
+        <button mat-raised-button color="accent" [routerLink]="['new']">Add New User</button>
+    </div>
+    <table mat-table [dataSource]="dataSource" class="user-table" matSort fixedLayout="false">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>User Name</th>
+            <td mat-cell *matCellDef="let user">{{ user.name || "n/a" | titlecase }}</td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+            <td mat-cell *matCellDef="let user">{{ user.email || "n/a" | titlecase }}</td>
+        </ng-container>
+        <ng-container matColumnDef="userId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>User ID</th>
+            <td mat-cell *matCellDef="let user">{{ user.userId || "n/a" | titlecase }}</td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                <td mat-cell *matCellDef="let user">{{ user.isActive == true ? 'Active' : 'Inactive' }}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        
+        <ng-container>
+            <tr class="mat-row" *matNoDataRow [ngStyle]="{'text-align': 'center'}">
+                <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+                    No matching results
+                </td>
+            </tr>            
+        </ng-container>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goToUser(row)"></tr>
+    </table>
+
+    <div *ngIf="isLoading" class="spinner">
+        <mat-spinner color="accent" mode="indeterminate"></mat-spinner>
+    </div>
+
+    <mat-paginator 
+        [pageSize]="10"
+        showFirstLastButtons>
+    </mat-paginator>
+</div>

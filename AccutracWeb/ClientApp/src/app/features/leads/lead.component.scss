@@ -1,0 +1,28 @@
+.header {
+    background-color: var(--tertiary-color);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.header h1 {
+    margin-bottom: 0;
+}
+
+.nav-btn {
+    color: white;
+    width: 15%;
+    margin: 0.25rem 1rem;
+}
+
+footer {
+    padding: 1rem;
+}
+
+router-outlet {
+    display: none;
+}
+
+.container {
+    background-color: #f0f2f5;
+}

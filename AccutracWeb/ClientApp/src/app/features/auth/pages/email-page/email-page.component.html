@@ -1,0 +1,24 @@
+<div class="email-container">
+    <div class="form-container card">
+        <div class="card-header">
+            <h1>Reset your password</h1>
+            <mat-divider></mat-divider>
+        </div>
+
+        <p>Enter your email address to reset your account password.</p>
+        <p *ngIf="this.message">{{ message }}</p>
+
+        <form [formGroup]="resetPasswordForm" (submit)="sendPasswordResetEmail()">
+            <mat-form-field>
+                <mat-label>Email Address</mat-label>
+                <input matInput name="email" formControlName="email">
+                <mat-error *ngIf="resetPasswordForm.get('email')?.invalid">A valid email is required</mat-error>
+            </mat-form-field>
+
+            <div class="submit">
+                <button mat-raised-button class="cancel-btn" type="button" color="accent" [routerLink]="['auth']">Cancel</button>
+                <button mat-raised-button class="submit-btn" color="accent">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

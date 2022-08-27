@@ -1,0 +1,159 @@
+.container {
+    text-align: left;
+    // display: grid;
+    // grid-template-columns: 40% 60%;
+    // gap: 10px;
+    background-color: #f0f2f5;
+}
+
+h2 {
+    margin-bottom: 0.25rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem 0 1rem;
+}
+
+.form-group {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 10px;
+    overflow: hidden;
+    padding-bottom: 1rem;
+}
+
+.form-group.name {
+    grid-template-columns: 1fr 1fr;
+}
+
+.form-group.commercial {
+    grid-template-columns: 33% 33% 33%;
+}
+
+.form-group.contact {
+    grid-template-columns: 1fr 1fr;
+}
+
+.form-group.email {
+    grid-template-columns: 1fr;
+}
+
+
+.form-button {
+    text-align: center;
+    margin-top: 5%;
+}
+
+.form-button button {
+    margin-top: 0.5rem;
+    color: white;
+    width: 50%;
+}
+
+.form-button button:hover {
+    transform: scale(1.05);
+}
+
+.mat-divider {
+    margin-bottom: 0.5rem;
+}
+
+input::placeholder {
+    padding-left: 1rem;
+}
+
+mat-form-field {
+    margin-left: 0.75rem;
+}
+
+// .search {
+//     padding: 1rem;
+// }
+
+// .search-results {
+//     display: grid;
+//     grid-template-columns: 100%;
+//     grid-gap: 20px;
+// }
+
+// .card {
+//     display: grid;
+//     grid-template-areas: 
+//         "name name name"
+//         "address address address"
+//         "phone email schedule";
+//     gap: 10px;
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+//     transition: 0.3s;
+//     padding: 1rem;
+//     background-color: white;
+//     color: black;
+// }
+
+// .card:hover {
+//     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+// }
+
+// .card-item {
+//     margin: 0px;
+// }
+
+// .card-item.name {
+//     grid-area: name;
+//     align-self: center;
+//     border-bottom: 2px solid #f0f2f5;
+// }
+
+// .card-item.address {
+//     align-self: center;
+//     grid-area: address;
+// }
+
+// .card-item.phone {
+//     align-self: center;
+//     grid-area: phone;
+// }
+
+// .card-item.email {
+//     align-self: center;
+//     grid-area: email;
+// }
+
+// .card-item.schedule {
+//     text-align: center;
+//     grid-area: schedule;
+// }
+
+// .card-item.schedule button {
+//     color: white;
+// }
+
+// .spinner {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     background: #f0f2f5;
+// }
+
+footer {
+    padding: 0 1rem 2rem 1rem;
+    text-align: center;
+    grid-column: 1/3;
+}
+
+footer button {
+    color: white;
+}
+
+// .no-results {
+//     text-align: center;
+//     padding: 1rem;
+//     margin: 1rem 0;
+//     font-size: 1rem;
+// }
+
+// .no-results p {
+//     margin: 0;
+// }

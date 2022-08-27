@@ -1,0 +1,15 @@
+.appointment {
+    width: 100%;
+}
+
+.details {
+    text-align: left;
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.details button {
+    color: white;
+}

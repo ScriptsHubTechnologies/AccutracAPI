@@ -1,0 +1,42 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { CustomerRoutingModule } from './customer-routing.module';
+import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
+import { CustomerPageComponent } from './pages/customer-page/customer-page.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatChipsModule } from '@angular/material/chips';
+import { NoteComponent } from './components/note/note.component';
+import { CustomerJobAddressesComponent } from './components/customer-job-addresses/customer-job-addresses.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NewJobAddressDialogComponent } from './components/new-job-address-dialog/new-job-address-dialog.component';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { NewLeadDialogComponent } from './components/new-lead-dialog/new-lead-dialog.component';
+import { MatTableModule } from '@angular/material/table';
+import { JobAddressFormComponent } from './components/job-address-form/job-address-form.component';
+
+@NgModule({
+  declarations: [
+    CustomerDetailsComponent,
+    CustomerPageComponent,
+    NoteComponent,
+    CustomerJobAddressesComponent,
+    NewJobAddressDialogComponent,
+    NewLeadDialogComponent,
+    JobAddressFormComponent
+  ],
+  imports: [
+    CommonModule,
+    CustomerRoutingModule,
+    SharedModule,
+    MatTabsModule,
+    MatChipsModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatTableModule,
+    GooglePlaceModule
+  ]
+})
+export class CustomerModule { }

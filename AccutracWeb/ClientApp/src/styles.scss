@@ -1,0 +1,212 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material'as mat;
+// Plus imports for other components in your app.
+@import './custom-palettes.scss';
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+/* ======== Angular material custom themes ======== */
+
+$custom-theme-primary: mat.define-palette($primary-palette);
+$custom-theme-accent: mat.define-palette($accent-palette);
+$custom-theme-warn: mat.define-palette($warn-palette);
+
+$custom-theme: mat.define-light-theme((color: (primary: $custom-theme-primary,
+      accent: $custom-theme-accent,
+      warn: $custom-theme-warn)));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($custom-theme);
+
+// Custom AM component style imports
+//@import "app/am-component-styles/am-expansion";
+
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --primary-color: #002457;
+  --secondary-color: #da000d;
+  --tertiary-color: #6580ff;
+  --fourth-color: #374982;
+  --success: #4BB543;
+  --error: #cc0000;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f2f5;
+}
+
+body {
+  width: 100%;
+  display: table-cell;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// Global card style
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  margin: 1rem 2rem;
+  background-color: white;
+  padding: 1rem;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+// Global Mat Form Field Standard Style
+.mat-form-field-appearance-standard .mat-form-field-flex {
+  padding-top: 0 !important;
+}
+
+// GLobal Disabled Mat Form Field Style
+.mat-form-field-appearance-standard.mat-form-field-disabled.mat-form-field-label {
+  color: rgba(0,0,0,.6)!important;
+}
+
+.mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after, .mat-input-element:disabled {
+  color: rgba(0,0,0,1)!important;
+}
+
+.mat-select-disabled .mat-select-value {
+  color: rgba(0,0,0,1)!important;
+}
+
+// Google places autocomplete
+.pac-container.pac-logo {
+  min-width: fit-content;
+  padding-right: 0.25rem;
+}
+
+.pac-container.pac-logo::after {
+  display: none;
+}
+
+
+// Expansion panel styles for sidenav counts
+.header.mat-expansion-panel-header {
+  padding: 0 0.5rem;
+  color: white;
+}
+
+div.lead-counts .mat-expansion-panel-body {
+  padding: 0;
+}
+
+.count-panel.mat-expansion-panel {
+  background-color: var(--primary-color);
+  box-shadow: none;
+}
+
+.count-panel.mat-expansion-panel:hover,
+.count-panel.mat-expansion-panel.mat-expanded {
+  background-color: var(--tertiary-color);
+}
+
+.panel-title.mat-expansion-panel-header-title {
+  color: white;
+}
+
+.section-title.mat-expansion-panel-header-title {
+  display: flex;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+// Arrow on expansion panel
+.mat-expansion-indicator::after {
+    color: white;
+    margin-bottom: 0.25rem;
+}
+
+
+// Mat select styles for change comapny code
+.cc-select.mat-select {
+  background-color: var(--tertiary-color);
+}
+
+div.code-select .mat-select-value {
+  color: white;
+  padding-left: 1rem;
+}
+
+div.code-select .mat-select-arrow {
+  color: white;
+}
+
+// Mat Tab Group styles for customer details
+.content .mat-tab-group.mat-background-accent.customer-tabs .mat-tab-label {
+  color: white;
+  min-width: fit-content;
+}
+
+.content .customer-tabs .mat-tab-label:hover,
+.content .customer-tabs .mat-tab-label-active {
+  opacity: 1;
+}
+
+// Smart Scheduler mat form field styles
+.time-field .mat-form-field-infix {
+  width: fit-content;
+}
+
+// Calendar expansion panel
+.event-header.mat-expansion-panel-header,
+.event-header.mat-expansion-panel-header.mat-expanded {
+  color: white;
+  background-color: var(--success) !important;
+  width: 100%;
+  padding: 0;
+}
+
+.event-header .mat-content {
+  flex-direction: column;
+}
+
+.event-header.mat-expansion-panel-header:hover,
+.event-header.mat-expansion-panel-header.mat-expanded:hover {
+  transform: scale(1);
+}
+
+.appointment .mat-expansion-panel-content .mat-expansion-panel-body {
+  padding: 0;
+}
+
+.event-header .mat-expansion-indicator {
+  padding-right: 0.5rem;
+  color: white;
+  margin-bottom: 0.25rem;  
+}
+
+// Calendar sizing 
+div.calendar .cal-month-view .cal-day-cell {
+  min-width: 50px;
+}
+
+// Calendar select
+.estimator-select .mat-form-field-underline {
+  display: none;
+}
+
+.estimator-select .mat-form-field-wrapper {
+  padding: 0;
+}

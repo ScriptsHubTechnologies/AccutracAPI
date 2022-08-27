@@ -1,0 +1,47 @@
+h2 {
+    margin: 0 0 0.25rem 0;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    text-align: center;
+    color: black;
+    justify-content: space-between;
+}
+
+.metrics {
+    display: flex;
+    gap: 15px;
+}
+
+.select-slot-button {
+    border-color: var(--tertiary-color);
+    color: var(--tertiary-color);
+}
+
+// slot styles
+
+.appointment-slot {
+    text-align: left;
+    padding: 0.5rem 0;
+    display: flex;
+    line-height: 2.5;
+    justify-content: space-evenly;
+}
+
+.taken {
+    border-left: 10px solid var(--error);
+    opacity: 0.75;
+    margin: 1rem 0;
+}
+
+.open {
+    border-left: 10px solid var(--success);
+    margin: 1rem 0;
+}
+
+mat-icon {
+    line-height: 1.5;
+}

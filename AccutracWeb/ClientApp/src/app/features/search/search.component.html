@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="header">
+        <h1>Search Results</h1>
+    </div>
+    <div class="content">
+        <div class="filter">
+            <mat-form-field appearance="standard">
+                <mat-label>Filter Customers</mat-label>
+                <input matInput (keyup)="filterCustomers($event)" #input placeholder="ex. John Doe">
+            </mat-form-field>
+            <button mat-raised-button color="accent" [routerLink]="['../generate-lead/step1']">Add New Customer</button>
+        </div>
+        <table mat-table [dataSource]="dataSource" class="search-table" matSort>
+            <!-- Column definitions -->
+            <ng-container matColumnDef="customerid">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer ID</th>
+                <td mat-cell *matCellDef="let customer">{{ customer.customerid }}</td>
+            </ng-container>
+            <ng-container matColumnDef="firstName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+                <td mat-cell *matCellDef="let customer">{{ customer.firstName | titlecase }}</td>
+            </ng-container>
+            <ng-container matColumnDef="lastName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+                <td mat-cell *matCellDef="let customer">{{ customer.lastName | titlecase }}</td>
+            </ng-container>
+            <ng-container matColumnDef="jobAddress">
+                <th mat-header-cell *matHeaderCellDef>Job Address</th>
+                <td mat-cell *matCellDef="let customer">{{ customer.jobAddress1 }}</td>
+            </ng-container>
+            <ng-container matColumnDef="city">
+                <th mat-header-cell *matHeaderCellDef>City</th>
+                <td mat-cell *matCellDef="let customer">{{ customer.jobCity }}</td>
+            </ng-container>
+            <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef>State</th>
+                <td mat-cell *matCellDef="let customer">{{ customer.jobState }}</td>
+            </ng-container>
+            <ng-container matColumnDef="zip">
+                <th mat-header-cell *matHeaderCellDef>Zip Code</th>
+                <td mat-cell *matCellDef="let customer">{{ customer.jobZip }}</td>
+            </ng-container>
+            <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+                <td mat-cell *matCellDef="let customer">{{ customer.phone | mask: '(000) 000-0000' }}</td>
+            </ng-container>
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>Email</th>
+                <td mat-cell *matCellDef="let customer">{{ customer.email }}</td>
+            </ng-container>
+
+            <!-- Row definitions -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr class="mat-row" *matNoDataRow [ngStyle]="{'text-align': 'center'}">
+                <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+                    No matching customers
+                </td>
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goToCustomer(row.customerid)"></tr>
+
+        </table>
+
+        <div *ngIf="isLoading" class="spinner">
+            <mat-spinner color="accent" mode="indeterminate"></mat-spinner>
+        </div>
+
+        <mat-paginator [pageSize]="10"></mat-paginator>
+    </div>
+</div>

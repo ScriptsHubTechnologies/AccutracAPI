@@ -1,0 +1,45 @@
+<div class="card">
+    <h2>Job Address {{ index + 1 }}</h2>
+    <form [formGroup]="jobAddressForm">
+        <div formGroupName="jobAddress" class="job-address">
+            <div class="street">
+                <mat-form-field appearance="standard" class="street">
+                    <mat-label>Street Address</mat-label>
+                    <input matInput type="text" name="streetAddress" formControlName="streetAddress">
+                </mat-form-field>
+            </div>
+            <div class="details">
+                <mat-form-field appearance="standard" class="city">
+                    <mat-label>City</mat-label>
+                    <input matInput type="text" name="city" formControlName="city">
+                </mat-form-field>
+                <mat-form-field appearance="standard" class="state">
+                    <mat-label>State</mat-label>
+                    <input matInput type="text" name="state" formControlName="state">
+                </mat-form-field>
+                <mat-form-field appearance="standard" class="zip">
+                    <mat-label>Zip</mat-label>
+                    <input matInput type="text" name="zip" formControlName="zip">
+                </mat-form-field>
+            </div>
+            <div class="zones">
+                <mat-form-field appearance="standard">
+                    <mat-label>Zone</mat-label>
+                    <mat-select formControlName="zone">
+                        <mat-option *ngFor="let zone of zones" [value]="zone.zoneId">
+                            {{ zone.zoneName }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Geozone</mat-label>
+                    <mat-select formControlName="geoZone">
+                        <mat-option *ngFor="let zone of geoZones" [value]="zone.id">
+                            {{ zone.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="header">
+        <h1>Accutrax Dashboard</h1>        
+    </div>
+    <div class="content">
+        <div class="search-container card">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="section-title">Search</mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-divider></mat-divider>
+                <div class="panel-body">
+                    <form [formGroup]="searchForm" class="search-form" (ngSubmit)="search()">
+                        <mat-form-field appearance="standard">
+                            <mat-label>Search Type</mat-label>
+                            <mat-select formControlName="searchType">
+                                <mat-option *ngFor="let type of searchTypes" [value]="type.value">
+                                    {{ type.viewValue }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="searchForm.get('searchType')?.invalid">Search Type is required</mat-error>
+                        </mat-form-field>
+                        <div class="form-group" formGroupName="searchTerms">
+                            <!-- <mat-form-field appearance="standard">
+                                <mat-label>Customer ID</mat-label>
+                                <input matInput name="id" formControlName="id">
+                                <mat-error *ngIf="searchForm.get('searchTerms.id')?.invalid">Customer ID must be an
+                                    integer</mat-error>
+                            </mat-form-field> -->
+                            <mat-form-field appearance="standard">
+                                <mat-label>Job Address</mat-label>
+                                <input matInput name="jobAddress" formControlName="jobAddress">
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Customer Last Name</mat-label>
+                                <input matInput name="lastName" formControlName="lastName">
+                            </mat-form-field>
+                            
+                        </div>
+                        <mat-error
+                            *ngIf="searchForm.get('searchTerms')?.invalid && searchForm.get('searchTerms')?.touched">
+                            At least one search term is required
+                        </mat-error>
+                        <div class="submit">
+                            <button mat-raised-button class="search-btn" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </mat-expansion-panel>
+        </div>
+    </div>
+</div>

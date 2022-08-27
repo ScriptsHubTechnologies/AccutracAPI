@@ -1,0 +1,12 @@
+<div class="login-container" *ngIf="this.showLogin">
+    <div class="form-container card">
+        <div class="logo">
+            <img src="assets\images\accutrac-logo.png" alt="Helitech Logo">
+        </div>
+
+        <h1>Accutrax Login</h1>
+        <app-login-form (formData)="login($event)"></app-login-form>
+        <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+        <a class="forgot-password" [routerLink]="['../forgot-password']">Forgot password?</a>
+    </div>
+</div>
