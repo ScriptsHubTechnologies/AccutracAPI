@@ -16,6 +16,13 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { NewLeadDialogComponent } from './components/new-lead-dialog/new-lead-dialog.component';
 import { MatTableModule } from '@angular/material/table';
 import { JobAddressFormComponent } from './components/job-address-form/job-address-form.component';
+import { WebcamModule } from 'ngx-webcam';
+import { CustomerAttachmentsComponent } from './components/customer-attachments/customer-attachments.component';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { MyModalModule } from '../my-modal/my-modal.module';
+
+
 
 @NgModule({
   declarations: [
@@ -25,7 +32,8 @@ import { JobAddressFormComponent } from './components/job-address-form/job-addre
     CustomerJobAddressesComponent,
     NewJobAddressDialogComponent,
     NewLeadDialogComponent,
-    JobAddressFormComponent
+    JobAddressFormComponent,
+    CustomerAttachmentsComponent,
   ],
   imports: [
     CommonModule,
@@ -36,7 +44,12 @@ import { JobAddressFormComponent } from './components/job-address-form/job-addre
     MatSelectModule,
     MatDialogModule,
     MatTableModule,
-    GooglePlaceModule
-  ]
+    GooglePlaceModule,
+    WebcamModule,
+    ToastrModule.forRoot(),
+    PdfViewerModule,
+    MyModalModule,
+  ],
+  providers: [ToastrService]
 })
 export class CustomerModule { }

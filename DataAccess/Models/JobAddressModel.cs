@@ -43,5 +43,11 @@ namespace DataAccess.Models
 
         public bool IsDeleted { get; set; }
 
+        public string? AttachmentType { get; set; }
+
+        public string? AttachmentName { get; set; }
+
+        public string? AttachmentPath { get; set; }
+
     }
 }

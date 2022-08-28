@@ -6,9 +6,9 @@ namespace DataAccess.Data
     {
         Task<JobAddressModel?> GetJobAddress(string id, string company_code);
         Task<IEnumerable<JobAddressModel>> GetJobAddresses();
-        Task<int>InsertJobAddress(JobAddressModel jobaddress);
+        Task<int> InsertJobAddress(JobAddressModel jobaddress);
         Task UpdateJobAddress(JobAddressModel jobaddress);
         Task<int> InsertAttachments(Attachment attachment);
-        Task<JobAddressModel> GetAttachementById(string cc, string id, string custid);
+        Task<List<JobAddressModel>> GetAttachementById(string company_code, string id, string custid);
     }
 }

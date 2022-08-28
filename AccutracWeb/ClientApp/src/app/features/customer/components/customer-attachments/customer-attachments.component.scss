@@ -1,0 +1,91 @@
+.mat-divider {
+    border-width: 2px;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.details {
+    display: grid;
+    grid-template-areas: 
+    "header header"
+    "details mailing";
+    gap: 1rem;
+}
+
+.card-header {
+    grid-area: header;
+}
+
+.customer-details {
+    grid-area: details;
+}
+
+.job {
+    grid-area: job;
+}
+
+.mailing {
+    grid-area: mailing;
+}
+.imgg{
+    display: flex;
+    flex-wrap: wrap;
+}
+.card{
+    height: auto !important;
+     width: auto !important;
+}
+.img-button {
+    margin-left: auto;
+    margin-right: 1rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.mat-raised-button.mat-accent{
+    color: white;
+}
+
+.customcard{
+box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+transition: 0.3s;
+border-radius: 5px;
+margin: 1rem 2rem;
+background-color: white;
+padding: 1rem;
+min-width: 510px;
+min-height: 400px;
+}
+.custcard{
+display: flex;
+justify-content: space-between;
+}
+.addbutton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+}
+.img-btn{
+    margin-top: 145px;
+}
+
+.material-icons {
+    font-size: 100px !important;
+}
+
+.mat-icon {
+    height: 100px !important;
+    width: 100px !important;
+    color: red;
+}

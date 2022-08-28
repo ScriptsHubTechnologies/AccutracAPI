@@ -1,0 +1,87 @@
+
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <div class="card-header">
+        <div class="row addbutton">
+            <h2 style="flex:auto;">Attachments</h2>
+            <button mat-raised-button color="accent" style="margin-right:5px;" (click)="back()">Back</button>
+            <button mat-raised-button color="accent" (click)="addNewAttachment()">Add Attachment</button>
+        </div>
+        <mat-divider></mat-divider>
+      <div class="row custcard" *ngIf="this.isCustomcard">
+        <div class="customcard">
+          <label class="btn btn-secondary">
+            Choose File
+            <input #file type="file" multiple class="img-btn" accept=".png,.pdf"(change)="chooseFile($event)"/>
+            <button mat-raised-button (click)="uploadFiles()">Upload Images</button>
+          </label>
+        </div>
+        <div class="customcard">
+          <div class="buttons">
+           <button mat-raised-button class="img-btn" *ngIf="this.isUploadVisible" (click)="takePhoto()">Capture Image</button>
+          </div>
+        </div>
+      </div>
+
+          <div class="row" *ngIf="this.isImageshow">
+              <div class="imgg">
+              <ng-container *ngFor="let img of previewImages">
+                
+                <div *ngIf="img.attachmentType == 'application/pdf'; else images">
+                  <mat-icon (click)="openPDF(img)">picture_as_pdf</mat-icon>
+                </div>
+               
+                <ng-template #images>
+                  <img [src]="img.attachmenturl" height="100" width="100" style="margin:10px">
+                </ng-template>
+              </ng-container> 
+              </div>
+          </div>
+           
+            <div id="outerContainer" *ngIf="this.isPDFShow">
+              <div class="pdf-container">
+                <pdf-viewer
+                  src={{pdfpath}}
+                  [rotation]="0"
+                  [original-size]="false"
+                  [show-all]="true"
+                  [fit-to-page]="false"
+                  [zoom]="1"
+                  [zoom-scale]="'page-width'"
+                  [stick-to-page]="false"
+                  [render-text]="true"
+                  [external-link-target]="'blank'"
+                  [autoresize]="true"
+                  [show-borders]="false"
+                  style="width: 100%; height: 600px;"
+                ></pdf-viewer>
+              </div>
+            </div>
+
+          <div class="content" role="main">
+            <p *ngIf="status != ''">Status: {{status}}</p>
+              <div *ngIf="this.isCapturebtnVisible">
+                <button mat-raised-button class="img-button" tabindex="0" (click)="capture()">
+                  <span>{{btnLabel}}</span>
+                </button>
+                <button mat-raised-button class="img-button" tabindex="0" (click)="cancel()">
+                  <span>Cancel</span>
+                </button>
+            </div>
+            <div *ngIf="this.isWebcamVisible">
+              <webcam [trigger]="$trigger" (imageCapture)="snapshot($event)" ></webcam>
+            </div>
+          
+            <div *ngIf="this.isCaptureVisible">
+              <div *ngIf="previewImage">
+                  <img [src]="previewImage" height="250" width="250">
+              </div>
+          
+              <button mat-raised-button class="img-button" tabindex="0" *ngIf="this.isAddphotoVisible" (click)="saveAttachmentData()">
+                <span>Use This Image</span>
+              </button>
+            </div>
+          </div> 
+    </div>
+  </div>

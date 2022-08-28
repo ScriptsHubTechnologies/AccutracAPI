@@ -24,6 +24,7 @@ import { GeoZoneFull } from '../../interfaces/geo-zone-full';
 import { Estimator } from '../../interfaces/calendar/estimator';
 import { UserRole } from '../../interfaces/user-role';
 import { Note } from '../../interfaces/note';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ import { Note } from '../../interfaces/note';
 
 export class ApiService {
   // Gets
-  url = "http://localhost:7042";
+  url = environment.apiurl;
   ProdUrl = "https://accutrac.net/api";
 
   getCustomersUrl = this.url + '/customers';
@@ -73,15 +74,33 @@ export class ApiService {
   // Deletes
   deleteEstimatorAvailabilityUrl = this.url + '/EstAvailSkill/Delete/%7Bcompany_code,uniqueid%7D?';
 
-  insertChooseFileUrl = this.url + '/ChooseFile';
+  insertChooseFileUrl = this.url + '/Files/uploadFiles/%7Bcompany_code,jobaddressid,customerid%7D?';
+  getAttachmentInfoUrl = this.url + '/Attachment/%7Bcompany_code,jobaddressid,customerid%7D?';
+  insertAttachmentUrl = this.url + '/Attchment';
 
   constructor(
     private http: HttpClient,
     private localStorage: LocalStorageService
   ) { }
 
-  SaveChooseFileData(formData:any):Observable<any>{
-    return this.http.post<any>(this.insertChooseFileUrl, formData);
+  GetAttachementById(customerId?: string, jobAddressId?: string): Observable<any[]> {
+    let params = new HttpParams().set('cc', this.localStorage.get('companyCode'));
+    jobAddressId ? params = params.set('id', jobAddressId) : params = params.set('id', ' ');
+    customerId ? params = params.set('custid', customerId) : params = params.set('custid', ' ');
+
+    return this.http.get<any[]>(this.getAttachmentInfoUrl, { params });
+  }
+
+  attachmentsSaveData(jobAddressInfo: any): Observable<string> {
+    return this.http.post<string>(this.insertAttachmentUrl, jobAddressInfo);
+  }
+
+  SaveChooseFileData(formData: any, customerId?: string, jobAddressId?: string): Observable<any> {
+    let params = new HttpParams().set('cc', this.localStorage.get('companyCode'));
+    jobAddressId ? params = params.set('id', jobAddressId) : params = params.set('id', ' ');
+    customerId ? params = params.set('custid', customerId) : params = params.set('custid', ' ');
+
+    return this.http.post<any>(this.insertChooseFileUrl, formData, { params });
   }
 
   // Gets
