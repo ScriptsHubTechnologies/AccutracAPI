@@ -1,12 +1,8 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 import * as saveAs from 'file-saver';
-import { DBSchema, openDB } from 'idb';
 import { ToastrService } from 'ngx-toastr';
 import { WebcamImage } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
@@ -16,12 +12,6 @@ import { IdbService } from 'src/app/core/services/idb/idb.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { MyModalComponent } from 'src/app/features/my-modal/my-modal.component';
 import { environment } from 'src/environments/environment';
-
-const dbPromise = openDB('my-db', 1, {
-  upgrade(db) {
-    db.createObjectStore('Images');
-  },
-});
 
 @Component({
   selector: 'app-customer-attachments',
@@ -35,53 +25,49 @@ export class CustomerAttachmentsComponent implements OnInit {
 
   jobAddresses: any;
   selectedJobid: string = '';
-  isCaptureButtonVisible=false;
-  //isButtonVisible=true;
-  //isTakePhotoVisible=false;
-  isUploadVisible= true;
-  isCustomcard=false;
+  isCaptureButtonVisible = false;
+  isUploadVisible = true;
+  isCustomcard = false;
   title = 'pwa-example';
-  counter=0;
+  counter = 0;
   stream: any = null;
   status: string = '';
   trigger: Subject<void> = new Subject();
   previewImage: any = '';
-  imageobj:any='';
+  imageobj: any = '';
   btnLabel: string = "Capture Image";
-  //ImageList = [];
-  ImageList : [] ;
-  ImageDateList :any=[] ;
+  ImageList: [];
+  ImageDateList: any = [];
   shortLink: string = "";
   loading: boolean = false; // Flag variable
-  imgs:any;
-  previewImages:any=[];
-  isImageshow=true;
+  imgs: any;
+  previewImages: any = [];
+  isImageshow = true;
   isCaptureVisible = false;
-  isWebcamVisible= false;
-  isAddphotoVisible=false;
-  isCapturebtnVisible=false;
+  isWebcamVisible = false;
+  isAddphotoVisible = false;
+  isCapturebtnVisible = false;
   apiurl = environment.apiurl;
   selectedFile: File;
-  fileToUpload: File;  
-  imageUrl: string;  
-  myFiles:string [] = [];
+  fileToUpload: File;
+  imageUrl: string;
+  myFiles: string[] = [];
   isPDFShow = false;
   pdfpath: string;
   overlayRef: OverlayRef;
   isOpen = false;
-  
-    get $trigger(): Observable<void> {
-      return this.trigger.asObservable();
-    }
-  constructor( private apiService: ApiService,private router: Router,
-    private http: HttpClient, private idbService: IdbService,
-    private localStorage: LocalStorageService,private sanitizer: DomSanitizer,
-    private toastr: ToastrService, public dialog: MatDialog, private overlay: Overlay) { }
-    
-    sanitizeImageUrl(imageUrl: string): SafeUrl {
-      return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
+
+  get $trigger(): Observable<void> {
+    return this.trigger.asObservable();
   }
-  
+  constructor(private apiService: ApiService,
+    private http: HttpClient,
+    private localStorage: LocalStorageService,
+    private toastr: ToastrService,
+    public dialog: MatDialog,
+    private overlay: Overlay) { }
+
+
   ngOnInit(): void {
     this.apiService.getJobAddressInfo(this.customerId).subscribe({
       next: (jobAddressInfo) => {
@@ -92,13 +78,13 @@ export class CustomerAttachmentsComponent implements OnInit {
       }
     })
   }
-  
+
   openDialog(): void {
     const dialogRef = this.dialog.open(MyModalComponent, {
       width: '700px',
       height: '800px',
-      data: {pdfPath: this.pdfpath}
-      
+      data: { pdfPath: this.pdfpath }
+
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -118,7 +104,7 @@ export class CustomerAttachmentsComponent implements OnInit {
     //this.overlayRef.attach(componentPortal);
   }
 
-  download(img:any) {
+  downloadPdf(img: any) {
     this.apiService.getFile(img.attachmentId).subscribe({
       next: (data: any) => {
         saveAs("data:application/pdf;base64," + data, "Test.pdf");
@@ -126,17 +112,22 @@ export class CustomerAttachmentsComponent implements OnInit {
     })
   }
 
-  getImagesByJobAddress(jobid:string){
-    this.apiService.GetAttachementById(this.customerId,jobid).subscribe({
+  downloadImage(img: any) {
+    this.apiService.getFile(img.attachmentId).subscribe({
+      next: (data: any) => {
+        saveAs("data:application/png;base64," + data, "Test.png");
+      }
+    })
+  }
+
+  getImagesByJobAddress(jobid: string) {
+    this.apiService.GetAttachementById(this.customerId, jobid).subscribe({
       next: (data) => {
         console.log(data);
         data.forEach(element => {
           element.attachmenturl = this.apiurl + '/' + element.attachmentPath
         });
         this.previewImages = data.reverse();
-
-        //this.jobAddresses = jobAddressInfo;
-        console.log(this.jobAddresses.jobAddressId);
       }
     })
   }
@@ -148,11 +139,10 @@ export class CustomerAttachmentsComponent implements OnInit {
     this.isCaptureVisible = true;
     this.btnLabel = "Re-Take Image";
     this.isAddphotoVisible = true;
-  //   this.storedimg();
   }
 
   buildJobAddress() {
-   
+
     let jobAddress = {
       company_Code: this.localStorage.get('companyCode'),
       customerId: this.customerId,
@@ -160,25 +150,25 @@ export class CustomerAttachmentsComponent implements OnInit {
       functionTable: '',
       functionId: 0,
       attachmentType: '',
-      attachmentName: this.customerId +'_'+ this.jobAddresses.jobAddressId,
-      attachmentBase64String:this.previewImage,
+      attachmentName: this.customerId + '_' + this.jobAddresses.jobAddressId,
+      attachmentBase64String: this.previewImage,
       attachmentPath: '',
     }
     return jobAddress;
   }
 
-  saveAttachmentData(){
+  saveAttachmentData() {
 
     let jobAddressInfo = this.buildJobAddress();
     this.apiService.attachmentsSaveData(jobAddressInfo).subscribe({
       next: (data) => {
         this.isUploadVisible = true;
         this.isCustomcard = false;
-        this.isCaptureButtonVisible=false;
-        this.isAddphotoVisible=false;
-        this.isImageshow=true;
-        this.isCapturebtnVisible=false;
-        this.isCaptureVisible=false;
+        this.isCaptureButtonVisible = false;
+        this.isAddphotoVisible = false;
+        this.isImageshow = true;
+        this.isCapturebtnVisible = false;
+        this.isCaptureVisible = false;
         this.isWebcamVisible = false;
         this.toastr.success("Image Uploaded Successfully.")
         this.ngOnInit();
@@ -189,9 +179,9 @@ export class CustomerAttachmentsComponent implements OnInit {
     })
   }
 
-  cancel(){
+  cancel() {
     this.isImageshow = false;
-    this.isCapturebtnVisible=false;
+    this.isCapturebtnVisible = false;
     this.isWebcamVisible = false;
     this.isUploadVisible = true;
     this.isCustomcard = true;
@@ -207,69 +197,55 @@ export class CustomerAttachmentsComponent implements OnInit {
     this.trigger.next();
   }
 
-  addNewAttachment(){
+  addNewAttachment() {
     this.isCustomcard = true;
     this.isImageshow = false;
   }
-  takePhoto(){
-    this.isCaptureButtonVisible=true
-    //this.isButtonVisible=false;
-    this.isImageshow=false;
+
+  takePhoto() {
+    this.isCaptureButtonVisible = true
+    this.isImageshow = false;
     this.isUploadVisible = false;
-    this.isCustomcard =false;
-    //this.isTakePhotoVisible=false;
-    this.isWebcamVisible=true;
+    this.isCustomcard = false;
+    this.isWebcamVisible = true;
     this.isCapturebtnVisible = true;
     this.btnLabel = "Capture Image";
   }
 
-  
   chooseFile(event: any) {
-    for (var i = 0; i < event.target.files.length; i++) { 
+    for (var i = 0; i < event.target.files.length; i++) {
       this.myFiles.push(event.target.files[i]);
     }
   }
 
-  openPDF(img:any){
+  openPDF(img: any) {
     //this.isImageshow = false;
     this.isPDFShow = true;
     console.log(img.attachmenturl);
     this.pdfpath = img.attachmenturl;
     this.openDialog();
   }
-  back(){
-    this.isImageshow= true;
+
+  back() {
+    this.isImageshow = true;
     this.isPDFShow = false;
     this.isCustomcard = false;
   }
- 
-  uploadFiles(){
+
+  uploadFiles() {
     const formData = new FormData();
- 
-    for (var i = 0; i < this.myFiles.length; i++) { 
+
+    for (var i = 0; i < this.myFiles.length; i++) {
       formData.append("file[]", this.myFiles[i]);
     }
 
     let jobaddressId = this.jobAddresses.jobAddressId;
-    this.apiService.SaveChooseFileData(formData,this.customerId,jobaddressId).subscribe({
+    this.apiService.SaveChooseFileData(formData, this.customerId, jobaddressId).subscribe({
       next: (data) => {
         this.ngOnInit();
         this.isCustomcard = false;
         this.isImageshow = true;
       }
-    }); 
+    });
   }
-}
-
-  
-interface MyDB extends DBSchema {
-  'Images': {
-    key: string;
-    value: string;
-  };
-}
-
-interface Images {  
-  jobId: string;
-  imageList: string[];
 }
