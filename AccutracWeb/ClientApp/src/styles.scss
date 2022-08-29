@@ -4,6 +4,7 @@
 // Plus imports for other components in your app.
 @import './custom-palettes.scss';
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import '~@angular/cdk/overlay-prebuilt.css';
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.

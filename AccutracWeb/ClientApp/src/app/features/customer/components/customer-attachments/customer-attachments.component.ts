@@ -1,8 +1,11 @@
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import * as saveAs from 'file-saver';
 import { DBSchema, openDB } from 'idb';
 import { ToastrService } from 'ngx-toastr';
 import { WebcamImage } from 'ngx-webcam';
@@ -63,7 +66,9 @@ export class CustomerAttachmentsComponent implements OnInit {
   imageUrl: string;  
   myFiles:string [] = [];
   isPDFShow = false;
-  pdfpath:string;
+  pdfpath: string;
+  overlayRef: OverlayRef;
+  isOpen = false;
   
     get $trigger(): Observable<void> {
       return this.trigger.asObservable();
@@ -71,7 +76,7 @@ export class CustomerAttachmentsComponent implements OnInit {
   constructor( private apiService: ApiService,private router: Router,
     private http: HttpClient, private idbService: IdbService,
     private localStorage: LocalStorageService,private sanitizer: DomSanitizer,
-    private toastr: ToastrService,public dialog: MatDialog) { }
+    private toastr: ToastrService, public dialog: MatDialog, private overlay: Overlay) { }
     
     sanitizeImageUrl(imageUrl: string): SafeUrl {
       return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
@@ -90,8 +95,8 @@ export class CustomerAttachmentsComponent implements OnInit {
   
   openDialog(): void {
     const dialogRef = this.dialog.open(MyModalComponent, {
-      width: '500px',
-      height: '500px',
+      width: '700px',
+      height: '800px',
       data: {pdfPath: this.pdfpath}
       
     });
@@ -99,6 +104,26 @@ export class CustomerAttachmentsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       //this.animal = result;
     });
+  }
+
+  open() {
+    // We create the overlay
+    this.overlayRef = this.overlay.create();
+    //Then we create a portal to render a component
+    //const componentPortal = new ComponentPortal(MyModalComponent);
+    // We add a custom CSS class to our overlay
+    //this.overlayRef.addPanelClass("example-overlay");
+    this.isOpen = true;
+    //We render the portal in the overlay
+    //this.overlayRef.attach(componentPortal);
+  }
+
+  download(img:any) {
+    this.apiService.getFile(img.attachmentId).subscribe({
+      next: (data: any) => {
+        saveAs("data:application/pdf;base64," + data, "Test.pdf");
+      }
+    })
   }
 
   getImagesByJobAddress(jobid:string){
@@ -206,11 +231,11 @@ export class CustomerAttachmentsComponent implements OnInit {
   }
 
   openPDF(img:any){
-    this.isImageshow = false;
+    //this.isImageshow = false;
     this.isPDFShow = true;
     console.log(img.attachmenturl);
     this.pdfpath = img.attachmenturl;
-    //this.openDialog();
+    this.openDialog();
   }
   back(){
     this.isImageshow= true;

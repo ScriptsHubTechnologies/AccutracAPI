@@ -32,12 +32,20 @@ namespace DataAccess.Data
             return _db.InsertAttachment(storedProcedure: "dbo.spAttachment_Post", attachment);
         }
 
-        public async Task<List<JobAddressModel>> GetAttachementById(string company_code, string id, string custid)
+        public async Task<List<JobAddressModel>> GetAttachementByCompany(string company_code, string id, string custid)
+        {
+            var results = await _db.LoadData<JobAddressModel, dynamic>(
+                    storeProcedure: "dbo.spAttachment_GetByCompany",
+                    new { @custid = custid, @jobid = id, @company_code = company_code });
+            return results.ToList();
+        }
+
+        public async Task<JobAddressModel> GetAttachementById(string attachmentId)
         {
             var results = await _db.LoadData<JobAddressModel, dynamic>(
                     storeProcedure: "dbo.spAttachment_GetById",
-                    new { @custid = custid, @jobid = id, @company_code = company_code });
-            return results.ToList();
+                    new { @id = attachmentId });
+            return results.FirstOrDefault();
         }
 
         public Task<JobAddressModel?> GetJobAddress(string id)

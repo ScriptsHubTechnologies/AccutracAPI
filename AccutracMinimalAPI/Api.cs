@@ -67,7 +67,8 @@ namespace AccutracMinimalAPI
             app.MapPost("/Leads/ThreeShip", InsertPaidLead);
             app.MapGet("/Leads/ThreeShip", GetPaidLeads);
             app.MapPost("/Attchment", AttachmentsSaveData);
-            app.MapGet("/Attachment/{company_code,jobaddressid,customerid}", GetAttachementById);
+            app.MapGet("/Attachment/download/{attachmentId}", GetAttachmentByteArray);
+            app.MapGet("/Attachment/{company_code,jobaddressid,customerid}", GetAttachementByCompany);
             //app.MapPost("/ChooseFile/{formdata}", SaveChooseFileData);
 
             app.MapPost("/Files/uploadFiles/{company_code,jobaddressid,customerid}", (HttpRequest request, string cc, string id, string custid, IJobAddressData data) =>
@@ -890,18 +891,33 @@ namespace AccutracMinimalAPI
 
                 var results = await data.InsertAttachments(attachment);                return Results.Ok(results);            }            catch (Exception ex)            {                return Results.Problem(ex.Message);            }        }
 
-        private static async Task<IResult> GetAttachementById(string cc, string id, string custid, IJobAddressData data)
+        private static async Task<IResult> GetAttachementByCompany(string cc, string id, string custid, IJobAddressData data)
         {
             try
             {
-                var results = await data.GetAttachementById(cc, id, custid);
+                var results = await data.GetAttachementByCompany(cc, id, custid);
                 return Results.Ok(results);
             }
             catch (Exception ex)
             {
                 return Results.Problem(ex.Message);
             }
-        }        
+        }
+
+        private static async Task<IResult> GetAttachmentByteArray(string attachmentId, IJobAddressData data)
+        {
+            try
+            {
+                var results = await data.GetAttachementById(attachmentId);
+                string pdfFilePath = "E:\\Code\\Helitech_PWA\\Archive\\Accutrax-API-Dev-master\\AccutracMinimalAPI\\wwwroot\\" + results.AttachmentPath; //Need to replace this line with dynamic server path
+                byte[] bytes = File.ReadAllBytes(pdfFilePath);
+                return Results.Ok(bytes);
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
 
         #endregion
 

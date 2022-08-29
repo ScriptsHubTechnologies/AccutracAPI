@@ -77,11 +77,16 @@ export class ApiService {
   insertChooseFileUrl = this.url + '/Files/uploadFiles/%7Bcompany_code,jobaddressid,customerid%7D?';
   getAttachmentInfoUrl = this.url + '/Attachment/%7Bcompany_code,jobaddressid,customerid%7D?';
   insertAttachmentUrl = this.url + '/Attchment';
+  getattachmentUrl = this.url + '/Attachment/download';
 
   constructor(
     private http: HttpClient,
     private localStorage: LocalStorageService
   ) { }
+
+  getFile(attachmentId: string): Observable<any[]> {
+    return this.http.get<any[]>(this.getattachmentUrl + "/" + attachmentId);
+  }
 
   GetAttachementById(customerId?: string, jobAddressId?: string): Observable<any[]> {
     let params = new HttpParams().set('cc', this.localStorage.get('companyCode'));

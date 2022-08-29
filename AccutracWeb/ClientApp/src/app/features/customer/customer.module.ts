@@ -21,6 +21,7 @@ import { CustomerAttachmentsComponent } from './components/customer-attachments/
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { MyModalModule } from '../my-modal/my-modal.module';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 
 
@@ -49,6 +50,7 @@ import { MyModalModule } from '../my-modal/my-modal.module';
     ToastrModule.forRoot(),
     PdfViewerModule,
     MyModalModule,
+    OverlayModule
   ],
   providers: [ToastrService]
 })

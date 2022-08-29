@@ -49,5 +49,7 @@ namespace DataAccess.Models
 
         public string? AttachmentPath { get; set; }
 
+        public int? AttachmentId { get; set; }
+
     }
 }
