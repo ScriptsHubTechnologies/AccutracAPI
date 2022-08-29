@@ -24,27 +24,26 @@
         </div>
       </div>
      
-      <div  *ngFor="let img of attachments">
-        <div class="container">
-          <img src="../../../../../assets/images/PDF_file_icon.svg.webp" class="image">
-          <div class="overlay">
-            <mat-icon class="icon" (click)="downloadPdf(img)">cloud_download</mat-icon>
+      <div class="allAttachments">
+        <div class="attchpdf" *ngIf="this.showAttachments">
+          <div *ngFor="let attachment of attachments">
+            <div class="container" *ngIf="attachment.attachmentType == 'application/pdf'">
+              <img src="../../../../../assets/images/PDF_file_icon.svg.webp" class="image">
+              <div class="overlay">
+                <mat-icon class="icon" (click)="downloadPdf(attachment)">cloud_download</mat-icon>
+              </div>
+            </div>
           </div>
         </div>
-      </div> 
-
-      <div class="row" *ngIf="this.showAttachments">
-        <div class="imgg">
-          <ng-container *ngFor="let attachment of attachments">
-
-            <div *ngIf="attachment.attachmentType == 'application/pdf'; else images">
-              <img src="../../../../../assets/images/PDF_file_icon.svg.webp" height="100" width="100" style="margin:10px">
+        <div class="attchpng" *ngIf="this.showAttachments">
+          <div *ngFor="let attachment of attachments">
+            <div class="container" *ngIf="attachment.attachmentType != 'application/pdf';">
+              <img [src]="attachment.attachmentUrl" class="image">
+              <div class="overlay">
+                <mat-icon class="icon" (click)="downloadPdf(attachment)">cloud_download</mat-icon>
+              </div>
             </div>
-
-            <ng-template #images>
-              <img [src]="attachment.attachmentUrl" height="100" width="100" style="margin:10px">
-            </ng-template>
-          </ng-container>
+          </div>
         </div>
       </div>
 

@@ -98,8 +98,9 @@ justify-content: space-between;
 
 .image {
   display: block;
-  width: 100%;
-  height: auto;
+  width: 90px;
+  height: 100px;
+  margin: 10px;
 }
 
 .overlay {
@@ -108,11 +109,13 @@ justify-content: space-between;
   bottom: 0;
   left: 0;
   right: 0;
+  margin-left: 8px;
   height: 100%;
-  width: 100%;
+  width: 93%;
   opacity: 0;
   transition: .3s ease;
-  background-color: #b3a6a6;
+  background-color: rgb(51 46 46 / 90%);
+  border-radius: 5px;
 }
 
 .container:hover .overlay {
@@ -132,4 +135,21 @@ justify-content: space-between;
 
 .fa-user:hover {
   color: #eee;
+}
+
+.allAttachments {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.attchpdf {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 3px solid #e0e0e0;
+  padding-bottom: 15px
+}
+
+.attchpng {
+  display: flex;
+  padding-top: 15px
 }
