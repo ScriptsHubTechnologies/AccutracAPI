@@ -14,6 +14,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
   imports: [
     CommonModule,
     PdfViewerModule,
+    MatDialogModule
   ],
   exports: [FormsModule, MatDialogModule, MatFormFieldModule, MatButtonModule, MatInputModule]
 })

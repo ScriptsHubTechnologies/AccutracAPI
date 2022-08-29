@@ -31,6 +31,7 @@
               <img src="../../../../../assets/images/PDF_file_icon.svg.webp" class="image">
               <div class="overlay">
                 <mat-icon class="icon" (click)="downloadPdf(attachment)">cloud_download</mat-icon>
+                <mat-icon class="openpdficon" (click)="openPDF(attachment)">open_in_new</mat-icon>
               </div>
             </div>
           </div>
@@ -40,7 +41,7 @@
             <div class="container" *ngIf="attachment.attachmentType != 'application/pdf';">
               <img [src]="attachment.attachmentUrl" class="image">
               <div class="overlay">
-                <mat-icon class="icon" (click)="downloadPdf(attachment)">cloud_download</mat-icon>
+                <mat-icon class="imgicon" (click)="downloadPdf(attachment)">cloud_download</mat-icon>
               </div>
             </div>
           </div>

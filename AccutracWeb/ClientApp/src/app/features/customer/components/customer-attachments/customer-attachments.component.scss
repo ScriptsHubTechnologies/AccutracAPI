@@ -126,7 +126,18 @@ justify-content: space-between;
   color: white;
   font-size: 50px;
   position: absolute;
-  top: 68%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.imgicon {
+  color: white;
+  font-size: 50px;
+  position: absolute;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -152,4 +163,15 @@ justify-content: space-between;
 .attchpng {
   display: flex;
   padding-top: 15px
+}
+
+.openpdficon {
+  color: white;
+  font-size: 40px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
 }
