@@ -39,8 +39,8 @@ export class CustomerPageComponent implements OnInit {
   }
 
   addLead() {
-    this.apiService.getJobAddressInfo(this.customerId).subscribe({
-      next: (addresses) => {
+    this.apiService.getJobAddresses(this.customerId).subscribe({
+      next: (addresses:JobAddressInfo[]) => {
         console.log(addresses);
         if (addresses.length === 1) {
           this.router.navigate(['/generate-lead/step2'], { queryParams: { customerid: this.customerId, jobaddressid: addresses[0].jobAddressId } });

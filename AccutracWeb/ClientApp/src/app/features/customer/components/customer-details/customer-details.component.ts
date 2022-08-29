@@ -21,16 +21,16 @@ export class CustomerDetailsComponent implements OnInit {
   }
 
   customerDetailsForm = this.fb.group({
-      firstName: new UntypedFormControl('', [Validators.required]),
-      lastName: new UntypedFormControl('', [Validators.required]),
-      companyName: new UntypedFormControl(''),
-      mailingAddress: new UntypedFormControl('', [Validators.required]),
-      mailingCity: new UntypedFormControl('', [Validators.required]),
-      mailingState: new UntypedFormControl('', [Validators.required]),
-      mailingZip: new UntypedFormControl('', [Validators.required, Validators.pattern('^\\d{5}$')]),
-      phone: new UntypedFormControl('', [Validators.required, Validators.pattern('^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$')]),
-      phoneType: new UntypedFormControl('', [Validators.required]),
-      email: new UntypedFormControl('', [Validators.email])
+    firstName: new UntypedFormControl('', [Validators.required]),
+    lastName: new UntypedFormControl('', [Validators.required]),
+    companyName: new UntypedFormControl(''),
+    mailingAddress: new UntypedFormControl('', [Validators.required]),
+    mailingCity: new UntypedFormControl('', [Validators.required]),
+    mailingState: new UntypedFormControl('', [Validators.required]),
+    mailingZip: new UntypedFormControl('', [Validators.required, Validators.pattern('^\\d{5}$')]),
+    phone: new UntypedFormControl('', [Validators.required, Validators.pattern('^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$')]),
+    phoneType: new UntypedFormControl('', [Validators.required]),
+    email: new UntypedFormControl('', [Validators.email])
   })
 
   constructor(
@@ -55,7 +55,7 @@ export class CustomerDetailsComponent implements OnInit {
     this.customerDetailsForm.patchValue(data);
   }
 
-  uploadFile(files:any){
+  uploadFile(files: any) {
     if (files.length === 0) {
       return;
     }
@@ -69,13 +69,13 @@ export class CustomerDetailsComponent implements OnInit {
     // }
     console.log(formData);
     console.log(fileToUpload);
- 
-    this.apiService.SaveChooseFileData(formData).subscribe({
-      next:(data)=>{
 
-      }
+    //this.apiService.SaveChooseFileData(formData).subscribe({
+    //  next:(data)=>{
 
-    })
-}
+    //  }
+
+    //})
+  }
 
 }

@@ -77,57 +77,32 @@ namespace AccutracMinimalAPI
                 if (!request.Form.Files.Any())
                     return Results.BadRequest("At list select one file");
 
-                DateTime now = DateTime.Now;
-
-                string date = now.Date.ToString();
-                string day = now.Day.ToString();
-                string year1 = now.DayOfYear.ToString();
-                string year = now.Year.ToString();
-                string hr = now.Hour.ToString();
-                string min = now.Minute.ToString();
-                string sec = now.Second.ToString();
-                string month = now.Month.ToString();
-                string todaysDate = year + "" + month + "" + day + "" + hr + "" + min + "" + sec;
-
-                var Name = custid + "_" + id + "_" + todaysDate + ".png";
-
-                //var file = request.Form.Files[0];
-
+                DateTime now = DateTime.Now;               
+                string todaysDate = now.Year.ToString() + "" + now.Month.ToString() + "" + now.Day.ToString() + "" + now.Hour.ToString() + "" + now.Minute.ToString() + "" + now.Second.ToString();
+                var fileName = custid + "_" + id + "_" + todaysDate + ".png";
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Assets\Images\"); //Path
-
-
-                //var stream = new FileStream(filePath + file.FileName, FileMode.Create);
-
-                //file.CopyTo(stream);
 
                 foreach (var file in request.Form.Files)
                 {
-                    using (var stream = new FileStream(filePath + file.FileName, FileMode.Create))
+                    using (var stream = new FileStream(filePath + fileName, FileMode.Create))
                     {
                         file.CopyTo(stream);
                         var imagePath = "Assets/Images/";
-
                         Attachment attachment = new Attachment();
-
                         attachment.Company_Code = cc;
                         attachment.CustomerId = int.Parse(custid);
                         attachment.JobAddressId = int.Parse(id);
                         attachment.AttachmentName = file.FileName;
                         attachment.AttachmentType = file.ContentType;
                         attachment.AttachmentPath = imagePath + file.FileName;
-
                         var results = data.InsertAttachments(attachment);
                     }
                 }
-
                 return Results.Ok(new { data = "Ok" });
             });
-            //********************************************************
-
         }
-
-
         #region Administration
+
         private static async Task<IResult> InsertUser(UserModel user, IUserData data)
         {
             try
@@ -857,17 +832,7 @@ namespace AccutracMinimalAPI
                 if (!string.IsNullOrEmpty(attachment.AttachmentBase64String))                {
                     DateTime now = DateTime.Now;
 
-                    string date = now.Date.ToString();
-                    string day = now.Day.ToString();
-                    string year1 = now.DayOfYear.ToString();
-                    string year = now.Year.ToString();
-                    string hr = now.Hour.ToString();
-                    string min = now.Minute.ToString();
-                    string sec = now.Second.ToString();
-                    string month = now.Month.ToString();
-
-
-                    string todaysDate = year + "" + month + "" + day + "" + hr + "" + min + "" + sec;
+                    string todaysDate = now.Year.ToString() + "" + now.Month.ToString() + "" + now.Day.ToString() + "" + now.Hour.ToString() + "" + now.Minute.ToString() + "" + now.Second.ToString();
                     var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Assets\Images"); //Path
 
                     var imagePath = "Assets/Images/";

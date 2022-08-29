@@ -51,9 +51,9 @@ export class LeadStep2Component implements OnInit {
       this.customerId = params['customerid'];
       this.jobAddressId = params['jobaddressid'];
       this.apiService.getJobAddressInfo(this.customerId, this.jobAddressId).subscribe({
-        next: (data) => {
+        next: (data: JobAddressInfo) => {
           console.log(data);
-          this.jobInfo = data[0];
+          this.jobInfo = data;
 
           if (params['leadid']) {
             this.leadid = params['leadid'];

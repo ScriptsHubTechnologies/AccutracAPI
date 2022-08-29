@@ -27,7 +27,7 @@ export class CustomerJobAddressesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.apiService.getJobAddressInfo(this.customerId).subscribe({
+    this.apiService.getJobAddresses(this.customerId).subscribe({
       next: (jobAddressInfo) => {
         console.log(jobAddressInfo);
         this.jobAddresses = jobAddressInfo;
@@ -61,7 +61,7 @@ export class CustomerJobAddressesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.apiService.getJobAddressInfo(this.customerId).subscribe({
+        this.apiService.getJobAddresses(this.customerId).subscribe({
           next: (jobAddressInfo) => {
             console.log(jobAddressInfo);
             this.jobAddresses = jobAddressInfo;

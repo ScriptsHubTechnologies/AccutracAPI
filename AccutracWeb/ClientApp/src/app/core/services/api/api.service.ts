@@ -25,6 +25,7 @@ import { Estimator } from '../../interfaces/calendar/estimator';
 import { UserRole } from '../../interfaces/user-role';
 import { Note } from '../../interfaces/note';
 import { environment } from '../../../../environments/environment';
+import { Attachment } from '../../interfaces/customer/attachment';
 
 @Injectable({
   providedIn: 'root'
@@ -88,19 +89,19 @@ export class ApiService {
     return this.http.get<any[]>(this.getattachmentUrl + "/" + attachmentId);
   }
 
-  GetAttachementById(customerId?: string, jobAddressId?: string): Observable<any[]> {
+  getAttachments(customerId?: string, jobAddressId?: number): Observable<Attachment[]> {
     let params = new HttpParams().set('cc', this.localStorage.get('companyCode'));
     jobAddressId ? params = params.set('id', jobAddressId) : params = params.set('id', ' ');
     customerId ? params = params.set('custid', customerId) : params = params.set('custid', ' ');
 
-    return this.http.get<any[]>(this.getAttachmentInfoUrl, { params });
+    return this.http.get<Attachment[]>(this.getAttachmentInfoUrl, { params });
   }
 
-  attachmentsSaveData(jobAddressInfo: any): Observable<string> {
+  saveAttachment(jobAddressInfo: Attachment): Observable<string> {
     return this.http.post<string>(this.insertAttachmentUrl, jobAddressInfo);
   }
 
-  SaveChooseFileData(formData: any, customerId?: string, jobAddressId?: string): Observable<any> {
+  saveFiles(formData: any, customerId?: string, jobAddressId?: number): Observable<any> {
     let params = new HttpParams().set('cc', this.localStorage.get('companyCode'));
     jobAddressId ? params = params.set('id', jobAddressId) : params = params.set('id', ' ');
     customerId ? params = params.set('custid', customerId) : params = params.set('custid', ' ');
@@ -118,10 +119,17 @@ export class ApiService {
     return this.http.get<Customer>(this.getCustomerByIdUrl, { params });
   }
 
-  getJobAddressInfo(customerId?: string, jobAddressId?: string): Observable<JobAddressInfo[]> {
+  getJobAddressInfo(customerId?: string, jobAddressId?: string): Observable<JobAddressInfo> {
     let params = new HttpParams().set('cc', this.localStorage.get('companyCode'));
     customerId ? params = params.set('custid', customerId) : params = params.set('custid', '');
     jobAddressId ? params = params.set('id', jobAddressId) : params = params.set('id', '');
+
+    return this.http.get<JobAddressInfo>(this.getJobAddressInfoUrl, { params });
+  }
+
+  getJobAddresses(customerId?: string): Observable<JobAddressInfo[]> {
+    let params = new HttpParams().set('cc', this.localStorage.get('companyCode'));
+    customerId ? params = params.set('custid', customerId) : params = params.set('custid', '');
 
     return this.http.get<JobAddressInfo[]>(this.getJobAddressInfoUrl, { params });
   }

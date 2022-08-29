@@ -9,7 +9,7 @@
         <button mat-raised-button color="accent" (click)="addNewAttachment()">Add Attachment</button>
       </div>
       <mat-divider></mat-divider>
-      <div class="row custcard" *ngIf="this.isCustomcard">
+      <div class="row custcard" *ngIf="this.showMediaOptions">
         <div class="customcard">
           <label class="btn btn-secondary">
             Choose File
@@ -19,55 +19,55 @@
         </div>
         <div class="customcard">
           <div class="buttons">
-            <button mat-raised-button class="img-btn" *ngIf="this.isUploadVisible" (click)="takePhoto()">Capture Image</button>
+            <button mat-raised-button class="img-btn" (click)="openCamera()">Capture Image</button>
           </div>
         </div>
       </div>
      
-      <div  *ngFor="let img of previewImages">
+      <!--<div  *ngFor="let img of previewImages" *ngIf="this.showAttachments">
         <div class="container">
           <img src="../../../../../assets/images/PDF_file_icon.svg.webp" class="image">
           <div class="overlay">
             <mat-icon class="icon">cloud_download</mat-icon>
           </div>
         </div>
-      </div>
+      </div>-->
 
-      <!--<div class="row" *ngIf="this.isImageshow">
+      <div class="row" *ngIf="this.showAttachments">
         <div class="imgg">
-          <ng-container *ngFor="let img of previewImages">
+          <ng-container *ngFor="let attachment of attachments">
 
-            <div *ngIf="img.attachmentType == 'application/pdf'; else images">
+            <div *ngIf="attachment.attachmentType == 'application/pdf'; else images">
               <img src="../../../../../assets/images/PDF_file_icon.svg.webp" height="100" width="100" style="margin:10px">
             </div>
 
             <ng-template #images>
-              <img [src]="img.attachmenturl" height="100" width="100" style="margin:10px">
+              <img [src]="attachment.attachmentUrl" height="100" width="100" style="margin:10px">
             </ng-template>
           </ng-container>
         </div>
-      </div>-->
+      </div>
 
-      <div class="content" role="main">
+      <div class="content" role="main" *ngIf="this.showCameraOptions">
         <p *ngIf="status != ''">Status: {{status}}</p>
-        <div *ngIf="this.isCapturebtnVisible">
-          <button mat-raised-button class="img-button" tabindex="0" (click)="capture()">
+        <div *ngIf="this.showCamera">
+          <button mat-raised-button class="img-button" (click)="capture()">
             <span>{{btnLabel}}</span>
           </button>
-          <button mat-raised-button class="img-button" tabindex="0" (click)="cancel()">
+          <button mat-raised-button class="img-button" (click)="cancel()">
             <span>Cancel</span>
           </button>
         </div>
-        <div *ngIf="this.isWebcamVisible">
+        <div *ngIf="this.showCamera">
           <webcam [trigger]="$trigger" (imageCapture)="snapshot($event)"></webcam>
         </div>
 
-        <div *ngIf="this.isCaptureVisible">
-          <div *ngIf="previewImage">
-            <img [src]="previewImage" height="250" width="250">
+        <div *ngIf="!this.showCamera">
+          <div>
+            <img [src]="previewCapturedImage" height="250" width="250">
           </div>
 
-          <button mat-raised-button class="img-button" tabindex="0" *ngIf="this.isAddphotoVisible" (click)="saveAttachmentData()">
+          <button mat-raised-button class="img-button" (click)="useImage()">
             <span>Use This Image</span>
           </button>
         </div>

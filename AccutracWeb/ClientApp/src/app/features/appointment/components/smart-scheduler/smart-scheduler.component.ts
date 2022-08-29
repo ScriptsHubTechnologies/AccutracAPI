@@ -106,7 +106,7 @@ export class SmartSchedulerComponent implements OnInit {
 
       this.apiService.getJobAddressInfo(customerId, jobAddressId).subscribe({
         next: (data) => {
-          this.jobInfo = data[0];
+          this.jobInfo = data;
 
           this.apiService.getLeadData(leadId).subscribe({
             next: (lead) => {
