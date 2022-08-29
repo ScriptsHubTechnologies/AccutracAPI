@@ -10,4 +10,5 @@ export interface Attachment {
   attachmentPath?: string;
   attachmentBase64String?: string;
   attachmentUrl?: string;
+  attachmentByteArray?: any[]
 }

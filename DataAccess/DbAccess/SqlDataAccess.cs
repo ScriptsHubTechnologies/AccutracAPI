@@ -198,7 +198,7 @@ VALUES        (@Company_Code, @CustomerId,@JobAddressId, @ConfirmLeadType, @Refe
 
     }
 
-    public async Task<int> InsertAttachment(string storedProcedure, Attachment p, string connectionId = "Default")
+    public async Task<int> InsertAttachment(string storedProcedure, AttachmentModel p, string connectionId = "Default")
     {
         string sql = @"INSERT INTO Attachments
                          ([Company_Code], [CustomerId], [JobAddressId], [FunctionTable], [FunctionId], [AttachmentType], [AttachmentName], [AttachmentPath])

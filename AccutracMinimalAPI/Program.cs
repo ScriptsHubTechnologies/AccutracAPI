@@ -1,6 +1,6 @@
 
 using AccutracMinimalAPI;
-
+using DataAccess.Data.Attachment;
 using DataAccess.DbAccess;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -14,6 +14,7 @@ builder.Services.AddSingleton<IUserData, UserData>();
 builder.Services.AddSingleton<IRolesData, RolesData>();
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddSingleton<ICustomersData , CustomersData >();
+builder.Services.AddSingleton<IAttachmentData, AttachmentData>();
 builder.Services.AddSingleton<IPaidLeadData, PaidLeadData>();
 builder.Services.AddSingleton<ILeadSource , LeadSourceData>();
 builder.Services.AddSingleton<ILeadSubSource, LeadSubSourcesData>();

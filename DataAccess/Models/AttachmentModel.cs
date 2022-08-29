@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Models
 {
-    public class Attachment
+    public class AttachmentModel
     {
         public string? Company_Code { get; set; }
 
@@ -21,5 +21,7 @@
         public string? AttachmentBase64String { get; set; }
 
         public string? AttachmentPath { get; set; }
+
+        public byte[]? AttachmentByteArray { get; set; }
     }
 }

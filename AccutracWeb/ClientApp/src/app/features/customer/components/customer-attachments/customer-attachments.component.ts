@@ -84,16 +84,16 @@ export class CustomerAttachmentsComponent implements OnInit {
 
   downloadPdf(img: any) {
     this.apiService.getFile(img.attachmentId).subscribe({
-      next: (data: any) => {
-        saveAs("data:application/pdf;base64," + data, "Test.pdf");
+      next: (data: Attachment) => {
+        saveAs("data:application/pdf;base64," + data.attachmentByteArray, data.attachmentName);
       }
     })
   }
 
   downloadImage(img: any) {
     this.apiService.getFile(img.attachmentId).subscribe({
-      next: (data: any) => {
-        saveAs("data:application/png;base64," + data, "Test.png");
+      next: (data: Attachment) => {
+        saveAs("data:application/png;base64," + data.attachmentByteArray, data.attachmentName);
       }
     })
   }
@@ -191,10 +191,7 @@ export class CustomerAttachmentsComponent implements OnInit {
     const formData = new FormData();
     this.uploadingFiles.forEach(file => {
       formData.append("file[]", file);
-    })
-    //for (var i = 0; i < this.uploadingFiles.length; i++) {
-    //  formData.append("file[]", this.uploadingFiles[i]);
-    //}
+    })   
     let jobaddressId = this.jobAddress.jobAddressId;
     this.apiService.saveFiles(formData, this.customerId, jobaddressId).subscribe({
       next: (data) => {

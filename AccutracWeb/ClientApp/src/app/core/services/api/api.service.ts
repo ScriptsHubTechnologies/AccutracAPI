@@ -34,7 +34,6 @@ import { Attachment } from '../../interfaces/customer/attachment';
 export class ApiService {
   // Gets
   url = environment.apiurl;
-  ProdUrl = "https://accutrac.net/api";
 
   getCustomersUrl = this.url + '/customers';
   getCustomerByIdUrl = this.url + '/Custid/%7BCustomerId%7D?';
@@ -75,6 +74,7 @@ export class ApiService {
   // Deletes
   deleteEstimatorAvailabilityUrl = this.url + '/EstAvailSkill/Delete/%7Bcompany_code,uniqueid%7D?';
 
+  //Attachments
   insertChooseFileUrl = this.url + '/Files/uploadFiles/%7Bcompany_code,jobaddressid,customerid%7D?';
   getAttachmentInfoUrl = this.url + '/Attachment/%7Bcompany_code,jobaddressid,customerid%7D?';
   insertAttachmentUrl = this.url + '/Attchment';
@@ -85,8 +85,8 @@ export class ApiService {
     private localStorage: LocalStorageService
   ) { }
 
-  getFile(attachmentId: string): Observable<any[]> {
-    return this.http.get<any[]>(this.getattachmentUrl + "/" + attachmentId);
+  getFile(attachmentId: string): Observable<Attachment> {
+    return this.http.get<Attachment>(this.getattachmentUrl + "/" + attachmentId);
   }
 
   getAttachments(customerId?: string, jobAddressId?: number): Observable<Attachment[]> {

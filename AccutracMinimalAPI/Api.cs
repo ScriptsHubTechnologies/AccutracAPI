@@ -1,12 +1,5 @@
-﻿
-
-using AccutracMinimalAPI.Attributes;
-using Newtonsoft.Json;
-using DataAccess.Models;
-using BackCode;
-using Microsoft.Extensions.Configuration;
-using AccutracMinimalAPI;
-
+﻿using BackCode;
+using DataAccess.Data.Attachment;
 
 namespace AccutracMinimalAPI
 
@@ -71,30 +64,31 @@ namespace AccutracMinimalAPI
             app.MapGet("/Attachment/{company_code,jobaddressid,customerid}", GetAttachementByCompany);
             //app.MapPost("/ChooseFile/{formdata}", SaveChooseFileData);
 
-            app.MapPost("/Files/uploadFiles/{company_code,jobaddressid,customerid}", (HttpRequest request, string cc, string id, string custid, IJobAddressData data) =>
+            app.MapPost("/Files/uploadFiles/{company_code,jobaddressid,customerid}", (HttpRequest request, string cc, string id, string custid, IAttachmentData data) =>
             {
                 //request.ContentType = "multipart/form-data";
                 if (!request.Form.Files.Any())
                     return Results.BadRequest("At list select one file");
 
-                DateTime now = DateTime.Now;               
+                DateTime now = DateTime.Now;
                 string todaysDate = now.Year.ToString() + "" + now.Month.ToString() + "" + now.Day.ToString() + "" + now.Hour.ToString() + "" + now.Minute.ToString() + "" + now.Second.ToString();
-                var fileName = custid + "_" + id + "_" + todaysDate + ".png";
+
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Assets\Images\"); //Path
 
                 foreach (var file in request.Form.Files)
                 {
+                    var fileName = custid + "_" + id + "_" + todaysDate + (string.Equals(file.ContentType, "application/pdf") ? ".pdf" : ".png");
                     using (var stream = new FileStream(filePath + fileName, FileMode.Create))
                     {
                         file.CopyTo(stream);
                         var imagePath = "Assets/Images/";
-                        Attachment attachment = new Attachment();
+                        AttachmentModel attachment = new AttachmentModel();
                         attachment.Company_Code = cc;
                         attachment.CustomerId = int.Parse(custid);
                         attachment.JobAddressId = int.Parse(id);
-                        attachment.AttachmentName = file.FileName;
+                        attachment.AttachmentName = fileName;
                         attachment.AttachmentType = file.ContentType;
-                        attachment.AttachmentPath = imagePath + file.FileName;
+                        attachment.AttachmentPath = imagePath + fileName;
                         var results = data.InsertAttachments(attachment);
                     }
                 }
@@ -828,7 +822,7 @@ namespace AccutracMinimalAPI
 
         #endregion
 
-        #region Attachments         private static async Task<IResult> AttachmentsSaveData(Attachment attachment, IJobAddressData data)        {            try            {
+        #region Attachments         private static async Task<IResult> AttachmentsSaveData(AttachmentModel attachment, IAttachmentData data)        {            try            {
                 if (!string.IsNullOrEmpty(attachment.AttachmentBase64String))                {
                     DateTime now = DateTime.Now;
 
@@ -856,7 +850,7 @@ namespace AccutracMinimalAPI
 
                 var results = await data.InsertAttachments(attachment);                return Results.Ok(results);            }            catch (Exception ex)            {                return Results.Problem(ex.Message);            }        }
 
-        private static async Task<IResult> GetAttachementByCompany(string cc, string id, string custid, IJobAddressData data)
+        private static async Task<IResult> GetAttachementByCompany(string cc, string id, string custid, IAttachmentData data)
         {
             try
             {
@@ -869,14 +863,15 @@ namespace AccutracMinimalAPI
             }
         }
 
-        private static async Task<IResult> GetAttachmentByteArray(string attachmentId, IJobAddressData data)
+        private static async Task<IResult> GetAttachmentByteArray(string attachmentId, IAttachmentData data)
         {
             try
             {
                 var results = await data.GetAttachementById(attachmentId);
-                string pdfFilePath = "E:\\Code\\Helitech_PWA\\Archive\\Accutrax-API-Dev-master\\AccutracMinimalAPI\\wwwroot\\" + results.AttachmentPath; //Need to replace this line with dynamic server path
-                byte[] bytes = File.ReadAllBytes(pdfFilePath);
-                return Results.Ok(bytes);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\");
+                string pdfFilePath = filePath + results.AttachmentPath;
+                results.AttachmentByteArray = File.ReadAllBytes(pdfFilePath);
+                return Results.Ok(results);
             }
             catch (Exception ex)
             {

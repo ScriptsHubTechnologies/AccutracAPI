@@ -24,14 +24,14 @@
         </div>
       </div>
      
-      <!--<div  *ngFor="let img of previewImages" *ngIf="this.showAttachments">
+      <div  *ngFor="let img of attachments">
         <div class="container">
           <img src="../../../../../assets/images/PDF_file_icon.svg.webp" class="image">
           <div class="overlay">
-            <mat-icon class="icon">cloud_download</mat-icon>
+            <mat-icon class="icon" (click)="downloadPdf(img)">cloud_download</mat-icon>
           </div>
         </div>
-      </div>-->
+      </div> 
 
       <div class="row" *ngIf="this.showAttachments">
         <div class="imgg">

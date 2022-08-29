@@ -13,7 +13,7 @@ namespace DataAccess.DbAccess
         Task<int> LeadSaveData(string storedProcedure, LeadsModel  parameters, string connectionId = "Default");
         Task<int> AppointmentSaveData(string storedProcedure, AppointmentModel  parameters, string connectionId = "Default");
         Task<int> JobAddressSaveData(string storedProcedure, JobAddressModel  parameters, string connectionId = "Default");
-        Task<int> InsertAttachment(string storedProcedure, Attachment parameters, string connectionId = "Default");
+        Task<int> InsertAttachment(string storedProcedure, AttachmentModel parameters, string connectionId = "Default");
         #endregion
         #region Availibility
         Task<IEnumerable<T>> BuildAvailibility<T,U>(string sql,string userName, string connectionId = "Default");
