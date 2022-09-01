@@ -25,7 +25,7 @@ public class SqlDataAccess : ISqlDataAccess
 
         return await connection.QueryAsync<T>(storeProcedure,
             parameters,
-            commandType: CommandType.StoredProcedure);
+            commandType: CommandType.StoredProcedure, commandTimeout: 90);
 
     }
 

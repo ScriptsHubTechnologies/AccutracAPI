@@ -85,7 +85,7 @@ export class ApiService {
     private localStorage: LocalStorageService
   ) { }
 
-  getFile(attachmentId: string): Observable<Attachment> {
+  getFile(attachmentId?: number): Observable<Attachment> {
     return this.http.get<Attachment>(this.getattachmentUrl + "/" + attachmentId);
   }
 

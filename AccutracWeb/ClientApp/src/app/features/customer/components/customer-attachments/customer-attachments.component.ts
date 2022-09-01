@@ -57,17 +57,18 @@ export class CustomerAttachmentsComponent implements OnInit {
     })
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(MyModalComponent, {
-      width: '700px',
-      height: '800px',
-      data: { pdfPath: this.pdfpath }
+  openDialog(img: Attachment): void {
+    this.apiService.getFile(img.attachmentId).subscribe({
+      next: (data: Attachment) => {
+        this.pdfpath = "data:application/pdf;base64," + data.attachmentByteArray;
+        const dialogRef = this.dialog.open(MyModalComponent, {
+          width: '700px',
+          height: '800px',
+          data: { pdfPath: this.pdfpath }
 
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      //this.animal = result;
-    });
+        });
+      }
+    }) 
   }
 
   open() {
@@ -174,9 +175,9 @@ export class CustomerAttachmentsComponent implements OnInit {
     }
   }
 
-  openPDF(img: any) {
-    this.pdfpath = img.attachmenturl;
-    this.openDialog();
+  openPDF(img: Attachment) {
+    //this.pdfpath = img.attachmenturl;
+    this.openDialog(img);
   }
 
   back() {
