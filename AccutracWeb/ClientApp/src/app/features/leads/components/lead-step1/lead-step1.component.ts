@@ -31,7 +31,7 @@ export class LeadStep1Component implements OnInit {
 
   customers: Customer[] = [];
 
-  autoCompleteOptions: Options = {
+  autoCompleteOptions: any = {
     fields: ['address_components'],
     componentRestrictions: { country: 'us' }
   }

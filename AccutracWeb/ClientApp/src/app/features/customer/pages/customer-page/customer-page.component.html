@@ -1,12 +1,18 @@
 <ng-container *ngIf="customerData; else noCustomer">
-    <div class="header">
-        <h2>{{ customerData.firstName | titlecase }} {{ customerData.lastName | titlecase}} </h2>
-        <mat-chip-list>
-            <mat-chip>ID # {{ customerData.customerid }}</mat-chip>
-            <mat-chip>Company Code {{ customerData.company_Code }}</mat-chip>
-        </mat-chip-list>
-        <button class="lead-button" mat-raised-button (click)="addLead()">Add Lead</button>
-    </div>
+  <div class="header">
+    <h2>{{ customerData.firstName | titlecase }} {{ customerData.lastName | titlecase}} </h2>
+    <mat-chip-list>
+      <mat-chip>ID # {{ customerData.customerid }}</mat-chip>
+      <mat-chip>Company Code {{ customerData.company_Code }}</mat-chip>
+    </mat-chip-list>
+    <button class="lead-button" mat-raised-button (click)="addLead()">Add Lead</button>
+    <!--<div #content>
+      <h3>Hello</h3>
+      <h3>Example of PDF Generation</h3>
+      <h3>Using JSPDF library</h3>
+      <button class="lead-button" mat-raised-button (click)="makepdf()">Generate PDF</button>
+    </div>-->
+  </div>
     <div class="content">
         <app-customer-details [customerInfo]="customerData"></app-customer-details>
     </div>

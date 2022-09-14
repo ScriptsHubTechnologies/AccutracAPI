@@ -54,4 +54,6 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
+  
+  <ProjectExtensions><VisualStudio><UserProperties clientapp_4src_4app_4features_4customer_4components_4contract-pdf_4customer_1json__JsonSchema="https://json.schemastore.org/airlock-microgateway-3.2.json" /></VisualStudio></ProjectExtensions>
 </Project>

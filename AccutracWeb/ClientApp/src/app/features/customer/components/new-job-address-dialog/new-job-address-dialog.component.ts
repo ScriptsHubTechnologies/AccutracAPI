@@ -19,7 +19,7 @@ export class NewJobAddressDialogComponent implements OnInit {
 
   customerId: string;
 
-  autoCompleteOptions: Options = {
+  autoCompleteOptions: any = {
     fields: ['address_components'],
     componentRestrictions: { country: 'us' },
   }

@@ -18,12 +18,14 @@ import { MatTableModule } from '@angular/material/table';
 import { JobAddressFormComponent } from './components/job-address-form/job-address-form.component';
 import { WebcamModule } from 'ngx-webcam';
 import { CustomerAttachmentsComponent } from './components/customer-attachments/customer-attachments.component';
+import { GenerateContract } from './components/contract-pdf/contract-pdf.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { MyModalModule } from '../my-modal/my-modal.module';
 import { OverlayModule } from '@angular/cdk/overlay';
-
-
+import { NgxPrintModule } from 'ngx-print';
+import { SignaturePadModule } from 'angular2-signaturepad';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     NewLeadDialogComponent,
     JobAddressFormComponent,
     CustomerAttachmentsComponent,
+    GenerateContract,
   ],
   imports: [
     CommonModule,
@@ -50,7 +53,10 @@ import { OverlayModule } from '@angular/cdk/overlay';
     ToastrModule.forRoot(),
     PdfViewerModule,
     MyModalModule,
-    OverlayModule
+    OverlayModule,
+    NgxPrintModule,
+    SignaturePadModule,
+    MatCardModule,
   ],
   providers: [ToastrService]
 })

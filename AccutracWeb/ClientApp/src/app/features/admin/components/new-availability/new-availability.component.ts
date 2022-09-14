@@ -42,7 +42,7 @@ export class NewAvailabilityComponent implements OnInit {
 
   @Output() deleteNewAvailability = new EventEmitter();
 
-  autoCompleteOptions: Options = {
+  autoCompleteOptions: any = {
     fields: ['address_components'],
     componentRestrictions: { country: 'us' }
   };

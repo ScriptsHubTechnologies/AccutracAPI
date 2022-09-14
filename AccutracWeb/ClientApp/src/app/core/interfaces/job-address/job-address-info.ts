@@ -13,6 +13,7 @@ export interface JobAddressInfo {
     jobZip?: string;
     mailingAddress?: string;
     mailingCity?: string;
+    mailingState?: string;
     mailingZip?: number;
     notes?: string;
     phone: string;

@@ -18,6 +18,8 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { AuthModule } from './features/auth/auth.module';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { AuthModule } from './features/auth/auth.module';
     HttpClientModule,
     SidenavModule,
     NavModule,
-    AuthModule
+    AuthModule,
+    PDFExportModule
   ],
   bootstrap: [AppComponent]
 })

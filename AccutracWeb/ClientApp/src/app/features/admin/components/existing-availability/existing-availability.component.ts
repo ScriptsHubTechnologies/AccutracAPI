@@ -56,7 +56,7 @@ export class ExistingAvailabilityComponent implements OnInit {
 
   @Output() availUpdated = new EventEmitter<string>();
 
-  autoCompleteOptions: Options = {
+  autoCompleteOptions: any = {
     fields: ['address_components'],
     componentRestrictions: { country: 'us' }
     // strictBounds: false,

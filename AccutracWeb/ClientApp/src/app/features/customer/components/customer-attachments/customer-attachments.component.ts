@@ -86,7 +86,7 @@ export class CustomerAttachmentsComponent implements OnInit {
   downloadPdf(img: any) {
     this.apiService.getFile(img.attachmentId).subscribe({
       next: (data: Attachment) => {
-        saveAs("data:application/pdf;base64," + data.attachmentByteArray, data.attachmentName);
+        //saveAs("data:application/pdf;base64," + data.attachmentByteArray, data.attachmentName);
       }
     })
   }
@@ -94,7 +94,7 @@ export class CustomerAttachmentsComponent implements OnInit {
   downloadImage(img: any) {
     this.apiService.getFile(img.attachmentId).subscribe({
       next: (data: Attachment) => {
-        saveAs("data:application/png;base64," + data.attachmentByteArray, data.attachmentName);
+        //saveAs("data:application/png;base64," + data.attachmentByteArray, data.attachmentName);
       }
     })
   }
