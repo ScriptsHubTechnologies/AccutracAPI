@@ -1,76 +1,75 @@
-
-
 <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="card-header">
-      <div class="row addbutton">
-        <h2 style="flex:auto;">Attachments</h2>
-        <button mat-raised-button color="accent" style="margin-right:5px;" (click)="back()">Back</button>
-        <button mat-raised-button color="accent" (click)="addNewAttachment()">Add Attachment</button>
-      </div>
-      <mat-divider></mat-divider>
-      <div class="row custcard" *ngIf="this.showMediaOptions">
-        <div class="customcard">
-          <label class="btn btn-secondary">
+    <div class="card-body">
+        <div class="card-header">
+            <div class="row addbutton">
+                <h2 style="flex:auto;">Attachments</h2>
+                <button mat-raised-button color="accent" style="margin-right:5px;" (click)="back()">Back</button>
+                <button mat-raised-button color="accent" (click)="addNewAttachment()">Add Attachment</button>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row custcard" *ngIf="this.showMediaOptions">
+                <div class="customcard">
+                    <label class="btn btn-secondary">
             Choose File
             <input #file type="file" multiple class="img-btn" accept=".png,.pdf" (change)="chooseFile($event)" />
             <button mat-raised-button (click)="uploadFiles()">Upload Images</button>
           </label>
-        </div>
-        <div class="customcard">
-          <div class="buttons">
-            <button mat-raised-button class="img-btn" (click)="openCamera()">Capture Image</button>
-          </div>
-        </div>
-      </div>
-     
-      <div class="allAttachments">
-        <div class="attchpdf" *ngIf="this.showAttachments">
-          <div *ngFor="let attachment of attachments">
-            <div class="container" *ngIf="attachment.attachmentType == 'application/pdf'">
-              <img src="../../../../../assets/images/PDF_file_icon.svg.webp" class="image">
-              <div class="overlay">
-                <mat-icon class="icon" (click)="downloadPdf(attachment)">cloud_download</mat-icon>
-                <mat-icon class="openpdficon" (click)="openPDF(attachment)">open_in_new</mat-icon>
-              </div>
+                </div>
+                <div class="customcard">
+                    <div class="buttons">
+                        <button mat-raised-button class="img-btn" (click)="openCamera()">Capture Image</button>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="attchpng" *ngIf="this.showAttachments">
-          <div *ngFor="let attachment of attachments">
-            <div class="container" *ngIf="attachment.attachmentType != 'application/pdf';">
-              <img [src]="attachment.attachmentUrl" class="image">
-              <div class="overlay">
-                <mat-icon class="imgicon" (click)="downloadPdf(attachment)">cloud_download</mat-icon>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="content" role="main" *ngIf="this.showCameraOptions">
-        <p *ngIf="status != ''">Status: {{status}}</p>
-        <div *ngIf="this.showCamera">
-          <button mat-raised-button class="img-button" (click)="capture()">
+            <div class="allAttachments">
+                <div class="attchpdf" *ngIf="this.showAttachments">
+                    <div *ngFor="let attachment of attachments">
+                        <div class="container" *ngIf="attachment.attachmentType == 'application/pdf'">
+                            <img src="../../../../../assets/images/PDF_file_icon.svg.webp" class="image">
+                            <div class="overlay">
+                                <!-- <mat-icon class="icon" (click)="downloadPdf(attachment)">cloud_download</mat-icon> -->
+                                <mat-icon (click)="openImage(attachment)" class="icon">cloud_download</mat-icon>
+                                <!-- <mat-icon class="openpdficon">open_in_new</mat-icon> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="attchpng" *ngIf="this.showAttachments">
+                    <div *ngFor="let attachment of attachments">
+                        <div class="container" *ngIf="attachment.attachmentType != 'application/pdf';">
+                            <img [src]="attachment.attachmentUrl" class="image">
+                            <div class="overlay">
+                                <mat-icon class="imgicon" (click)="openImage(attachment);downloadPdf(attachment)">cloud_download</mat-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content" role="main" *ngIf="this.showCameraOptions">
+                <p *ngIf="status != ''">Status: {{status}}</p>
+                <div *ngIf="this.showCamera">
+                    <button mat-raised-button class="img-button" (click)="capture()">
             <span>{{btnLabel}}</span>
           </button>
-          <button mat-raised-button class="img-button" (click)="cancel()">
+                    <button mat-raised-button class="img-button" (click)="cancel()">
             <span>Cancel</span>
           </button>
-        </div>
-        <div *ngIf="this.showCamera">
-          <webcam [trigger]="$trigger" (imageCapture)="snapshot($event)"></webcam>
-        </div>
+                </div>
+                <div *ngIf="this.showCamera">
+                    <webcam [trigger]="$trigger" (imageCapture)="snapshot($event)"></webcam>
+                </div>
 
-        <div *ngIf="!this.showCamera">
-          <div>
-            <img [src]="previewCapturedImage" height="250" width="250">
-          </div>
+                <div *ngIf="!this.showCamera">
+                    <div>
+                        <img [src]="previewCapturedImage" height="250" width="250">
+                    </div>
 
-          <button mat-raised-button class="img-button" (click)="useImage()">
+                    <button mat-raised-button class="img-button" (click)="useImage()">
             <span>Use This Image</span>
           </button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>

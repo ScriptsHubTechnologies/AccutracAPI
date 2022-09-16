@@ -1,0 +1,19 @@
+<img *ngIf="this.currentAT.attachmentType!='application/pdf'" style="height: 586px;
+width: 752px;" [src]="currentImage">
+<pdf-viewer *ngIf="this.currentAT.attachmentType=='application/pdf'" src="{{currentImage}}" [rotation]="0" [original-size]="true" [show-all]="true" [fit-to-page]="true" [zoom]="1" [zoom-scale]="'page-width'" [stick-to-page]="false" [render-text]="true"
+    [external-link-target]="'blank'" [autoresize]="true" [show-borders]="false" style="height: 586px;
+    width: 752px;"></pdf-viewer>
+<div style="text-align: center;margin-top: 20px;"><button (click)="downloadPdf(this.currentAT)" mat-raised-button color="primary"><mat-icon>download</mat-icon>Download</button></div>
+<div class="row" style="margin-top: -320px;z-index: 1000;
+position: relative;">
+    <mat-icon [ngClass]="checkIndex(0)?'enable':'disable'" style="margin-left: 20px;
+    font-size: 41px;
+    background-color: #d2d2d2;
+    height: 43px;
+    width: 38px;" (click)="prev()">arrow_back_ios</mat-icon>
+    <mat-icon [ngClass]="checkIndex(1)?'enable':'disable'" style="margin-left: 86%;
+    font-size: 41px;
+    background-color: #d2d2d2;
+    height: 43px;
+    width: 38px;" (click)="next()">arrow_forward_ios</mat-icon>
+</div>

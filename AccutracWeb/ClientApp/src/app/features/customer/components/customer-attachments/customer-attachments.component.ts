@@ -9,6 +9,7 @@ import { JobAddressInfo } from 'src/app/core/interfaces/job-address/job-address-
 import { ApiService } from 'src/app/core/services/api/api.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { MyModalComponent } from 'src/app/features/my-modal/my-modal.component';
+import { ViewImageComponent } from 'src/app/features/view-image/view-image.component';
 import { environment } from 'src/environments/environment';
 import { Attachment } from '../../../../core/interfaces/customer/attachment';
 
@@ -27,7 +28,7 @@ export class CustomerAttachmentsComponent implements OnInit {
   jobAddress: JobAddressInfo;
   previewCapturedImage: string = '';
   status: string = '';
-  pdfpath: string;
+  pdfpath: Attachment;
   btnLabel: string = "Capture Image";
   attachments: any = [];
   uploadingFiles: string[] = [];
@@ -60,7 +61,7 @@ export class CustomerAttachmentsComponent implements OnInit {
   openDialog(img: Attachment): void {
     this.apiService.getFile(img.attachmentId).subscribe({
       next: (data: Attachment) => {
-        this.pdfpath = "data:application/pdf;base64," + data.attachmentByteArray;
+        //this.pdfpath = "data:application/pdf;base64," + data.attachmentByteArray;
         const dialogRef = this.dialog.open(MyModalComponent, {
           width: '700px',
           height: '800px',
@@ -70,7 +71,19 @@ export class CustomerAttachmentsComponent implements OnInit {
       }
     }) 
   }
+  openImage(img: Attachment): void {
+   // this.apiService.getFile(img.attachmentId).subscribe({
+      //next: (data: Attachment) => {
+        //this.pdfpath = img;
+        const dialogRef = this.dialog.open(ViewImageComponent, {
+          width: '800px',
+          height: '700px',
+          data: { pdfPath: img,attachments:this.attachments}
 
+        });
+      //}
+    //}) 
+  }
   open() {
     // We create the overlay
     this.overlayRef = this.overlay.create();
@@ -201,4 +214,5 @@ export class CustomerAttachmentsComponent implements OnInit {
       }
     });
   }
+  
 }

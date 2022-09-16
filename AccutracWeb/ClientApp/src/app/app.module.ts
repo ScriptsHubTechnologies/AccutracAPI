@@ -19,11 +19,16 @@ import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { AuthModule } from './features/auth/auth.module';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+import { ViewImageComponent } from './features/view-image/view-image.component';
+import { MatIconModule } from '@angular/material/icon';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ViewImageComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,10 @@ import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
     SidenavModule,
     NavModule,
     AuthModule,
-    PDFExportModule
+    PDFExportModule,
+    MatIconModule,
+    PdfViewerModule,
+    MatButtonModule
   ],
   bootstrap: [AppComponent]
 })

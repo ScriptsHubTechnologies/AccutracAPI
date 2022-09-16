@@ -1,3 +1,6 @@
+import { Attachment } from "./attachment";
+
 export interface DialogData {
-    pdfPath: string;
+    pdfPath: Attachment;
+    attachments: Array<Attachment>
   }
