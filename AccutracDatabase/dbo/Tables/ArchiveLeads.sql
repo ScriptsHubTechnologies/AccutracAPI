@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[ArchiveLeads] (
+    [Company_Code]        NVARCHAR (10)      NOT NULL,
+    [LeadId]              INT                IDENTITY (1, 1) NOT NULL,
+    [JobAddressId]        INT                NOT NULL,
+    [JobAddress]          NVARCHAR (331)     NULL,
+    [CustomerId]          INT                NOT NULL,
+    [ConfirmLeadType]     INT                NULL,
+    [ReferredBy]          NVARCHAR (255)     NULL,
+    [Notes]               NVARCHAR (MAX)     NULL,
+    [Status]              INT                NOT NULL,
+    [CreatedDate]         DATETIMEOFFSET (7) NULL,
+    [CreatedBy]           NVARCHAR (255)     NULL,
+    [UpdatedDate]         DATETIMEOFFSET (7) NULL,
+    [UpdatedBy]           NVARCHAR (255)     NULL,
+    [IsDeleted]           BIT                NOT NULL,
+    [LeadSourceId]        INT                NULL,
+    [LeadSourceName]      NVARCHAR (50)      NULL,
+    [LeadSubSourceId]     INT                NULL,
+    [LeadSubSourceName]   NVARCHAR (50)      NULL,
+    [LeadProjectType]     INT                NULL,
+    [LeadProjectTypeName] NVARCHAR (50)      NULL,
+    [GeoZoneId]           INT                NULL,
+    [GeoZoneName]         NVARCHAR (50)      NULL,
+    [Zoneid]              INT                NULL,
+    [ZoneName]            NVARCHAR (50)      NULL
+);
+

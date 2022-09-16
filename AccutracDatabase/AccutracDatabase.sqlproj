@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>AccutracDatabase</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{b5d10dfc-e8ac-47ff-b015-8df27a6f396b}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>AccutracDatabase</RootNamespace>
+    <AssemblyName>AccutracDatabase</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\PaidLeads.sql" />
+    <Build Include="dbo\Tables\ArchiveAppointment.sql" />
+    <Build Include="dbo\Tables\Archivecustomers.sql" />
+    <Build Include="dbo\Tables\ArchiveJobAddress.sql" />
+    <Build Include="dbo\Tables\ArchiveLeads.sql" />
+    <Build Include="dbo\Tables\ArchiveAvailabilities.sql" />
+    <Build Include="dbo\Tables\EstimatorLocations.sql" />
+    <Build Include="dbo\Tables\ArchiveEstimatorAvailibility.sql" />
+    <Build Include="dbo\Tables\ArchiveEstSkillAvail.sql" />
+    <Build Include="dbo\Tables\GeoZone.sql" />
+    <Build Include="dbo\Tables\ArchiveEstSkills.sql" />
+    <Build Include="dbo\Tables\Zones.sql" />
+    <Build Include="dbo\Tables\Appointment.sql" />
+    <Build Include="dbo\Tables\ZipCodes.sql" />
+    <Build Include="dbo\Tables\USPSZips.sql" />
+    <Build Include="dbo\Tables\Productsold.sql" />
+    <Build Include="dbo\Tables\ContractTerms.sql" />
+    <Build Include="dbo\Tables\projectType.sql" />
+    <Build Include="dbo\Tables\ProposalItemType.sql" />
+    <Build Include="dbo\Tables\Notesold.sql" />
+    <Build Include="dbo\Tables\LeadSources.sql" />
+    <Build Include="dbo\Tables\LeadSubSources.sql" />
+    <Build Include="dbo\Tables\Roles.sql" />
+    <Build Include="dbo\Tables\UserRoles_old.sql" />
+    <Build Include="dbo\Tables\EstInfo.sql" />
+    <Build Include="dbo\Tables\Proposal.sql" />
+    <Build Include="dbo\Tables\ProposalProducts.sql" />
+    <Build Include="dbo\Tables\ProposalStatement.sql" />
+    <Build Include="dbo\Tables\ProductCategory.sql" />
+    <Build Include="dbo\Tables\Company_Code.sql" />
+    <Build Include="dbo\Tables\LeadType.sql" />
+    <Build Include="dbo\Tables\Status.sql" />
+    <Build Include="dbo\Tables\UpdateLog.sql" />
+    <Build Include="dbo\Tables\Products.sql" />
+    <Build Include="dbo\Tables\UserZones.sql" />
+    <Build Include="dbo\Tables\Users_old.sql" />
+    <Build Include="dbo\Tables\TempAvail.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Tables\EstSkillAvail.sql" />
+    <Build Include="dbo\Tables\Contract.sql" />
+    <Build Include="dbo\Tables\TempTables.sql" />
+    <Build Include="dbo\Tables\UserRoles.sql" />
+    <Build Include="dbo\Tables\Project.sql" />
+    <Build Include="dbo\Tables\JobAddresses.sql" />
+    <Build Include="dbo\Tables\Statements.sql" />
+    <Build Include="dbo\Tables\NoBidReason.sql" />
+    <Build Include="dbo\Tables\Leads.sql" />
+    <Build Include="dbo\Tables\JobAddress.sql" />
+    <Build Include="dbo\Tables\Notes.sql" />
+    <Build Include="dbo\Tables\Customers.sql" />
+    <Build Include="dbo\Tables\UserGeoZones.sql" />
+    <Build Include="dbo\Tables\Followup.sql" />
+    <Build Include="dbo\Tables\Skills.sql" />
+    <Build Include="dbo\Tables\Availabilities.sql" />
+    <Build Include="dbo\Tables\CustomerVisit.sql" />
+    <Build Include="dbo\Tables\ProductCat.sql" />
+    <Build Include="dbo\Tables\EstSkills.sql" />
+    <Build Include="dbo\Tables\EstimatorAvailibility.sql" />
+    <Build Include="dbo\Tables\Attachments.sql" />
+    <Build Include="dbo\Tables\LastEstimator.sql" />
+    <Build Include="dbo\Views\emp.sql" />
+    <Build Include="dbo\Views\UserAvailibiltybyLeadType.sql" />
+    <Build Include="dbo\Views\testjim.sql" />
+    <Build Include="dbo\Views\EstimatorGeoZones.sql" />
+    <Build Include="dbo\Stored Procedures\spCustomers_GetId.sql" />
+    <Build Include="dbo\Stored Procedures\spPaidLeads_Post.sql" />
+    <Build Include="dbo\Stored Procedures\spGetProducts.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAppointmentbyStatus.sql" />
+    <Build Include="dbo\Stored Procedures\spAppointment_Post.sql" />
+    <Build Include="dbo\Stored Procedures\spPaidLeads_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spProposalItemType_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spNotes_All.sql" />
+    <Build Include="dbo\Stored Procedures\spNotes_Id.sql" />
+    <Build Include="dbo\Stored Procedures\spProposalProduct_GetbyId.sql" />
+    <Build Include="dbo\Stored Procedures\spProposalData_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spCustomerVisit_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spSalesCalendar.sql" />
+    <Build Include="dbo\Stored Procedures\spLeadSources_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spGetUserAppointment.sql" />
+    <Build Include="dbo\Stored Procedures\spGetLeadSubSource.sql" />
+    <Build Include="dbo\Stored Procedures\spProjectType_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spLeads_Post.sql" />
+    <Build Include="dbo\Stored Procedures\spGetLead.sql" />
+    <Build Include="dbo\Stored Procedures\spGet_JobAddressInfo.sql" />
+    <Build Include="dbo\Stored Procedures\spJobAddress_Getall.sql" />
+    <Build Include="dbo\Stored Procedures\spUser_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spUser_Update.sql" />
+    <Build Include="dbo\Stored Procedures\spGetUsers.sql" />
+    <Build Include="dbo\Stored Procedures\spGetRoles.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAppointmentbyJobAddressId.sql" />
+    <Build Include="dbo\Stored Procedures\spGetLeadsbyJobAddressId.sql" />
+    <Build Include="dbo\Stored Procedures\spEstAvailSkillData.sql" />
+    <Build Include="dbo\Stored Procedures\spCustomers_Get.sql" />
+    <Build Include="dbo\Stored Procedures\spEstSkills_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spEstSkills_Update.sql" />
+    <Build Include="dbo\Stored Procedures\spGetCVbyJobAddressId.sql" />
+    <Build Include="dbo\Stored Procedures\spEstAvail_Update.sql" />
+    <Build Include="dbo\Stored Procedures\spGetProposalbyJobAddressId.sql" />
+    <Build Include="dbo\Stored Procedures\spEstAvail_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spLeads_GetCount.sql" />
+    <Build Include="dbo\Stored Procedures\spGetNotesbyJobAddressId.sql" />
+    <Build Include="dbo\Stored Procedures\spLeadType_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spGetSectionStatus.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAllGeoZones.sql" />
+    <Build Include="dbo\Stored Procedures\spGetCustomersVisit_byId.sql" />
+    <Build Include="dbo\Stored Procedures\spCustomerVisit_Update.sql" />
+    <Build Include="dbo\Stored Procedures\spGetProposal.sql" />
+    <Build Include="dbo\Stored Procedures\spJobAddress_GetId.sql" />
+    <Build Include="dbo\Stored Procedures\spGetStatements.sql" />
+    <Build Include="dbo\Stored Procedures\spCreateTestCompanyTables.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAppointment.sql" />
+    <Build Include="dbo\Stored Procedures\spGetProposalProducts.sql" />
+    <Build Include="dbo\Stored Procedures\spAppointment_Update.sql" />
+    <Build Include="dbo\Stored Procedures\spGetProposalStatements.sql" />
+    <Build Include="dbo\Stored Procedures\spCustomers_Post.sql" />
+    <Build Include="dbo\Stored Procedures\spGetProposalbyId.sql" />
+    <Build Include="dbo\Stored Procedures\spEstAvailSkillData_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\spcount.sql" />
+    <Build Include="dbo\Stored Procedures\spEstAvailSkillData_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spEstLeadType.sql" />
+    <Build Include="dbo\Stored Procedures\spEstGeoZone.sql" />
+    <Build Include="dbo\Stored Procedures\spUserAvailibility.sql" />
+    <Build Include="dbo\Stored Procedures\spEstAvailSkilljson_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spcount1.sql" />
+    <Build Include="dbo\Stored Procedures\spUserRoles_Get.sql" />
+    <Build Include="dbo\Stored Procedures\spCustomers_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spUserRoles_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spContract_Post.sql" />
+    <Build Include="dbo\Stored Procedures\spCustomer_Update.sql" />
+    <Build Include="dbo\Stored Procedures\spUserRoles_Update.sql" />
+    <Build Include="dbo\Stored Procedures\spGetContractbyJobAddressId.sql" />
+    <Build Include="dbo\Stored Procedures\spEstimators_Get.sql" />
+    <Build Include="dbo\Stored Procedures\spProject_Post.sql" />
+    <Build Include="dbo\Stored Procedures\spJobAddress_Get.sql" />
+    <Build Include="dbo\Stored Procedures\spProject_Update.sql" />
+    <Build Include="dbo\Stored Procedures\spGetStatementsbyProductId.sql" />
+    <Build Include="dbo\Stored Procedures\spAppointments_GetCount.sql" />
+    <Build Include="dbo\Stored Procedures\spJobAddress_Post.sql" />
+    <Build Include="dbo\Stored Procedures\spGetProjectbyJobAddressId.sql" />
+    <Build Include="dbo\Stored Procedures\spJobAddress_Update.sql" />
+    <Build Include="dbo\Stored Procedures\spGetNoBidReason.sql" />
+    <Build Include="dbo\Stored Procedures\spGetProposalIdfromCustomerVisitId.sql" />
+    <Build Include="dbo\Stored Procedures\spNotes_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spGeoZone_Zipcode.sql" />
+    <Build Include="dbo\Stored Procedures\spLeads_GetStatus.sql" />
+    <Build Include="dbo\Stored Procedures\spLead_Update.sql" />
+    <Build Include="dbo\Stored Procedures\spGetCustomersVisitFollowup.sql" />
+    <Build Include="dbo\Stored Procedures\spCustomersVisitFollowup_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spCustomersVisitFollowup_Update.sql" />
+    <Build Include="dbo\Stored Procedures\spGetFunctionStatus.sql" />
+    <Build Include="dbo\Stored Procedures\spGetNotes_id.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAttachments.sql" />
+    <Build Include="dbo\Stored Procedures\spLastEstimator-Get.sql" />
+    <Build Include="dbo\Stored Procedures\spLastEstimator-AddUpdate.sql" />
+    <Build Include="dbo\Stored Procedures\spAttachment_GetByCompany.sql" />
+    <Build Include="dbo\Stored Procedures\spAttachment_GetById.sql" />
+  </ItemGroup>
+</Project>

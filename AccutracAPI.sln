@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.1.32210.238
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32602.291
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccutracAP_Old", "AccutracAPI\AccutracAP_Old.csproj", "{D62150A5-5C0D-4395-A1C6-F98FADEAC842}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccutracMinimalAPI", "Accut
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackCode", "BackCode\BackCode.csproj", "{1F9D36E7-74CD-4D4E-86B6-D9775DB202CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccutracWeb", "AccutracWeb\AccutracWeb.csproj", "{88F24D5A-5F33-4BCB-8267-A6BE89CF1FB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccutracWeb", "AccutracWeb\AccutracWeb.csproj", "{88F24D5A-5F33-4BCB-8267-A6BE89CF1FB4}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AccutracDatabase", "AccutracDatabase\AccutracDatabase.sqlproj", "{B5D10DFC-E8AC-47FF-B015-8DF27A6F396B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,12 @@ Global
 		{88F24D5A-5F33-4BCB-8267-A6BE89CF1FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88F24D5A-5F33-4BCB-8267-A6BE89CF1FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88F24D5A-5F33-4BCB-8267-A6BE89CF1FB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5D10DFC-E8AC-47FF-B015-8DF27A6F396B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5D10DFC-E8AC-47FF-B015-8DF27A6F396B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5D10DFC-E8AC-47FF-B015-8DF27A6F396B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B5D10DFC-E8AC-47FF-B015-8DF27A6F396B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5D10DFC-E8AC-47FF-B015-8DF27A6F396B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5D10DFC-E8AC-47FF-B015-8DF27A6F396B}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
