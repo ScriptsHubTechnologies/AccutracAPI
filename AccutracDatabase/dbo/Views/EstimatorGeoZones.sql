@@ -4,7 +4,7 @@ SELECT        dbo.Users.Name, dbo.Users.UserId, dbo.Users.EmployeeId, dbo.UserGe
 FROM            dbo.Users INNER JOIN
                          dbo.UserRoles ON dbo.Users.UserId = dbo.UserRoles.UserId INNER JOIN
                          dbo.UserGeoZones ON dbo.Users.UserId = dbo.UserGeoZones.AspNetUserId INNER JOIN
-                         dbo.Roles ON dbo.UserRoles.RoleId = dbo.Roles.RolesId
+                         dbo.Roles ON dbo.UserRoles.UserRoleId = dbo.Roles.RolesId
 WHERE        (dbo.Roles.RolesId = N'3b20d3df-3ef7-42cd-81ca-cd7820b98e6a')
 
 GO

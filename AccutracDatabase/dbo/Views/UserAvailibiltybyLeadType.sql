@@ -11,15 +11,15 @@
 
 
 
-create view [UserAvailibiltybyLeadType] as SELECT distinct Skills.aspNetUserId, Skills.Employee, Avail.id, Avail.start, Avail.Day, Avail.StartTime, Avail.EndTime, LeadType.LeadType, LeadType.LeadTypeName
-FROM     Skills INNER JOIN
-                      (SELECT AD.id, AD.AspNetUserId, AD.start, AD.Day, availability_1.StartTime, availability_1.EndTime
-                       FROM      (SELECT MAX(Id) AS id, AspNetUserId, MAX(StartDate) AS start, Day
-                                          FROM      availability
-                                          WHERE   (IsDeleted = 0)
-                                          GROUP BY AspNetUserId, Day) AS AD INNER JOIN
-                                         availability AS availability_1 ON AD.AspNetUserId = availability_1.AspNetUserId AND AD.id = availability_1.Id) AS Avail ON Skills.aspNetUserId = Avail.AspNetUserId INNER JOIN
-                  LeadType ON Skills.LeadType = LeadType.LeadType --where LeadType.LeadType=1 order by aspnetuserid,day,StartTime 
+--create view [UserAvailibiltybyLeadType] as SELECT distinct Skills.aspNetUserId, Skills.Employee, Avail.id, Avail.start, Avail.Day, Avail.StartTime, Avail.EndTime, LeadType.LeadType, LeadType.LeadTypeName
+--FROM     Skills INNER JOIN
+--                      (SELECT AD.id, AD.AspNetUserId, AD.start, AD.Day, availability_1.StartTime, availability_1.EndTime
+--                       FROM      (SELECT MAX(Id) AS id, AspNetUserId, MAX(StartDate) AS start, Day
+--                                          FROM      availability
+--                                          WHERE   (IsDeleted = 0)
+--                                          GROUP BY AspNetUserId, Day) AS AD INNER JOIN
+--                                         availability AS availability_1 ON AD.AspNetUserId = availability_1.AspNetUserId AND AD.id = availability_1.Id) AS Avail ON Skills.aspNetUserId = Avail.AspNetUserId INNER JOIN
+--                  LeadType ON Skills.LeadType = LeadType.LeadType --where LeadType.LeadType=1 order by aspnetuserid,day,StartTime 
 
 
 --				  SELECT  max(Id) as id, AspNetUserId, max(StartDate) as start,day

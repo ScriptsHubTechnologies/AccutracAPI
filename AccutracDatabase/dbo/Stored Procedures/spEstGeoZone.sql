@@ -4,8 +4,9 @@ create procedure [dbo].spEstGeoZone
 @userid nchar(50)
 as 
 begin
-SELECT Company_Code, WkDayNumber, WkDayName, StartDate, AppointmentDuration, GeoZoneId, GeoZoneName
-FROM     EstSkillAvail
-WHERE  (Company_Code = @company_code) AND (UserId = @userid)
-GROUP BY Company_Code, WkDayName, WkDayNumber, StartDate, AppointmentDuration, GeoZoneId, GeoZoneName
+SELECT ESA.Company_Code, WkDayNumber, WkDayName, StartDate, AppointmentDuration, GeoZoneId, GZ.Name As GeoZoneName
+FROM     EstSkillAvail ESA
+JOIN GeoZone AS GZ ON GZ.Id = ESA.GeoZoneId
+WHERE  (ESA.Company_Code = @company_code) AND (UserId = @userid)
+GROUP BY ESA.Company_Code, WkDayName, WkDayNumber, StartDate, AppointmentDuration, GeoZoneId, GZ.Name
 end

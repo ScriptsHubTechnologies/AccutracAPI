@@ -5,7 +5,8 @@ Create procedure [dbo].[spGetFunctionStatus]
 @Functionid as int
 as 
 begin
-	SELECT FunctionId, FunctionIdName, StatusId, StatusIdName
-FROM     Status
-WHERE  (Company_Code = @company_code) AND (FunctionId = @functionid)
+	--SELECT FunctionId, FunctionIdName, StatusId, StatusIdName
+	SELECT StatusId, StatusIdName
+	FROM   Status
+WHERE  (Company_Code = @company_code) --AND (FunctionId = @functionid)
 end

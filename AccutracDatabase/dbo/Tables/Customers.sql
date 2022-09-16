@@ -19,6 +19,12 @@
     [UpdatedBy]        NVARCHAR (50)      NULL,
     [UpdatedDate]      DATETIMEOFFSET (7) NULL,
     [Notes]            NVARCHAR (MAX)     NULL,
+    [UserDefinedstr1]  NVARCHAR(50)       NULL,
+    [UserDefinedint1]  NVARCHAR(50)       NULL,
+    [UserDefinedstr2]  NVARCHAR(50)       NULL,
+    [UserDefinedint2]  NVARCHAR(50)       NULL,
+    [UserDefinedstr3]  NVARCHAR(50)       NULL,
+    [UserDefinedint3]  NVARCHAR(50)       NULL
     CONSTRAINT [PK_Customers] PRIMARY KEY CLUSTERED ([Customerid] ASC)
 );
 
