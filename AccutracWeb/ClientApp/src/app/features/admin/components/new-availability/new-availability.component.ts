@@ -42,10 +42,10 @@ export class NewAvailabilityComponent implements OnInit {
 
   @Output() deleteNewAvailability = new EventEmitter();
 
-  autoCompleteOptions: any = {
+  autoCompleteOptions: Options = {
     fields: ['address_components'],
     componentRestrictions: { country: 'us' }
-  };
+  } as Options;
 
   availabilityForm = this.fb.group({
     dayOfWeek: new UntypedFormControl('', Validators.required),

@@ -31,10 +31,10 @@ export class LeadStep1Component implements OnInit {
 
   customers: Customer[] = [];
 
-  autoCompleteOptions: any = {
+  autoCompleteOptions: Options = {
     fields: ['address_components'],
     componentRestrictions: { country: 'us' }
-  }
+  } as Options;
 
   constructor(
     private formProvider: FormProvider,

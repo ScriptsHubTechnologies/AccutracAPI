@@ -3,7 +3,7 @@
         <div class="card-header">
             <div class="row addbutton">
                 <h2 style="flex:auto;">Attachments</h2>
-                <button mat-raised-button color="accent" style="margin-right:5px;" (click)="back()">Back</button>
+                <button mat-raised-button color="accent" style="margin-right:5px;" (click)="backTomainpage()">Back</button>
                 <button mat-raised-button color="accent" (click)="addNewAttachment()">Add Attachment</button>
             </div>
             <mat-divider></mat-divider>
@@ -53,7 +53,7 @@
                     <button mat-raised-button class="img-button" (click)="capture()">
             <span>{{btnLabel}}</span>
           </button>
-                    <button mat-raised-button class="img-button" (click)="cancel()">
+                    <button mat-raised-button class="img-button" (click)="cancelButton()">
             <span>Cancel</span>
           </button>
                 </div>

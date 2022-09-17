@@ -93,7 +93,7 @@ export class CustomerAttachmentsComponent implements OnInit {
     let attachment = this.buildAttachment();
     this.apiService.saveAttachment(attachment).subscribe({
       next: (data) => {
-        this.back();
+        this.backTomainpage();
         this.ngOnInit();
       },
       error: (e) => {
@@ -102,7 +102,7 @@ export class CustomerAttachmentsComponent implements OnInit {
     })
   }
 
-  cancel() {
+  cancelButton() {
     this.showMediaOptions = true;
     this.showCameraOptions = false;
     this.showCamera = true;
@@ -132,7 +132,7 @@ export class CustomerAttachmentsComponent implements OnInit {
     }
   }
 
-  back() {
+  backTomainpage() {
     this.showAttachments = true;
     this.showMediaOptions = false;
     this.showCameraOptions = false;
@@ -149,7 +149,7 @@ export class CustomerAttachmentsComponent implements OnInit {
     this.apiService.saveFiles(formData, this.customerId, jobaddressId).subscribe({
       next: (data) => {
         this.ngOnInit();
-        this.back();
+        this.backTomainpage();
       }
     });
   }

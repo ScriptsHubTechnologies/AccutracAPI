@@ -56,14 +56,14 @@ export class ExistingAvailabilityComponent implements OnInit {
 
   @Output() availUpdated = new EventEmitter<string>();
 
-  autoCompleteOptions: any = {
+  autoCompleteOptions: Options = {
     fields: ['address_components'],
     componentRestrictions: { country: 'us' }
     // strictBounds: false,
     // types: [],
     // origin: {},
     // bounds: {}
-  }
+  } as Options;
 
   availabilityForm = this.fb.group({
     dayOfWeek: new UntypedFormControl('', Validators.required),

@@ -19,10 +19,10 @@ export class NewJobAddressDialogComponent implements OnInit {
 
   customerId: string;
 
-  autoCompleteOptions: any = {
+  autoCompleteOptions: Options = {
     fields: ['address_components'],
     componentRestrictions: { country: 'us' },
-  }
+  } as Options;
 
   jobAddressForm = this.fb.group({
     jobAddress: new UntypedFormGroup({

@@ -32,9 +32,6 @@ export class GenerateContract implements OnInit {
   status: string = '';
   pdfpath: string;
   btnLabel: string = "Capture Image";
-  attachments: any = [];
-  uploadingFiles: string[] = [];
-
 
   showAttachments = true;
   showMediaOptions = false;

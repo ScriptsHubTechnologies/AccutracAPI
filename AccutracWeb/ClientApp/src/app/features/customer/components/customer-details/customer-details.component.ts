@@ -67,8 +67,8 @@ export class CustomerDetailsComponent implements OnInit {
     // const httpOptions = {
     //   headers: new HttpHeaders({'Content-Type': 'application/json'})
     // }
-    console.log(formData);
-    console.log(fileToUpload);
+    //console.log(formData);
+    //console.log(fileToUpload);
 
     //this.apiService.SaveChooseFileData(formData).subscribe({
     //  next:(data)=>{

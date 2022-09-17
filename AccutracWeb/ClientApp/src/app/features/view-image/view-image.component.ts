@@ -35,7 +35,7 @@ export class ViewImageComponent implements OnInit {
     })
   }
 
-  next() {
+  nextAttachment() {
     var index = this.data.attachments.indexOf(this.currentAT);
     index = index + 1;
     this.currentAT = this.data.attachments[index];
@@ -63,7 +63,7 @@ export class ViewImageComponent implements OnInit {
     })
   }
 
-  prev() {
+  prevAttachment() {
     var index = this.data.attachments.indexOf(this.currentAT);
     index = index - 1;
     this.currentAT = this.data.attachments[index];
