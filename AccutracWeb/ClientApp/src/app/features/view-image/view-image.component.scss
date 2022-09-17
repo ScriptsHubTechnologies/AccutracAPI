@@ -7,3 +7,36 @@
     pointer-events: all;
     opacity: 1;
 }
+
+.viewImage {
+    height: 586px;
+    width: 752px;
+}
+
+.downloadButton {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.buttonRow {
+    margin-top: -320px;
+    z-index: 1000;
+    position: relative;
+}
+
+.prevButton {
+    margin-left: 20px;
+    font-size: 41px;
+    padding-left: 5px;
+    background-color: #d2d2d2;
+    height: 43px;
+    width: 35px;
+}
+
+.nextButton {
+    margin-left: 86%;
+    font-size: 41px;
+    background-color: #d2d2d2;
+    height: 43px;
+    width: 38px;
+}
