@@ -1,137 +1,136 @@
 <div style="background-color: white;">
-  <mat-card *ngIf="showError" style="color: #ff3c3c; font-weight: bolder;">
-    <mat-icon style="height: 16px;">report_problem</mat-icon>&nbsp;
-    Please sign the contract to generate the PDF.
-  </mat-card>
-  <button style="margin-top: 50px;" mat-raised-button color="primary" (click)="hidebutton()">Generate PDF</button>
-  <button #print [useExistingCss]="true" printSectionId="htmldata" hidden="true" ngxPrint>Generate PDF</button>
+    <mat-card *ngIf="showError" style="color: #ff3c3c; font-weight: bolder;">
+        <mat-icon style="height: 16px;">report_problem</mat-icon>&nbsp; Please sign the contract to generate the PDF.
+    </mat-card>
+    <button style="margin-top: 50px;" mat-raised-button color="primary" (click)="hidebutton()">Generate PDF</button>
+    <button #print [useExistingCss]="true" printSectionId="htmldata" hidden="true" ngxPrint>Generate PDF</button>
 </div>
 <div style="border: 3px black solid; margin-left: 10%; margin-right: 10%;">
-  <div id="htmldata">
-    <div class="content">
-      <style>
-        body {
-          font-family: 'Arial';
-        }
+    <div id="htmldata">
+        <div class="content">
+            <style>
+                body {
+                    font-family: 'Arial';
+                }
+                
+                .page {
+                    width: 695px;
+                    height: 842px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    /*padding-left: 15px;*/
+                    font-size: 10px;
+                }
+                
+                .centeredDiv {
+                    margin: auto;
+                    /*width: 50%;*/
+                    text-align: center;
+                    padding: 10px;
+                }
+                
+                td {
+                    text-align: left;
+                }
+                
+                td:first-child {
+                    text-align: right;
+                }
+                
+                footer {
+                    page-break-after: always;
+                    text-align: right;
+                    font-size: 12px;
+                }
+                
+                .smallP p {
+                    margin-top: 0px;
+                    font-size: 10px !important;
+                    text-align: left !important;
+                }
+            </style>
 
-        .page {
-          width: 695px;
-          height: 842px;
-          margin-left: auto;
-          margin-right: auto;
-          /*padding-left: 15px;*/
-          font-size: 10px;
-        }
+            <!--Start First Page-->
+            <div class="page">
+                <div class="centeredDiv">
+                    <img src="../assets/ri_1.png">
+                    <h2>Customer Proposal</h2>
 
-        .centeredDiv {
-          margin: auto;
-          /*width: 50%;*/
-          text-align: center;
-          padding: 10px;
-        }
+                    <img style="height: 300px;" src="../assets/ri_2.png">
 
-        td {
-          text-align: left;
-        }
+                    <table style="display: inline;font-size: 12px;">
+                        <tr>
+                            <td>Customer Name:</td>
+                            <td id="customerName">{{info2.firstName}} {{info2.lastName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Mailing Address:</td>
+                            <td id="mailingAddress">{{info2.mailingAddress}}</td>
+                        </tr>
+                        <tr>
+                            <td>State:</td>
+                            <td id="state">{{info2.mailingState}}</td>
+                        </tr>
+                        <tr>
+                            <td>Zip:</td>
+                            <td id="zip">{{info2.mailingZip}}</td>
+                        </tr>
+                        <tr>
+                            <td>City:</td>
+                            <td id="city">{{info2.mailingCity}}</td>
+                        </tr>
+                        <tr>
+                            <td>Job Address:</td>
+                            <td id="jobAddress">{{info2.jobAddress1}}</td>
+                        </tr>
+                        <tr>
+                            <td>State:</td>
+                            <td id="jobState">{{info2.jobState}}</td>
+                        </tr>
+                        <tr>
+                            <td>Zip:</td>
+                            <td id="jobZip">{{info2.jobZip}}</td>
+                        </tr>
+                        <tr>
+                            <td>City:</td>
+                            <td id="jobCity">{{info2.jobCity}}</td>
+                        </tr>
+                        <tr>
+                            <td>Email Address:</td>
+                            <td id="email">{{info2.email}}</td>
+                        </tr>
+                        <tr>
+                            <td>Primary Phone:</td>
+                            <td id="phone">{{info2.phone}}</td>
+                        </tr>
+                    </table>
 
-          td:first-child {
-            text-align: right;
-          }
-
-        footer {
-          page-break-after: always;
-          text-align: right;
-          font-size: 12px;
-        }
-
-        .smallP p {
-          margin-top: 0px;
-          font-size: 10px !important;
-          text-align: left !important;
-        }
-      </style>
-
-      <!--Start First Page-->
-      <div class="page">
-        <div class="centeredDiv">
-          <img src="../assets/ri_1.png">
-          <h2>Customer Proposal</h2>
-
-          <img style="height: 300px;" src="../assets/ri_2.png">
-
-          <table style="display: inline;font-size: 12px;">
-            <tr>
-              <td>Customer Name:</td>
-              <td id="customerName">{{info2.firstName}} {{info2.lastName}}</td>
-            </tr>
-            <tr>
-              <td>Mailing Address:</td>
-              <td id="mailingAddress">{{info2.mailingAddress}}</td>
-            </tr>
-            <tr>
-              <td>State:</td>
-              <td id="state">{{info2.mailingState}}</td>
-            </tr>
-            <tr>
-              <td>Zip:</td>
-              <td id="zip">{{info2.mailingZip}}</td>
-            </tr>
-            <tr>
-              <td>City:</td>
-              <td id="city">{{info2.mailingCity}}</td>
-            </tr>
-            <tr>
-              <td>Job Address:</td>
-              <td id="jobAddress">{{info2.jobAddress1}}</td>
-            </tr>
-            <tr>
-              <td>State:</td>
-              <td id="jobState">{{info2.jobState}}</td>
-            </tr>
-            <tr>
-              <td>Zip:</td>
-              <td id="jobZip">{{info2.jobZip}}</td>
-            </tr>
-            <tr>
-              <td>City:</td>
-              <td id="jobCity">{{info2.jobCity}}</td>
-            </tr>
-            <tr>
-              <td>Email Address:</td>
-              <td id="email">{{info2.email}}</td>
-            </tr>
-            <tr>
-              <td>Primary Phone:</td>
-              <td id="phone">{{info2.phone}}</td>
-            </tr>
-          </table>
-
-        </div>
-      </div>
-      <div style="page-break-after: always">
-      </div>
-      <!--Start First Page-->
-      <!--Second First Page-->
-      <div class="page">
-        <div style="display: flex;
+                </div>
+            </div>
+            <div style="page-break-after: always">
+            </div>
+            <!--Start First Page-->
+            <!--Second First Page-->
+            <div class="page">
+                <div style="display: flex;
         align-items: center;">
-          <!--<div style="text-align: left;width: 25%;">
+                    <!--<div style="text-align: left;width: 25%;">
             <p><strong>Mail Contract To</strong></p>
             <p>8251 Bunkum Road<br> Caseyville, IL. 62232</p>
 
             <p>Fax: 618-397-3066</p>
           </div>-->
-          <!--<div style="text-align: right;
+                    <!--<div style="text-align: right;
               width: 35%;
               display: inline;">
             <img style="height: 110px;" src="../assets/ri_1.png">
           </div>-->
-          <div style="text-align: right;
+                    <div style="text-align: right;
             width: 35%;
             display: inline;">
-            <img style="height: 110px;" src="../assets/newheader.JPG">
-          </div>
-          <!--<div style="text-align: right;font-size: 9px;">
+                        <img style="height: 110px;" src="../assets/newheader.JPG">
+                    </div>
+                    <!--<div style="text-align: right;font-size: 9px;">
             <p>
               Belleville, IL 618-235-5595<br>Bloomington, IL 309-820-1500<br>Cape Girardeau, MO 573-335-4060<br>Columbia, MO 573-441-2254<br>Indianapolis, IN 317-248-1500<br>Marion, IL 618-993-5032
             </p>
@@ -141,43 +140,43 @@
               Mt. Vemon, IL 618-246-1007<br>Paducah, KY 270-442-4060 <br>Peoria, IL 309-676-5595<br>Quad Cities, IA 309-799-1260 <br>Springfield, IL 217-522-5595<br>ST. Louis, MO 314-965-4565
             </p>
           </div>-->
-        </div>
-        <!--<div style="text-align: center;text-align: center;
+                </div>
+                <!--<div style="text-align: center;text-align: center;
           margin-top: -20px;">
           <p><strong>Waterproofing & Foundation Repair</strong><br> a division of Slab Masters Inc.</p>
         </div>-->
-        <h3 style="text-align: center;">Scope of Work</h3>
-        <br>
-        <h4>Rebar pop rebar with 12" CarbonBond</h4>
-        <p>
-          {{this.statements}}
-        </p>
+                <h3 style="text-align: center;">Scope of Work</h3>
+                <br>
+                <h4>Rebar pop rebar with 12" CarbonBond</h4>
+                <p>
+                    {{this.statements}}
+                </p>
 
-      </div>
-      <div style="page-break-after: always">
-      </div>
-      <!--Second First Page-->
-      <!--Third product page-->
-      <div class="page">
-        <div style="display: flex;
+            </div>
+            <div style="page-break-after: always">
+            </div>
+            <!--Second First Page-->
+            <!--Third product page-->
+            <div class="page">
+                <div style="display: flex;
         align-items: center;">
-          <!--<div style="text-align: left;width: 25%;">
+                    <!--<div style="text-align: left;width: 25%;">
             <p><strong>Mail Contract To</strong></p>
             <p>8251 Bunkum Road<br> Caseyville, IL. 62232</p>
 
             <p>Fax: 618-397-3066</p>
           </div>-->
-          <!--<div style="text-align: right;
+                    <!--<div style="text-align: right;
               width: 35%;
               display: inline;">
             <img style="height: 110px;" src="../assets/ri_1.png">
           </div>-->
-          <div style="text-align: right;
+                    <div style="text-align: right;
             width: 35%;
             display: inline;">
-            <img style="height: 110px;" src="../assets/newheader.JPG">
-          </div>
-          <!--<div style="text-align: right;font-size: 9px;">
+                        <img style="height: 110px;" src="../assets/newheader.JPG">
+                    </div>
+                    <!--<div style="text-align: right;font-size: 9px;">
             <p>
               Belleville, IL 618-235-5595<br>Bloomington, IL 309-820-1500<br>Cape Girardeau, MO 573-335-4060<br>Columbia, MO 573-441-2254<br>Indianapolis, IN 317-248-1500<br>Marion, IL 618-993-5032
             </p>
@@ -187,403 +186,398 @@
               Mt. Vemon, IL 618-246-1007<br>Paducah, KY 270-442-4060 <br>Peoria, IL 309-676-5595<br>Quad Cities, IA 309-799-1260 <br>Springfield, IL 217-522-5595<br>ST. Louis, MO 314-965-4565
             </p>
           </div>-->
-        </div>
-        <!--<div style="text-align: center;text-align: center;
+                </div>
+                <!--<div style="text-align: center;text-align: center;
           margin-top: -20px;">
           <p><strong>Waterproofing & Foundation Repair</strong><br> a division of Slab Masters Inc.</p>
         </div>-->
-        <table style="border: 1px solid black; margin-left: auto; margin-right: auto;width:100%">
-          <tr>
-            <th style="font-size:9px;">Customer: </th>
-            <td>{{info2.firstName}} {{info2.lastName}}</td>
-            <th style="padding-left: 150px; font-size: 9px;">Revised Date: </th>
-            <td>{{info2.firstName}} {{info2.lastName}}</td>
-            <!--<th style="padding-left: 150px;"></th>-->
-          </tr>
+                <table style="border: 1px solid black; margin-left: auto; margin-right: auto;width:100%">
+                    <tr>
+                        <th style="font-size:9px;">Customer: </th>
+                        <td>{{info2.firstName}} {{info2.lastName}}</td>
+                        <th style="padding-left: 150px; font-size: 9px;">Revised Date: </th>
+                        <td>{{info2.firstName}} {{info2.lastName}}</td>
+                        <!--<th style="padding-left: 150px;"></th>-->
+                    </tr>
 
-          <tr>
-            <th style="font-size: 9px;">Comapany:</th>
-            <td></td>
-            <th style="padding-left: 150px; font-size: 9px;"> Email Address:</th>
-            <td>{{info2.email}}</td>
-          </tr>
-          <tr>
-            <th style="font-size: 9px;">Mailing Address:</th>
-            <td>{{info2.mailingAddress}}</td>
-            <th style="padding-left: 150px; font-size: 9px;">Primary Phone:</th>
-            <td>{{info2.phone}}</td>
-          </tr>
-          <tr>
-            <th style="font-size: 9px;">City:</th>
-            <td>{{info2.mailingCity}}</td>
-            <th style="padding-left: 150px; font-size: 9px;">State:</th>
-            <td>{{info2.mailingState}}</td>
-          </tr>
-        </table>
+                    <tr>
+                        <th style="font-size: 9px;">Comapany:</th>
+                        <td></td>
+                        <th style="padding-left: 150px; font-size: 9px;"> Email Address:</th>
+                        <td>{{info2.email}}</td>
+                    </tr>
+                    <tr>
+                        <th style="font-size: 9px;">Mailing Address:</th>
+                        <td>{{info2.mailingAddress}}</td>
+                        <th style="padding-left: 150px; font-size: 9px;">Primary Phone:</th>
+                        <td>{{info2.phone}}</td>
+                    </tr>
+                    <tr>
+                        <th style="font-size: 9px;">City:</th>
+                        <td>{{info2.mailingCity}}</td>
+                        <th style="padding-left: 150px; font-size: 9px;">State:</th>
+                        <td>{{info2.mailingState}}</td>
+                    </tr>
+                </table>
 
-        <table style="border: 1px solid black; margin-left: auto; margin-right: auto; width: 100% ">
-          <tr>
-            <th style="font-size: 9px;">Job Address: </th>
-            <td>{{info2.jobAddress1}}</td>
-            <th style="padding-left: 288px; font-size: 9px;">Inspection Date: </th>
-            <td></td>
-            <!--<th style="padding-left: 150px;"></th>-->
-          </tr>
+                <table style="border: 1px solid black; margin-left: auto; margin-right: auto; width: 100% ">
+                    <tr>
+                        <th style="font-size: 9px;">Job Address: </th>
+                        <td>{{info2.jobAddress1}}</td>
+                        <th style="padding-left: 288px; font-size: 9px;">Inspection Date: </th>
+                        <td></td>
+                        <!--<th style="padding-left: 150px;"></th>-->
+                    </tr>
 
-          <tr>
-            <th style="font-size: 9px;">City:</th>
-            <td>{{info2.jobCity}}</td>
-            <th style="padding-left: 288px; font-size: 9px;"> State:</th>
-            <td>{{info2.jobState}}</td>
-          </tr>
+                    <tr>
+                        <th style="font-size: 9px;">City:</th>
+                        <td>{{info2.jobCity}}</td>
+                        <th style="padding-left: 288px; font-size: 9px;"> State:</th>
+                        <td>{{info2.jobState}}</td>
+                    </tr>
 
-        </table>
-        <br>
-        <table style=" border: 1px solid black; border-collapse: collapse; margin-left: auto; margin-right: auto;">
-          <tr>
-            <th style="padding-right: 285px; border: 1px solid black; border-collapse: collapse;background-color:black;color:black;font-size:10px;">Proposed Products</th>
-            <th style="border: 1px solid black; border-collapse: collapse; background-color: black; color: black; font-size: 10px;">Quantity </th>
-          </tr>
-          <tr>
-            <td style="padding-right: 285px;border: 1px solid black; border-collapse: collapse;">Rebar pop rebar with 12" CarbonBond</td>
-            <td style="border: 1px solid black; border-collapse: collapse; ">0</td>
-          </tr>
-          <tr>
-            <td style="padding-right: 285px; border: 1px solid black; border-collapse: collapse; ">PJ 1st Hour rate for time and material job</td>
-            <td style="border: 1px solid black; border-collapse: collapse; ">0</td>
-          </tr>
-        </table>
+                </table>
+                <br>
+                <table style=" border: 1px solid black; border-collapse: collapse; margin-left: auto; margin-right: auto;">
+                    <tr>
+                        <th style="padding-right: 285px; border: 1px solid black; border-collapse: collapse;background-color:black;color:black;font-size:10px;">Proposed Products</th>
+                        <th style="border: 1px solid black; border-collapse: collapse; background-color: black; color: black; font-size: 10px;">Quantity </th>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 285px;border: 1px solid black; border-collapse: collapse;">Rebar pop rebar with 12" CarbonBond</td>
+                        <td style="border: 1px solid black; border-collapse: collapse; ">0</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 285px; border: 1px solid black; border-collapse: collapse; ">PJ 1st Hour rate for time and material job</td>
+                        <td style="border: 1px solid black; border-collapse: collapse; ">0</td>
+                    </tr>
+                </table>
 
-        <p>
-          Complete in accordance with above specifications, for the sum of:
-        </p>
-        <p>
-          We accept:
-        </p>
-        <!--<div style="text-align: right;
+                <p>
+                    Complete in accordance with above specifications, for the sum of:
+                </p>
+                <p>
+                    We accept:
+                </p>
+                <!--<div style="text-align: right;
               /*width: 35%;*/
               display: inline;">
           <img src="../assets/credit.png">
         </div>-->
-        <p style="text-align: right;">
-          Total Project Cost:<br> Deposit:
-          <br> Balance Upon Completion:<br>
-        </p>
-        <p>
-          Acceptance of Proposal - The above prices, specifications and conditions are satisfactory and are hereby accepted. HELITECH® is a division of Slab Masters Inc. is authorized to do the work as specified. Payment will be made as outlined in this document.
-        </p>
-        <span>
+                <p style="text-align: right;">
+                    Total Project Cost:<br> Deposit:
+                    <br> Balance Upon Completion:<br>
+                </p>
+                <p>
+                    Acceptance of Proposal - The above prices, specifications and conditions are satisfactory and are hereby accepted. HELITECH® is a division of Slab Masters Inc. is authorized to do the work as specified. Payment will be made as outlined in this document.
+                </p>
+                <span>
           The terms and conditions in this document form a part of this proposal or attached Addendum.
         </span><br>
-        <span>
+                <span>
           THIS CONTRACT CONTAINS A BINDING ARBITRATION PROVISION WHICH MAY BE ENFORCED BY THE PARTIES.
         </span><br>
-        <span>
+                <span>
           NOTE: This proposal may be withdrawn by HELITECH® if not accepted within 20 days.
         </span><br>
 
-        <div>
-          <div style="text-align:left;">
-            Signature - Acceptance by Owner
-          </div>
-          <div style="text-align:right;">
-            Date:
-          </div>
-        </div>
+                <div>
+                    <div style="text-align:left;">
+                        Signature - Acceptance by Owner
+                    </div>
+                    <div style="text-align:right;">
+                        Date:
+                    </div>
+                </div>
 
-        <hr>
-        <span>
+                <hr>
+                <span>
           To approve Yard Sign display, sign here:
         </span><br>
-        <div>
-          <div style="text-align:left;">
-            Signature - Acceptance by Owner
-          </div>
-          <div style="text-align:right;">
-            Date:
-          </div>
-        </div>
-        <hr>
-      </div>
-      <div style="page-break-after: always">
-      </div>
-      <!--End Third page-->
-      <!--Start Fourth Page-->
-      <div class="page smallP">
-        <!--<p style="text-align:center;font-size: 14px;"><b>TERMS AND CONDITION</b> </p>-->
-        <h3 style="text-align: center;">TERMS AND CONDITION</h3>
-        <p id="p" style="font-size: 10px;text-align: justify;font: 400 10px / 11px Roboto, 'Helvetica Neue', sans-serif">
+                <div>
+                    <div style="text-align:left;">
+                        Signature - Acceptance by Owner
+                    </div>
+                    <div style="text-align:right;">
+                        Date:
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div style="page-break-after: always">
+            </div>
+            <!--End Third page-->
+            <!--Start Fourth Page-->
+            <div class="page smallP">
+                <!--<p style="text-align:center;font-size: 14px;"><b>TERMS AND CONDITION</b> </p>-->
+                <h3 style="text-align: center;">TERMS AND CONDITION</h3>
+                <p id="p" style="font-size: 10px;text-align: justify;font: 400 10px / 11px Roboto, 'Helvetica Neue', sans-serif">
 
-          HELITECH® A DIVISION OF Slab Masters Inc. will be herein referred to as HELITECH® All work will be performed in a professional manner. The area of repair will be returned as close to the original condition as possible. Customer will remove and replace
-          or cover, any and all items (including but not limited to: tile, carpet, flooring, paneling, wood, baseboards, appliances, shelves, water heater, air conditioners, plants, or any other items in the work area) away from walls to provide
-          a six (6) foot work area. HELITECH® shall not be responsible for damage to any personal property not so removed or covered, air conditioners, plants, or any other items in the work area that are not covered or removed. HELITECH® shall
-          not be responsible to replace any items removed to the work area.<br> The property owner(s) or their agents) bear the burden to investigate and disclose the existence of any underground facilities as the same may
-          be amended, located in or near the areas which the property owner(s) or their agents) have requested HELITECH® to excavate and/or repair. HELITECH® will use reasonable care in the excavation/installation/repair process, however, should
-          a private utility or such underground facilities become impacted, the property owner(s) or their agent(s) shall be responsible for any repairs that may be necessary. The property owner(s) or their agent(s) are responsible for ensuring
-          compliance with any and all laws, statues and ordinances related to engaging in sub-surface activities on the property owner(s)' property including, but not limited to, notice and filing requirements. The property owner(s) or their
-          agent(s) shall indemnify and hold HELITECH® harmless for any consequential sub-surface damage caused by HELITECH® s as a result of the property owner(s)" or their agent(s)' failure to meet their burden hereunder. All material is guaranteed
-          to be as specified. All work to be completed in a workmanlike manner according to standard practices. If you do not pay as and when required by this contract, however, all guarantees by it will be void and a 11/2% per month interest
-          charge will accrue and you will pay all costs related to the collection of the amount, including reasonable attorney's fees and court costs. Any alteration or deviation from above specifications involving extra costs will be executed
-          only upon written orders, and will become an extra charge over arid above the estimate. All agreements are contingent upon absence of strikes, accidents or delays beyond our control. Owner to carry fire, tornado and other necessary
-          insurance. Our workers are fully covered by Workers' Compensation Insurance. This contract contains all of the terms and conditions agreed to by the parties and no other representations, warranties or agreements, express or implied,
-          shall vary the terms of this contract.
+                    HELITECH® A DIVISION OF Slab Masters Inc. will be herein referred to as HELITECH® All work will be performed in a professional manner. The area of repair will be returned as close to the original condition as possible. Customer will remove and replace
+                    or cover, any and all items (including but not limited to: tile, carpet, flooring, paneling, wood, baseboards, appliances, shelves, water heater, air conditioners, plants, or any other items in the work area) away from walls to provide
+                    a six (6) foot work area. HELITECH® shall not be responsible for damage to any personal property not so removed or covered, air conditioners, plants, or any other items in the work area that are not covered or removed. HELITECH® shall
+                    not be responsible to replace any items removed to the work area.<br> The property owner(s) or their agents) bear the burden to investigate and disclose the existence of any underground facilities as the same may
+                    be amended, located in or near the areas which the property owner(s) or their agents) have requested HELITECH® to excavate and/or repair. HELITECH® will use reasonable care in the excavation/installation/repair process, however, should
+                    a private utility or such underground facilities become impacted, the property owner(s) or their agent(s) shall be responsible for any repairs that may be necessary. The property owner(s) or their agent(s) are responsible for ensuring
+                    compliance with any and all laws, statues and ordinances related to engaging in sub-surface activities on the property owner(s)' property including, but not limited to, notice and filing requirements. The property owner(s) or their
+                    agent(s) shall indemnify and hold HELITECH® harmless for any consequential sub-surface damage caused by HELITECH® s as a result of the property owner(s)" or their agent(s)' failure to meet their burden hereunder. All material is guaranteed
+                    to be as specified. All work to be completed in a workmanlike manner according to standard practices. If you do not pay as and when required by this contract, however, all guarantees by it will be void and a 11/2% per month interest
+                    charge will accrue and you will pay all costs related to the collection of the amount, including reasonable attorney's fees and court costs. Any alteration or deviation from above specifications involving extra costs will be executed
+                    only upon written orders, and will become an extra charge over arid above the estimate. All agreements are contingent upon absence of strikes, accidents or delays beyond our control. Owner to carry fire, tornado and other necessary
+                    insurance. Our workers are fully covered by Workers' Compensation Insurance. This contract contains all of the terms and conditions agreed to by the parties and no other representations, warranties or agreements, express or implied,
+                    shall vary the terms of this contract.
 
-        </p>
+                </p>
 
-        <h4 style="text-align: left;font:600 12px / 13px Roboto, 'Helvetica Neue', sans-serif;margin: 0 0 5px"> Warranty limitations and exclusions</h4>
+                <h4 style="text-align: left;font:600 12px / 13px Roboto, 'Helvetica Neue', sans-serif;margin: 0 0 5px"> Warranty limitations and exclusions</h4>
 
-        <span style="font-weight: 700;"> Warranty transfer:</span>
-        <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
-          THIS LIMITED WARRANTY IS TRANSFERABLE IN ITS ENTIRETY TO SUBSEQUENT PROPERTY OWNERS, PROVIDED THAT A WRITTEN ASSIGNMENT IS PROPERLY EXECUTED BY HELITECH® PRIOR TO THE SALE OF THE PROPERTY.
-        </p>
+                <span style="font-weight: 700;"> Warranty transfer:</span>
+                <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
+                    THIS LIMITED WARRANTY IS TRANSFERABLE IN ITS ENTIRETY TO SUBSEQUENT PROPERTY OWNERS, PROVIDED THAT A WRITTEN ASSIGNMENT IS PROPERLY EXECUTED BY HELITECH® PRIOR TO THE SALE OF THE PROPERTY.
+                </p>
 
-        <span style="font-weight: 700;"> SOLE WARRANTY:</span>
-        <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
-          THE FOREGOING IS OUR SOLE WARRANTY. ALL OTHER WARRANTIES, EXPRESSED OR IMPLIED, INCLUDING ANY WARRANTY OF MERCHANTABILITY AND WARRANTY OF FITNESS FOR PURPOSE, ARE EXCLUDED. YOUR EXCLUSIVE REMEDY SHALL BE FOR CORRECTION OF ANY DEFECT IN WORKMANSHIP AND
-          MATERIALS, AS SET FORTH ABOVE.
-        </p>
+                <span style="font-weight: 700;"> SOLE WARRANTY:</span>
+                <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
+                    THE FOREGOING IS OUR SOLE WARRANTY. ALL OTHER WARRANTIES, EXPRESSED OR IMPLIED, INCLUDING ANY WARRANTY OF MERCHANTABILITY AND WARRANTY OF FITNESS FOR PURPOSE, ARE EXCLUDED. YOUR EXCLUSIVE REMEDY SHALL BE FOR CORRECTION OF ANY DEFECT IN WORKMANSHIP AND
+                    MATERIALS, AS SET FORTH ABOVE.
+                </p>
 
-        <span style="font-weight: 700;">OTHER COMPANIES WORK:</span>
-        <p style="text-align: left; font-size: 11px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
-          IF PREVIOUS WORK WAS COMPLETED BY ANOTHER COMPANY, HELITECH® CANNOT ASSUME ANY OF THEIR WARRANTIES.
-        </p>
+                <span style="font-weight: 700;">OTHER COMPANIES WORK:</span>
+                <p style="text-align: left; font-size: 11px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
+                    IF PREVIOUS WORK WAS COMPLETED BY ANOTHER COMPANY, HELITECH® CANNOT ASSUME ANY OF THEIR WARRANTIES.
+                </p>
 
-        <span style="font-weight: 700;">ACTS OF GOD OR MAN-MADE EXCLUSIONS:</span>
-        <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
-          <b>HELITECH®</b> WILL NOT BE RESPONSIBLE FOR ANY DAMAGES FROM SETTLEMENT OR MOVEMENT CAUSED BY EARTHQUAKE, SEVERE WIND, FLOOD, SLOPE OR HILL MOVEMENT, EXTREME CHANGE IN WATER TABLE (UPHEAVAL), OTHER ACT OF GOD OR SIMILAR MAN-MADE CONDITIONS
-          INCLUDING, BUT NOT LIMITED TO; EXPLOSIONS, IMPROPER DRAINAGE, ABANDONMENT OF BUILDING OR CHANGES TO THE FOUNDATION WHICH ARE NOT DIRECTLY OR INDIRECTLY RELATED TO THE WORK PERFORMED ARE NOT INCLUDED IN THIS WARRANTY.
-        </p>
+                <span style="font-weight: 700;">ACTS OF GOD OR MAN-MADE EXCLUSIONS:</span>
+                <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
+                    <b>HELITECH®</b> WILL NOT BE RESPONSIBLE FOR ANY DAMAGES FROM SETTLEMENT OR MOVEMENT CAUSED BY EARTHQUAKE, SEVERE WIND, FLOOD, SLOPE OR HILL MOVEMENT, EXTREME CHANGE IN WATER TABLE (UPHEAVAL), OTHER ACT OF GOD OR SIMILAR MAN-MADE CONDITIONS
+                    INCLUDING, BUT NOT LIMITED TO; EXPLOSIONS, IMPROPER DRAINAGE, ABANDONMENT OF BUILDING OR CHANGES TO THE FOUNDATION WHICH ARE NOT DIRECTLY OR INDIRECTLY RELATED TO THE WORK PERFORMED ARE NOT INCLUDED IN THIS WARRANTY.
+                </p>
 
-        <span style="font-weight: 700;">Consequential damages:</span>
-        <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
-          IN NO EVENT SHALL HELITECH® BE LIABLE FOR CONSEQUENTIAL DAMAGES, NOR SHALL HELITECH'S TOTAL LIABILITY EXCEED THE ORIGINAL CONTRACT AMOUNT, REGARDLESS OF WHETHER THE CLAIM IS BASED ON CONTRACT, WARRANTY, BREACH OF CONTRACT, TORT, UNDER ANY STATUTE OR OTHERWISE.
-        </p>
+                <span style="font-weight: 700;">Consequential damages:</span>
+                <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
+                    IN NO EVENT SHALL HELITECH® BE LIABLE FOR CONSEQUENTIAL DAMAGES, NOR SHALL HELITECH'S TOTAL LIABILITY EXCEED THE ORIGINAL CONTRACT AMOUNT, REGARDLESS OF WHETHER THE CLAIM IS BASED ON CONTRACT, WARRANTY, BREACH OF CONTRACT, TORT, UNDER ANY STATUTE OR OTHERWISE.
+                </p>
 
-        <span style="font-weight: 700;">BASEMENT OR CRAWLSPACE HYDRAWAY DRAINAGE EXCLUSIONS:</span>
-        <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
-          <b>HELITECH®</b> WILL NOT BE RESPONSIBLE FOR ANY DAMAGES CAUSED BY BACKING UP OR PLUGGING OF SEWER, CONDENSATION CAUSED BY HIGH HUMIDITY, DAMP SPOTS, DISCOLORATION OF WALLS, SUMP PUMPS, SETTLEMENT, WASH WATER, INCREASED LEVELS OF RADON,
-          MOVEMENT CAUSED BY EARTHQUAKE, SEVERE WIND, FUNGI, FLOOD, IRON OCHRE CONTAMINATION, OTHER ACTS OF GOD, OR ANY SIMILAR MAN-MADE CONDITION ARE NOT INCLUDED IN THIS WARRANTY. HOMEOWNER AGREES TO KEEP AREA DRY AND REPORT ANY LEAKS THAT
-          MAY BE RELATED TO OUR WORK WITHIN (24) HOURS.
-        </p>
+                <span style="font-weight: 700;">BASEMENT OR CRAWLSPACE HYDRAWAY DRAINAGE EXCLUSIONS:</span>
+                <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
+                    <b>HELITECH®</b> WILL NOT BE RESPONSIBLE FOR ANY DAMAGES CAUSED BY BACKING UP OR PLUGGING OF SEWER, CONDENSATION CAUSED BY HIGH HUMIDITY, DAMP SPOTS, DISCOLORATION OF WALLS, SUMP PUMPS, SETTLEMENT, WASH WATER, INCREASED LEVELS OF RADON,
+                    MOVEMENT CAUSED BY EARTHQUAKE, SEVERE WIND, FUNGI, FLOOD, IRON OCHRE CONTAMINATION, OTHER ACTS OF GOD, OR ANY SIMILAR MAN-MADE CONDITION ARE NOT INCLUDED IN THIS WARRANTY. HOMEOWNER AGREES TO KEEP AREA DRY AND REPORT ANY LEAKS THAT
+                    MAY BE RELATED TO OUR WORK WITHIN (24) HOURS.
+                </p>
 
-        <span style="font-weight: 700;">Mold Exclusion:</span>
-        <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
-          <b>HELITECH® </b>WILL NOT BE RESPONSIBLE FOR ANY DAMAGES CAUSED BY MOLD, TO INCLUDE BUT NOT BE LIMITED TO PROPERTY DAMAGE, PERSONAL INJURY, LOSS OF INCOME, EMOTIONAL DISTRESS, DEATH, LOSS OF USE, LOSS OF VALUE, AND ADVERSE HEALTH EFFECTS,
-          OR ANY OTHER EFFECTS. HOMEOWNER AGREES TO KEEP AREA DRY AND REPORT ANY LEAKS THAT MAY BE RELATED TO OUR WORK WITHIN (24) HOURS.
-        </p>
+                <span style="font-weight: 700;">Mold Exclusion:</span>
+                <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
+                    <b>HELITECH® </b>WILL NOT BE RESPONSIBLE FOR ANY DAMAGES CAUSED BY MOLD, TO INCLUDE BUT NOT BE LIMITED TO PROPERTY DAMAGE, PERSONAL INJURY, LOSS OF INCOME, EMOTIONAL DISTRESS, DEATH, LOSS OF USE, LOSS OF VALUE, AND ADVERSE HEALTH EFFECTS,
+                    OR ANY OTHER EFFECTS. HOMEOWNER AGREES TO KEEP AREA DRY AND REPORT ANY LEAKS THAT MAY BE RELATED TO OUR WORK WITHIN (24) HOURS.
+                </p>
 
-        <span style="font-weight: 700;">Lien waiver available upon request.</span>
+                <span style="font-weight: 700;">Lien waiver available upon request.</span>
 
-        <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
-          Acceptance of Proposal - The above prices, specifications and conditions are satisfactory and are hereby accepted. HELITECHG® is a division of Slab Masters Inc. is authorized to do the work as specified. Payment will he made as outlined in this document.
-          The terms and conditions in this document form a part of this proposal or attached Addendum.
-        </p>
+                <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
+                    Acceptance of Proposal - The above prices, specifications and conditions are satisfactory and are hereby accepted. HELITECHG® is a division of Slab Masters Inc. is authorized to do the work as specified. Payment will he made as outlined in this document.
+                    The terms and conditions in this document form a part of this proposal or attached Addendum.
+                </p>
 
-        <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
-          THIS CONTRACT CONTAINS A BINDING ARBITRATION PROVISION WHICH MAY BE ENFORCED BY THE PARTIES.
-        </p>
+                <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
+                    THIS CONTRACT CONTAINS A BINDING ARBITRATION PROVISION WHICH MAY BE ENFORCED BY THE PARTIES.
+                </p>
 
-        <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
-          NOTE: This proposal may be withdrawn by HELITECH@ if not accepted within 20 days.
-        </p>
+                <p style="text-align: left; font-size: 10px;    font: 300 10px / 11px Roboto, 'Helvetica Neue', sans-serif !important;">
+                    NOTE: This proposal may be withdrawn by HELITECH@ if not accepted within 20 days.
+                </p>
 
-      </div>
-      <div style="page-break-after: always">
-      </div>
+            </div>
+            <div style="page-break-after: always">
+            </div>
 
-      <!--end fourth page-->
+            <!--end fourth page-->
 
-      <div class="page">
-        <!--Start ADDENDUM-->
-        <div style="font-family: 'Arial'; background-color: white;font-size: 10px;">
-          <div>
-            <h3 style="text-align: center;"><u>ADDENDUM</u></h3>
-            <p>
-              Inthe process of pierng andor anchoring there is one overriding goa, and that is to “stabil” the affected area against furher “movement
-            </p>
-            <p>
-              Asan added consideration, HELITECH® wil not prance if, ut will tempt o close cracks render doors and windows operational, and move walls back into position. This is something our company would sincerely like to see happen, however there are several factors
-              which will affect any contractor's ability to cause the above mentioned items to occur. These factors are:
-            </p>
-            <table>
-              <tr style="margin: 5px 0;">
-                <th style="font-size:10px"><u>Skin Friction-</u></th>
-                <td style="width: 60%"> The soil's tendency oligo your foundation in its preset sted position.</td>
-              </tr>
-              <tr style="margin: 5px 0;">
-                <th style="font-size:10px"><u>Sustion-</u></th>
-                <td style="width: 60%">
-                  The soil under the footing al basement floor may cause a vacuum due to water and te clinging ofthe si, thus not allowing the tucturew move, This suction canbe greater than he strength of the concrete.
-                </td>
-              </tr>
-              <tr style="margin: 5px 0;">
-                <th style="font-size:10px"><u>Obstructions-</u></th>
-                <td style="width: 60%">Items such as mortar, concrete, o sil filling between the crack or behind the veneer which will physically prevent the wall from moving back into postion</td>
-              </tr>
-              <tr style="margin: 5px 0;">
-                <th style="font-size:10px"><u>Concrete Piers-</u></th>
-                <td style="width: 60%">In the case where previous concrete ies have been installed, ait may not occur.</td>
-              </tr>
-              <tr style="margin: 5px 0;">
-                <th style="font-size:10px"><u>Brickor Stone Veneer-</u></th>
-                <td style="width: 60%">
-                  The veneer of the home is not part of the “structure” we are attempting to affect. His merely a oxmeti covering similar to siding. Depeing on several factors, suchas the amout a locaton of veneetes and the footing and foundation
-                  arrangement under the veneer the veneer may not move all even though the foting and foundation do
-                </td>
-              </tr>
-              <tr style="margin: 5px 0;">
-                <th style="font-size:10px"><u>Rotation-</u></th>
-                <td style="width: 60%">
-                  All pics including ours, are designed to it straight up, therefore, rotation will probably not happen. See also
-                  <u>Obtstructions</u> and <u>Brick or Stone Vener</u> shove for further reasns
-                </td>
-              </tr>
-            </table>
-            <p>
-              Cosmetic damage may occur during a if, For example, od cracks may reopen, new cracks may appear and door and windows may have tobe realigned. This is a natural phenomenon of iting a structure, HELITECH® isnot responsible for these
-              repairs
-            </p>
-            <p>
-              Aer lift,cosmetc repairs o your structure should not be attempted unl six (6) months oa year has passe. The structure needs ime o als othe new elevation. ‘OF couse, we wll it lowly and with extreme care, however, itis stil faster
-              than the setemeat you are experiencing.
-            </p>
-            <p>
-              <u style="font-size: 1.17em;
+            <div class="page">
+                <!--Start ADDENDUM-->
+                <div style="font-family: 'Arial'; background-color: white;font-size: 10px;">
+                    <div>
+                        <h3 style="text-align: center;"><u>ADDENDUM</u></h3>
+                        <p>
+                            Inthe process of pierng andor anchoring there is one overriding goa, and that is to “stabil” the affected area against furher “movement
+                        </p>
+                        <p>
+                            Asan added consideration, HELITECH® wil not prance if, ut will tempt o close cracks render doors and windows operational, and move walls back into position. This is something our company would sincerely like to see happen, however there are several factors
+                            which will affect any contractor's ability to cause the above mentioned items to occur. These factors are:
+                        </p>
+                        <table>
+                            <tr style="margin: 5px 0;">
+                                <th style="font-size:10px"><u>Skin Friction-</u></th>
+                                <td style="width: 60%"> The soil's tendency oligo your foundation in its preset sted position.</td>
+                            </tr>
+                            <tr style="margin: 5px 0;">
+                                <th style="font-size:10px"><u>Sustion-</u></th>
+                                <td style="width: 60%">
+                                    The soil under the footing al basement floor may cause a vacuum due to water and te clinging ofthe si, thus not allowing the tucturew move, This suction canbe greater than he strength of the concrete.
+                                </td>
+                            </tr>
+                            <tr style="margin: 5px 0;">
+                                <th style="font-size:10px"><u>Obstructions-</u></th>
+                                <td style="width: 60%">Items such as mortar, concrete, o sil filling between the crack or behind the veneer which will physically prevent the wall from moving back into postion</td>
+                            </tr>
+                            <tr style="margin: 5px 0;">
+                                <th style="font-size:10px"><u>Concrete Piers-</u></th>
+                                <td style="width: 60%">In the case where previous concrete ies have been installed, ait may not occur.</td>
+                            </tr>
+                            <tr style="margin: 5px 0;">
+                                <th style="font-size:10px"><u>Brickor Stone Veneer-</u></th>
+                                <td style="width: 60%">
+                                    The veneer of the home is not part of the “structure” we are attempting to affect. His merely a oxmeti covering similar to siding. Depeing on several factors, suchas the amout a locaton of veneetes and the footing and foundation arrangement under the
+                                    veneer the veneer may not move all even though the foting and foundation do
+                                </td>
+                            </tr>
+                            <tr style="margin: 5px 0;">
+                                <th style="font-size:10px"><u>Rotation-</u></th>
+                                <td style="width: 60%">
+                                    All pics including ours, are designed to it straight up, therefore, rotation will probably not happen. See also
+                                    <u>Obtstructions</u> and <u>Brick or Stone Vener</u> shove for further reasns
+                                </td>
+                            </tr>
+                        </table>
+                        <p>
+                            Cosmetic damage may occur during a if, For example, od cracks may reopen, new cracks may appear and door and windows may have tobe realigned. This is a natural phenomenon of iting a structure, HELITECH® isnot responsible for these repairs
+                        </p>
+                        <p>
+                            Aer lift,cosmetc repairs o your structure should not be attempted unl six (6) months oa year has passe. The structure needs ime o als othe new elevation. ‘OF couse, we wll it lowly and with extreme care, however, itis stil faster than the setemeat you
+                            are experiencing.
+                        </p>
+                        <p>
+                            <u style="font-size: 1.17em;
                             font-weight: bold;">HELITECH® WILL LIFT ONLY WHAT THE STRUCTURAL INTEGRITY WILL ALLOW</u> <span style="font-size: 10px;font-weight: 100; font: 400 10px / 11px Roboto,'Helvetica Neue', sans-serif;">
                 HELITECH® shal comsct any defcive
                 workmanship or material within reasonable ime following receipt of writen noice rom Owrer. The Owner sal give sich noice pomp after Sscovery ofthe
                 seein coion. the Owner ils mi HELTECH® in wing nd gine HELITEGH® te opr make oreo the Owner we he gh 0
                 ‘eure comection bythe Contractor andl waives and ceases any clam against HELITECH® for any oss or damages rising from orang to HELITECH's” work
               </span>
-            </p>
-            <span>
+                        </p>
+                        <span>
               HELITECHE wil install monitoring pins (Bench Mark) in work area. Customer ackowledges this for HELITECH® intemal use cay. Homeowner cana ny time
               have HELITECH® re-visit and check benchmarks
             </span>
-            <p>
-              HELITECHE will not be responsible fo tile, carpet, paneling appliances, ae condtoners, outside plantings, et. that ned 4 be removed and replaced bu wil ‘xercise reasonable care. The property ovner() of thee ages) bear the burden
-              to investigate and disclose the existence of any underground facies a8 the same may ‘he amended, located in or acrthe areas which the property owser(s or ter agents) have requested HELITECH® to excavate unde repuit. HELITECH®
-              will use ‘reasonable cre in the excavation and installation process, however, shoud private tity o sch underground faites become impacted, the property owners) or ‘their agent) shall be responsible for any eps tht may be necessary.
-              The property owner(s) cr thee ages) are responsible for ensuring compliance with any and all laws, statues an ordinances rele to engaging in sub-surface atvites on the property ovne(s" property including, but not limited o,
-              notice and fling requirements. The propery owners) or tei agents) shall indemnify and hold HELITECHO harmless for any consequential subsurface damage caused by HELITECHO as ares ofthe property owners" or their agent)" fuilure
-              to meet thet burden hereunder
-            </p>
-            <p>
-              Any controversy or claim arising out of or relating to this contract, othe breach thereof, shall be sete by arbitration administered by the
-              <strong>American Arbitration Association under its Construction Industry Arbitration Rules</strong> ani judgment upon the avard rendered by the arbitrators) may be entered in any court having risditon threo. A request for mediation
-              or dena fe abitation shal be Filed in weting with the ober pasty with a copy to <strong>
+                        <p>
+                            HELITECHE will not be responsible fo tile, carpet, paneling appliances, ae condtoners, outside plantings, et. that ned 4 be removed and replaced bu wil ‘xercise reasonable care. The property ovner() of thee ages) bear the burden to investigate and disclose
+                            the existence of any underground facies a8 the same may ‘he amended, located in or acrthe areas which the property owser(s or ter agents) have requested HELITECH® to excavate unde repuit. HELITECH® will use ‘reasonable cre
+                            in the excavation and installation process, however, shoud private tity o sch underground faites become impacted, the property owners) or ‘their agent) shall be responsible for any eps tht may be necessary. The property owner(s)
+                            cr thee ages) are responsible for ensuring compliance with any and all laws, statues an ordinances rele to engaging in sub-surface atvites on the property ovne(s" property including, but not limited o, notice and fling requirements.
+                            The propery owners) or tei agents) shall indemnify and hold HELITECHO harmless for any consequential subsurface damage caused by HELITECHO as ares ofthe property owners" or their agent)" fuilure to meet thet burden hereunder
+                        </p>
+                        <p>
+                            Any controversy or claim arising out of or relating to this contract, othe breach thereof, shall be sete by arbitration administered by the
+                            <strong>American Arbitration Association under its Construction Industry Arbitration Rules</strong> ani judgment upon the avard rendered by the arbitrators) may be entered in any court having risditon threo. A request for mediation
+                            or dena fe abitation shal be Filed in weting with the ober pasty with a copy to <strong>
                 The American Arbitration
                 Association, 100 North Broadway, Suite 1820, St. Lous, MO 63120
               </strong>, and shall be made within a reasonable tne afr the dispute has arisen. The award rendered by the arbitration shall be final binding.
-            </p>
-            <h4 style="text-align: center;margin-bottom: 3px;">NOTICE TO OWNER</h4>
-            <p style="text-align: justify; font: 400 9px / 9px Roboto, 'Helvetica Neue', sans-serif;">
-              FAILURE OF THIS CONTRACTOR TO PAY THOSE PERSONS. SUPPLYING MATERIALS OR SERVICES TO COMPLETE THIS CONTRACT CAN RESULT INTHE FILING OF A” MECHANIC'S LIEN ON THE IS THE SURJECT OF THIS CONTRACT PURSUANT TO CHAPTER 429, RSMO. TO AVOID
-              THIS RESULT YOU MAY ASK THIS CONTRACTOR FOR “LIEN WAIVERS” FROM ALL PERSONS SUPPLYING MATERIALS OR SERVICES THE WORK DESCRIBED IN THIS CONTRACT. FAILURE TO SECURE LIEN WAIVERS MAY RESULT IN YOUR PAYING FOR LABOR AND MATERIALS
-              TWICE.
-            </p>
-            <h4 style="text-align: center;margin-bottom: 3px;">CONSENT OF OWNER</h4>
-            <p style="text-align: justify;font: 400 9px / 9px Roboto, 'Helvetica Neue', sans-serif;">CONSENT IS HEREBY GIVEN FOR FILING OF MECHANIC'S LIENS BY ANY PERSON WHO SUPPLIES MATERIALS OR SERVICES. FOR THE WORK DESCRIBED IN THIS CONTRACT ON THE PROPERTY ON WHICH IT IS LOCATED IF HE IS NOT PAID. ‘TRANSFER WARRANTY</p>
-            <p>
-              As stated in the contract, under the Limited Warranty section, the warranty is transferable, “provided that a written assignment is properly executed”. ‘Should warranty service be required, HELITECH® will honor the Limited Warranty,
-              as per the contract. HELITECH® reserves the right to an inspection of. ‘the property prio to transfer the warranty. Any required or recommended work, outside the limits of the orignal contracted work, may require ‘additional
-              cos.
-              <br> HELITECH® requires written notification (30) days prior to the sale of the property where the work was performed. Failure to notify ‘thirty (30 das wil void any transfer ofthe Limited Warranty. 4 sigaature below, by our
-              customer, authorizes the Limited Warranty new property owners, pending inspection.
-            </p>
-          </div>
-        </div>
-        <div style="page-break-after: always">
-        </div>
-      </div>
-
-      <!--End ADDENDUM-->
-      <!--Start Last Page-->
-      <div class="page">
-        <h3 style="text-align: center;">NOTICE OF RIGHT TO CANCEL</h3>
-        <br>
-        <h4>Your Right to Cancel</h4>
-        <p style="text-align: justify;">
-          You are entering into a contract. I that contract is a result of, or in connection with a salesman’s direct contact with, or call o you at your residence without your soliciting the contract or call, then you have a legal right to void
-          the contract or sale by notifying us within three business days from the date ofthe transaction: <span style="text-decoration: underline;" id="date"></span>
-        </p>
-        <h4>How to Cancel</h4>
-        <p>I you decide to cancel this transaction, you may do so by notifying us in writing at:</p>
-        <table style="width: 60%;">
-          <tr>
-            <th style="font-size:10px;">Contractor's Name:</th>
-            <td>HELITECH®</td>
-          </tr>
-          <tr>
-            <th style="font-size:10px;">Contractor's Address:</th>
-            <td>8251 Bunkum Road, Caseyville, IL, 62232</td>
-          </tr>
-          <tr>
-            <th style="font-size:10px;">Contractor's Fax:</th>
-            <td>618-397-066</td>
-          </tr>
-        </table>
-        <br>
-        <p>
-          You may use any written statement that is signed and dated by you and states your intentions to cancel, or you may use this notice by dating and signing below. Keep one copy of the notice because it contains important information about
-          your rights.
-        </p>
-        <p>
-          If you cancel by mail or telegram, you must send the notice no later than midnight of (or midnight ofthe third business day following the latest of the two events listed to the left). If you send or deliver your written notice to cancel
-          some other way, it must be delivered to the above address no later than that time.
-        </p>
-        <h4>Acknowledgment</h4>
-        <p>The undersigned acknowledges receipt of the <em>Notice of Right to Cancel</em></p>
-        <div style="display: flex;align-items:center">
-          <div style="width: 35%;">
-            <span>Homeowner's Signature</span>
-            <br>
-            <div class="signature-image crop" *ngIf="signatureImg">
-              <img src='{{ signatureImg }}' />
+                        </p>
+                        <h4 style="text-align: center;margin-bottom: 3px;">NOTICE TO OWNER</h4>
+                        <p style="text-align: justify; font: 400 9px / 9px Roboto, 'Helvetica Neue', sans-serif;">
+                            FAILURE OF THIS CONTRACTOR TO PAY THOSE PERSONS. SUPPLYING MATERIALS OR SERVICES TO COMPLETE THIS CONTRACT CAN RESULT INTHE FILING OF A” MECHANIC'S LIEN ON THE IS THE SURJECT OF THIS CONTRACT PURSUANT TO CHAPTER 429, RSMO. TO AVOID THIS RESULT YOU MAY
+                            ASK THIS CONTRACTOR FOR “LIEN WAIVERS” FROM ALL PERSONS SUPPLYING MATERIALS OR SERVICES THE WORK DESCRIBED IN THIS CONTRACT. FAILURE TO SECURE LIEN WAIVERS MAY RESULT IN YOUR PAYING FOR LABOR AND MATERIALS TWICE.
+                        </p>
+                        <h4 style="text-align: center;margin-bottom: 3px;">CONSENT OF OWNER</h4>
+                        <p style="text-align: justify;font: 400 9px / 9px Roboto, 'Helvetica Neue', sans-serif;">CONSENT IS HEREBY GIVEN FOR FILING OF MECHANIC'S LIENS BY ANY PERSON WHO SUPPLIES MATERIALS OR SERVICES. FOR THE WORK DESCRIBED IN THIS CONTRACT ON THE PROPERTY ON WHICH IT IS LOCATED IF HE IS NOT PAID. ‘TRANSFER WARRANTY</p>
+                        <p>
+                            As stated in the contract, under the Limited Warranty section, the warranty is transferable, “provided that a written assignment is properly executed”. ‘Should warranty service be required, HELITECH® will honor the Limited Warranty, as per the contract.
+                            HELITECH® reserves the right to an inspection of. ‘the property prio to transfer the warranty. Any required or recommended work, outside the limits of the orignal contracted work, may require ‘additional cos.
+                            <br> HELITECH® requires written notification (30) days prior to the sale of the property where the work was performed. Failure to notify ‘thirty (30 das wil void any transfer ofthe Limited Warranty. 4 sigaature below, by our
+                            customer, authorizes the Limited Warranty new property owners, pending inspection.
+                        </p>
+                    </div>
+                </div>
+                <div style="page-break-after: always">
+                </div>
             </div>
-            <!-- <div style="display:inline-block">
-                <signature-pad #signature [options]="signaturePadOptions" (drawStart)="drawStart($event)" (drawEnd)="drawComplete($event)"></signature-pad>
-            </div> -->
-          </div>
-          <div style="width: 65%;text-align: right;">
-            <span style="text-align: center;">Date</span>
-            <br>
-            <p id="signedDate">_____________</p>
 
-            <!-- <div style="display:inline-block">
+            <!--End ADDENDUM-->
+            <!--Start Last Page-->
+            <div class="page">
+                <h3 style="text-align: center;">NOTICE OF RIGHT TO CANCEL</h3>
+                <br>
+                <h4>Your Right to Cancel</h4>
+                <p style="text-align: justify;">
+                    You are entering into a contract. I that contract is a result of, or in connection with a salesman’s direct contact with, or call o you at your residence without your soliciting the contract or call, then you have a legal right to void the contract or
+                    sale by notifying us within three business days from the date ofthe transaction: <span style="text-decoration: underline;" id="date"></span>
+                </p>
+                <h4>How to Cancel</h4>
+                <p>I you decide to cancel this transaction, you may do so by notifying us in writing at:</p>
+                <table style="width: 60%;">
+                    <tr>
+                        <th style="font-size:10px;">Contractor's Name:</th>
+                        <td>HELITECH®</td>
+                    </tr>
+                    <tr>
+                        <th style="font-size:10px;">Contractor's Address:</th>
+                        <td>8251 Bunkum Road, Caseyville, IL, 62232</td>
+                    </tr>
+                    <tr>
+                        <th style="font-size:10px;">Contractor's Fax:</th>
+                        <td>618-397-066</td>
+                    </tr>
+                </table>
+                <br>
+                <p>
+                    You may use any written statement that is signed and dated by you and states your intentions to cancel, or you may use this notice by dating and signing below. Keep one copy of the notice because it contains important information about your rights.
+                </p>
+                <p>
+                    If you cancel by mail or telegram, you must send the notice no later than midnight of (or midnight ofthe third business day following the latest of the two events listed to the left). If you send or deliver your written notice to cancel some other way,
+                    it must be delivered to the above address no later than that time.
+                </p>
+                <h4>Acknowledgment</h4>
+                <p>The undersigned acknowledges receipt of the <em>Notice of Right to Cancel</em></p>
+                <div style="display: flex;align-items:center">
+                    <div style="width: 35%;">
+                        <span>Homeowner's Signature</span>
+                        <br>
+                        <div class="signature-image crop" *ngIf="signatureImg">
+                            <img src='{{ signatureImg }}' />
+                        </div>
+                        <!-- <div style="display:inline-block">
                 <signature-pad #signature [options]="signaturePadOptions" (drawStart)="drawStart($event)" (drawEnd)="drawComplete($event)"></signature-pad>
             </div> -->
-          </div>
-        </div>
-        <div class="centeredDiv" style="text-align: left;width: 40%;
+                    </div>
+                    <div style="width: 65%;text-align: right;">
+                        <span style="text-align: center;">Date</span>
+                        <br>
+                        <p id="signedDate">_____________</p>
+
+                        <!-- <div style="display:inline-block">
+                <signature-pad #signature [options]="signaturePadOptions" (drawStart)="drawStart($event)" (drawEnd)="drawComplete($event)"></signature-pad>
+            </div> -->
+                    </div>
+                </div>
+                <div class="centeredDiv" style="text-align: left;width: 40%;
                 border: 3px black solid;">
-          <p><strong><u>I Wish to Cancel</u></strong></p>
-          <p><strong>Homeowner's Signature</strong></p>
+                    <p><strong><u>I Wish to Cancel</u></strong></p>
+                    <p><strong>Homeowner's Signature</strong></p>
 
-          <div *ngIf="update" class="signature-container" style="background-color:beige;margin-left: auto;margin-right: auto;width: 200px;
+                    <div *ngIf="update" class="signature-container" style="background-color:beige;margin-left: auto;margin-right: auto;width: 200px;
     height: 80px;">
-            <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
-          </div>
-          <div class="signature-image crop" style="margin-left: auto;
+                        <signature-pad #signature [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+                    </div>
+                    <div class="signature-image crop" style="margin-left: auto;
                     margin-right: auto;" *ngIf="signatureImg && !update">
-            <img src='{{ signatureImg }}' />
-          </div>
+                        <img src='{{ signatureImg }}' />
+                    </div>
 
 
-          <button style="margin-left: 50px;" *ngIf="update" mat-raised-button color="primary" class="mat-button small" (click)="clearSignature()">Clear signature</button>&nbsp;
-          <button style="margin-left: 40%;" *ngIf="!update" id="edit" mat-raised-button (click)="editSignature()"><mat-icon> border_color</mat-icon>&nbsp;Edit</button>
-          <button *ngIf="update" mat-raised-button color="warn" class="mat-button small" (click)="savePad()">Save signature</button>
+                    <button style="margin-left: 50px;" *ngIf="update" mat-raised-button color="primary" class="mat-button small" (click)="clearSignature()">Clear signature</button>&nbsp;
+                    <button style="margin-left: 40%;" *ngIf="!update" id="edit" mat-raised-button (click)="editSignature()"><mat-icon> border_color</mat-icon>&nbsp;Edit</button>
+                    <button *ngIf="update" mat-raised-button color="warn" class="mat-button small" (click)="savePad()">Save signature</button>
 
-          <p><strong>Date: </strong><span id="date"></span></p>
+                    <p><strong>Date: </strong><span id="date"></span></p>
+                </div>
+
+
+            </div>
+            <div style="page-break-after: always">
+            </div>
+
+            <!--End Last Page-->
         </div>
-
-
-      </div>
-      <div style="page-break-after: always">
-      </div>
-
-      <!--End Last Page-->
     </div>
-  </div>
 
 </div>

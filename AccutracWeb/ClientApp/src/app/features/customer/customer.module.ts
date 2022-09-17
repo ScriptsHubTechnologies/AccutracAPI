@@ -24,9 +24,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { MyModalModule } from '../my-modal/my-modal.module';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { NgxPrintModule } from 'ngx-print';
-import { SignaturePadModule } from 'angular2-signaturepad';
 import { MatCardModule } from '@angular/material/card';
-
+import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
 @NgModule({
   declarations: [
     CustomerDetailsComponent,
@@ -55,7 +54,7 @@ import { MatCardModule } from '@angular/material/card';
     MyModalModule,
     OverlayModule,
     NgxPrintModule,
-    SignaturePadModule,
+    AngularSignaturePadModule,
     MatCardModule,
   ],
   providers: [ToastrService]

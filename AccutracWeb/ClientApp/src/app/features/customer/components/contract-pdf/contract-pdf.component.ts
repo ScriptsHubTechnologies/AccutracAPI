@@ -13,7 +13,7 @@ import customers from './Customer.json';
 import products from './Product.json';
 import html2canvas from 'html2canvas';
 import jspdf from 'jspdf';
-import { SignaturePad } from 'angular2-signaturepad';
+import { NgSignaturePadOptions, SignaturePadComponent  } from '@almothafar/angular-signature-pad';
 
 @Component({
   selector: 'app-customer-contract',
@@ -51,9 +51,10 @@ export class GenerateContract implements OnInit {
   signatureImg: string;
   showError = false;
 
-  @ViewChild(SignaturePad) signaturePad: SignaturePad;
+  @ViewChild('signature') 
+  public signaturePad: SignaturePadComponent ;
 
-  signaturePadOptions: Object = {
+  signaturePadOptions: NgSignaturePadOptions  = {
     'minWidth': 2,
     'canvasWidth': 200,
     'canvasHeight': 80,
