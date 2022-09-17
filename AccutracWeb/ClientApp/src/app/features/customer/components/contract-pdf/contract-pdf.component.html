@@ -556,7 +556,7 @@
 
                     <div *ngIf="update" class="signature-container" style="background-color:beige;margin-left: auto;margin-right: auto;width: 200px;
     height: 80px;">
-                        <signature-pad #signature [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+                        <signature-pad #signature [options]="signaturePadOptions"></signature-pad>
                     </div>
                     <div class="signature-image crop" style="margin-left: auto;
                     margin-right: auto;" *ngIf="signatureImg && !update">

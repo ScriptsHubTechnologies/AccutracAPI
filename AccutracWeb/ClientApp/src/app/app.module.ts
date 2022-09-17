@@ -10,7 +10,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { HttpClientModule } from '@angular/common/http';
 import { SidenavModule } from './features/sidenav/sidenav.module';
 import { NavModule } from './features/nav/nav.module';
-
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireFunctionsModule } from '@angular/fire/compat/functions';
@@ -18,7 +17,6 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { AuthModule } from './features/auth/auth.module';
-import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { ViewImageComponent } from './features/view-image/view-image.component';
 import { MatIconModule } from '@angular/material/icon';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
@@ -46,7 +44,6 @@ import { MatButtonModule } from '@angular/material/button';
     SidenavModule,
     NavModule,
     AuthModule,
-    PDFExportModule,
     MatIconModule,
     PdfViewerModule,
     MatButtonModule

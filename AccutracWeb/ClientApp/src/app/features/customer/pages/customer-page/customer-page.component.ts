@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import jsPDF from 'jspdf';
 import { Customer } from 'src/app/core/interfaces/customer/customer';
 import { JobAddressInfo } from 'src/app/core/interfaces/job-address/job-address-info';
 import { ApiService } from 'src/app/core/services/api/api.service';
@@ -28,16 +27,6 @@ export class CustomerPageComponent implements OnInit {
   }
 
   @ViewChild('content', { static: false }) el!: ElementRef
-
-  makepdf() {
-    let pdf = new jsPDF();
-    pdf.html(this.el.nativeElement, {
-      callback: (pdf) => {
-
-        pdf.save("Sample.pdf")
-      }
-    });
-  }
 
   ngOnInit(): void {
     this.apiService.getCustomerById(this.customerId).subscribe({

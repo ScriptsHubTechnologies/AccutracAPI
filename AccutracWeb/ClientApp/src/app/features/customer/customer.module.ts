@@ -19,10 +19,7 @@ import { JobAddressFormComponent } from './components/job-address-form/job-addre
 import { WebcamModule } from 'ngx-webcam';
 import { CustomerAttachmentsComponent } from './components/customer-attachments/customer-attachments.component';
 import { GenerateContract } from './components/contract-pdf/contract-pdf.component';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { MyModalModule } from '../my-modal/my-modal.module';
-import { OverlayModule } from '@angular/cdk/overlay';
 import { NgxPrintModule } from 'ngx-print';
 import { MatCardModule } from '@angular/material/card';
 import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
@@ -49,14 +46,11 @@ import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
     MatTableModule,
     GooglePlaceModule,
     WebcamModule,
-    ToastrModule.forRoot(),
     PdfViewerModule,
-    MyModalModule,
-    OverlayModule,
     NgxPrintModule,
     AngularSignaturePadModule,
     MatCardModule,
   ],
-  providers: [ToastrService]
+  providers: []
 })
 export class CustomerModule { }

@@ -40,7 +40,7 @@
                         <div class="container" *ngIf="attachment.attachmentType != 'application/pdf';">
                             <img [src]="attachment.attachmentUrl" class="image">
                             <div class="overlay">
-                                <mat-icon class="imgicon" (click)="openImage(attachment);downloadPdf(attachment)">cloud_download</mat-icon>
+                                <mat-icon class="imgicon" (click)="openImage(attachment);">cloud_download</mat-icon>
                             </div>
                         </div>
                     </div>
