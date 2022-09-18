@@ -1,0 +1,38 @@
+<div class="container">
+    <header>
+        <div class="logo" (click)="changeRoute('dashboard')">
+            <img src="assets/images/accutrac-logo.png" alt="Helitech Logo">
+        </div>
+    </header>
+
+    <div class="dynamic-content">
+        <ng-container [ngSwitch]="currentPath">
+            <ng-container *ngSwitchCase="'/calendar'">
+                <app-calendar-select></app-calendar-select>
+            </ng-container>
+            <ng-container *ngSwitchCase="'/dashboard'">
+                <app-lead-counts></app-lead-counts>
+            </ng-container>
+            <ng-container *ngSwitchCase="'/admin/users'">
+                <h2>Admin</h2>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+            </ng-container>
+        </ng-container>
+    </div>
+
+    <div class="code-select">
+        <p class="cc-label">Change Company Code</p>
+        <mat-select matInput [value]="currentCompanyCode" class="cc-select">
+            <mat-option class="test" *ngFor="let companyCode of companyCodes" [value]="companyCode"
+                (click)="changeCompanyCode(companyCode)">
+                {{ companyCode }}
+            </mat-option>
+        </mat-select>
+    </div>
+
+    <div class="footer">
+        <button mat-button class="nav-button" (click)="logout()">Logout</button>
+        <footer>Version 1.0</footer>
+    </div>
+</div>

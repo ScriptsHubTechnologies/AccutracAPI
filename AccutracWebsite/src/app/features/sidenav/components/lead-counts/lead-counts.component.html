@@ -1,0 +1,21 @@
+<div class="lead-counts">
+    <mat-expansion-panel class="count-panel">
+        <mat-expansion-panel-header class="header">
+            <mat-panel-title class="panel-title">Leads <span>{{ leadCounts?.total }}</span></mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="panel-body">
+            <div class="panel-item" [routerLink]="['leads/list', 'pending']">
+                <p class="count">Pending leads</p><span>{{ leadCounts?.pending }}</span>
+            </div>                
+            <div class="panel-item" [routerLink]="['leads/list', 'unscheduled']">
+                <p class="count">Unscheduled Leads</p><span>{{ leadCounts?.unscheduled }}</span>
+            </div>
+            <div class="panel-item" [routerLink]="['leads/list', 'reschedule']">
+                <p class="count">Leads to Reschedule</p><span>{{ leadCounts?.reshedule }}</span>
+            </div>
+            <div class="panel-item" [routerLink]="['leads/list', 'approved-dead']">
+                <p class="count">Approved Dead Leads</p><span>{{ leadCounts?.approvedDeadLead }}</span>
+            </div>
+        </div>
+    </mat-expansion-panel>
+</div>

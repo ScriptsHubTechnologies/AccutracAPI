@@ -1,0 +1,7 @@
+<div class="container">
+    <div class="form-container">
+        <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+        <app-user-profile-form (userFormData)="createNewUser($event)"></app-user-profile-form>
+        <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </div>
+</div>

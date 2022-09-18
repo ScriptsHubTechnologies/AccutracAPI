@@ -1,0 +1,99 @@
+<mat-tab-group class="customer-tabs" backgroundColor="accent">
+  <mat-tab label="Customer Details">
+    <form [formGroup]="customerDetailsForm">
+      <div class="card details">
+        <div class="card-header">
+          <h2>Customer Details</h2>
+          <mat-divider [ngStyle]="{'margin-bottom': 0}"></mat-divider>
+        </div>
+        <div class="form-group customer-details">
+          <h2>Customer Info</h2>
+          <mat-divider></mat-divider>
+          <mat-form-field appearance="standard">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName">
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName">
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>Company Name</mat-label>
+            <input matInput formControlName="companyName">
+          </mat-form-field>
+        </div>
+        <div class="form-group mailing">
+          <h2>Mailing Address</h2>
+          <mat-divider></mat-divider>
+          <mat-form-field appearance="standard">
+            <mat-label>Street Address</mat-label>
+            <input matInput formControlName="mailingAddress">
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>City</mat-label>
+            <input matInput formControlName="mailingCity">
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>State</mat-label>
+            <input matInput formControlName="mailingState">
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>Zipcode</mat-label>
+            <input matInput formControlName="mailingZip">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h2>Customer Contact</h2>
+          <mat-divider></mat-divider>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="standard">
+            <mat-label>Phone</mat-label>
+            <input matInput formControlName="phone" mask='(000) 000-0000'>
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>Phone Type</mat-label>
+            <mat-select name="phoneType" formControlName="phoneType">
+              <mat-option value="mobile">Mobile</mat-option>
+              <mat-option value="home">Home</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h2>Customer History</h2>
+          <mat-divider></mat-divider>
+        </div>
+        <div class="content">
+          <div class="notes">
+            <ng-container *ngFor="let note of notes">
+              <app-note [note]="note"></app-note>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-tab>
+  <mat-tab label="Job Addresses">
+    <app-customer-job-addresses [customerId]="customerData.customerid!"></app-customer-job-addresses>
+  </mat-tab>
+  <mat-tab label="Appointments"></mat-tab>
+  <mat-tab label="Leads"></mat-tab>
+  <mat-tab label="Projects"></mat-tab>
+  <mat-tab label="Attachments">
+    <app-customer-attachments [customerId]="customerData.customerid!"></app-customer-attachments>
+  </mat-tab>
+  <mat-tab label="All Notes"></mat-tab>
+  <mat-tab label="Followups"></mat-tab>
+  <mat-tab label="Payments"></mat-tab>
+  <mat-tab label="Contract">
+    <app-customer-contract [customerId]="customerData.customerid!"></app-customer-contract>
+  </mat-tab>
+</mat-tab-group>

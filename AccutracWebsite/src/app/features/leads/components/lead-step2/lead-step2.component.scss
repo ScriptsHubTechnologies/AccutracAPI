@@ -1,0 +1,66 @@
+.container {
+    text-align: left;
+    display: flex;
+}
+
+.form {
+    display: grid;
+    grid-template-areas: 
+        "leadSource notes customer"
+        "leadInfo submit customer";
+    grid-template-columns: 2fr 2fr 1fr;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-bottom: 1rem;
+    gap: 10px;
+}
+
+.form-group.source {
+    grid-area: leadSource;
+}
+
+.form-group.lead-info {
+    grid-area: leadInfo;
+}
+
+.form-group.notes {
+    grid-area: notes;
+}
+
+.submit-btns {
+    text-align: center;
+    grid-area: submit;
+    padding: 1rem;
+}
+
+.submit-btns button {
+    color: white;
+    margin: 1rem;
+    width: 33%;
+}
+
+.column {
+    padding: 1rem;
+}
+
+mat-radio-button {
+    padding: 1rem;
+}
+
+.job-info {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    grid-area: customer;
+    background-color: #f0f2f5;
+    height: fit-content;
+}
+
+.card-title {
+    border-bottom: 1px solid #f0f2f5;
+    font-size: 18px;
+}

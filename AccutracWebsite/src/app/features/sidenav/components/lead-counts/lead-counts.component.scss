@@ -1,0 +1,31 @@
+.lead-counts {
+    margin-top: 1rem;
+    color: white;
+}
+
+.panel-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.panel-item {
+    display: flex;
+    color: white;
+    background-color: var(--tertiary-color);
+    padding: 0.25rem 0.5rem;
+    justify-content: space-between;
+}
+
+.panel-item:hover {
+    cursor: pointer;
+    color: black;
+}
+
+.panel-item>span {
+    line-height: 2;
+}
+
+p.count {
+    text-align: left;
+    margin: 0.25rem 0;
+}

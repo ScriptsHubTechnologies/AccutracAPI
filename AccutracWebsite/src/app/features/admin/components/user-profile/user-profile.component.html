@@ -1,0 +1,29 @@
+<mat-tab-group class="customer-tabs" backgroundColor="accent" (selectedTabChange)="handleTabChange($event)">
+    <mat-tab label="User Info">
+        <app-user-profile-form [userId]="userId"></app-user-profile-form>
+    </mat-tab>
+    <mat-tab label="Availability" *ngIf="estimatorFlag">
+        <div class="tab-header">
+            <button mat-raised-button color="accent" [disabled]="compFlag" (click)="addNewAvailabilityComponent()">Add Availability</button>
+            <button mat-raised-button color="accent" (click)="editAvailability()">{{ editButtonText }}</button>
+        </div>
+        <div class="tab-body">
+            <ng-container #appendHere></ng-container>
+            <ng-container *ngFor="let avail of availability">
+                <app-existing-availability
+                    [userId]="userId"
+                    [availData]="avail"
+                    [zones]="geoZones"
+                    [types]="leadTypes"
+                    [edit]="edit"
+                    [toggleForm]="toggleForm()"
+                    (availUpdated)="availabilityUpdated($event)">
+                </app-existing-availability>
+            </ng-container>
+        </div>
+    </mat-tab>
+</mat-tab-group>
+
+<div *ngIf="isLoading" class="spinner">
+    <mat-spinner color="accent" mode="indeterminate"></mat-spinner>
+</div>

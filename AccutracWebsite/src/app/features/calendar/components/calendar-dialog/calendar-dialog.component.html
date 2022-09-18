@@ -1,0 +1,6 @@
+<h1 mat-dialog-title>Event Data for {{ data.date | date: 'shortDate' }}</h1>
+<div mat-dialog-content class="content">
+  <ng-container *ngFor="let event of data.events">
+    <span>{{ event.title | titlecase }} {{ event.start | date: 'shortDate' }}</span>
+  </ng-container>
+</div>

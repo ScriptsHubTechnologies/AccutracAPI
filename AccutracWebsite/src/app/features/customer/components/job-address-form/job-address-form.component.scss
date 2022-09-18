@@ -1,0 +1,17 @@
+.job-address {
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    margin: 0;
+}
+
+.job-address div {
+    display: flex;
+    gap: 10px;
+}
+
+.mat-form-field {
+    flex: 1;
+}

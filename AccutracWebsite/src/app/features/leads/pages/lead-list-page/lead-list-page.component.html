@@ -1,0 +1,11 @@
+<div class="list-container">
+    <div class="header">
+        <h1>{{ statusMessage }}</h1>
+        <mat-chip-list *ngIf="statusMessage">
+            <mat-chip color="primary" selected class="count-chip">{{ count || 0 }}</mat-chip>
+        </mat-chip-list>
+    </div>
+    <div class="content">
+        <app-lead-list [leadStatus]="statusCode"></app-lead-list>
+    </div>
+</div>

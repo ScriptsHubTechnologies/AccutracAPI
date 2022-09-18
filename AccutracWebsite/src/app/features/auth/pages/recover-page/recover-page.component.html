@@ -1,0 +1,23 @@
+<div class="recover-container">
+    <div class="form-container card">
+        <div class="card-header">
+            <h1>Reset your password</h1>
+            <mat-divider></mat-divider>
+        </div>
+
+        <ng-container [ngSwitch]="component">
+            <ng-container *ngSwitchCase="'forgot'">
+                <p>Enter your email address to reset your account password.</p>
+                <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+                <app-forgot-password-form (formData)="sendResetPasswordEmail($event)"></app-forgot-password-form>
+                <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+            </ng-container>
+            <ng-container *ngSwitchCase="'reset'">
+                <p>Enter your new password</p>
+                <p *ngIf="successMessage" class="success">{{ successMessage }} <a [routerLink]="['../login']">Login</a></p>
+                <app-reset-password-form (formData)="resetPassword($event)"></app-reset-password-form>
+                <p *ngIf="errorMessage" class="error">{{ errorMessage }} <a [routerLink]="['../forgot-password']">Send another email</a></p>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<img *ngIf="this.currentAT.attachmentType!='application/pdf'" class="viewImage" [src]="currentImage">
+<pdf-viewer *ngIf="this.currentAT.attachmentType=='application/pdf'" src="{{currentImage}}" [rotation]="0" [original-size]="true" [show-all]="true" [fit-to-page]="true" [zoom]="1" [zoom-scale]="'page-width'" [stick-to-page]="false" [render-text]="true"
+    [external-link-target]="'blank'" [autoresize]="true" [show-borders]="false" class="viewImage"></pdf-viewer>
+<div class="downloadButton"><button (click)="downloadAttachment(this.currentAT)" mat-raised-button color="primary"><mat-icon>download</mat-icon>Download</button></div>
+<div class="row" class="buttonRow">
+    <mat-icon [ngClass]="checkIndex(0)?'prevButton enable':'prevButton disable'" (click)="prevAttachment()">arrow_back_ios</mat-icon>
+    <mat-icon [ngClass]="checkIndex(1)?'nextButton enable':'nextButton disable'" (click)="nextAttachment()">arrow_forward_ios</mat-icon>
+</div>

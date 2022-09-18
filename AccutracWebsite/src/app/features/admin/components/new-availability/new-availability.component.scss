@@ -1,0 +1,29 @@
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+}
+
+.row > mat-form-field {
+    flex: 1;
+}
+
+.row > .duration {
+    flex: 0;
+}
+
+.button {
+    color: white;
+    flex: 1;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+    width: 33%;
+}

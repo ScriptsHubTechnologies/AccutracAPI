@@ -1,0 +1,39 @@
+.mat-divider {
+    border-width: 2px;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.details {
+    display: grid;
+    grid-template-areas: 
+    "header header"
+    "details mailing";
+    gap: 1rem;
+}
+
+.card-header {
+    grid-area: header;
+}
+
+.customer-details {
+    grid-area: details;
+}
+
+.job {
+    grid-area: job;
+}
+
+.mailing {
+    grid-area: mailing;
+}

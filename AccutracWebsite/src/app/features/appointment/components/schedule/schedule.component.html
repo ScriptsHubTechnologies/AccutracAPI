@@ -1,0 +1,51 @@
+<div class="header">
+    <h2>{{ availabilityData.name }}</h2>
+    <div class="metrics">
+        <h3>Appointment Backlog: {{ backlog }}</h3>
+        <h3>Daily Capacity: {{ dailyCap }}</h3>
+    </div>
+</div>
+<mat-divider></mat-divider>
+<div class="content">
+    <div class="appointments">
+        <ng-container *ngFor="let slot of availabilityData.slots">
+            <div *ngIf="slot.taken == 0 else taken" class="appointment-slot open card">
+                <!-- These dates before the slot time mean nothing.
+            They're there to allow the date pipe to work because just the time is not a valid date
+                A custom pipe would be preferable but this works well -->
+                <span class="slot-times">
+                    {{ '1970-01-01 ' + slot.startTime | date: 'shortTime' }} - {{ '1970-01-01 ' + slot.endTime | date:
+                    'shortTime' }}
+                </span>
+                <mat-icon>arrow_right_alt</mat-icon>
+                <span class="previous-location">
+                    {{ slot.location }}
+                </span>
+                <mat-icon>arrow_right_alt</mat-icon>
+                <span class="driving-distance-time">
+                    {{ slot.drivingDistance }} / {{ slot.drivingTime }}
+                </span>
+                <button mat-stroked-button color="accent" class="select-slot-button" (click)="buildAppointment(slot, leadData)">Select Time</button>
+            </div>
+            <ng-template #taken>
+                <div class="appointment-slot taken card">
+                    <!-- These dates before the slot time mean nothing.
+            They're there to allow the date pipe to work because just the time is not a valid date
+                A custom pipe would be preferable but this works well -->
+                    <span class="slot-times">
+                        {{ '1970-01-01 ' + slot.startTime | date: 'shortTime' }} - {{ '1970-01-01 ' + slot.endTime |
+                        date: 'shortTime' }}
+                    </span>
+                    <mat-icon>arrow_right_alt</mat-icon>
+                    <span class="previous-location">
+                        {{ slot.location }}
+                    </span>
+                    <mat-icon>arrow_right_alt</mat-icon>
+                    <span class="driving-distance-time">
+                        {{ slot.drivingDistance }} / {{ slot.drivingTime }}
+                    </span>
+                </div>
+            </ng-template>
+        </ng-container>
+    </div>
+</div>

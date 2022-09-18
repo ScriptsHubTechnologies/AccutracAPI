@@ -1,0 +1,113 @@
+<div class="container" fxLayout.xs="column" fxLayout.sm="column">
+    <form [formGroup]="formStep2" class="form">
+        <div class="column">
+            <div class="form-group source" formGroupName="leadSource">
+                <h2>5. How did you hear about Helitech?</h2>
+                <mat-divider></mat-divider>
+                <mat-form-field appearance="standard">
+                    <mat-label>Lead Source</mat-label>
+                    <mat-select name="source" formControlName="source">
+                        <mat-option *ngFor="let leadSource of leadSources index as i;" [value]="leadSource.id"
+                            (click)="getSubSources(i)">
+                            {{ leadSource.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formStep2.get('leadSource.source')?.invalid">Lead Source is required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="standard">
+                    <mat-label>Lead SubSource</mat-label>
+                    <mat-select name="secondarySource" formControlName="secondarySource">
+                        <mat-option *ngIf="!leadSubSources">Select a Lead Source</mat-option>
+                        <mat-option *ngFor="let subSource of leadSubSources index as i;" [value]="subSource.id">
+                            {{ subSource.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formStep2.get('leadSource.secondarySource')?.invalid">Lead SubSource is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Referred by</mat-label>
+                    <input matInput name="referredBy" formControlName="referredBy">
+                </mat-form-field>
+            </div>
+            <div class="form-group lead-info" formGroupName="leadInfo">
+                <h2>6. What sort of problems are you having with your home?</h2>
+                <mat-divider></mat-divider>
+                <mat-form-field appearance="standard">
+                    <mat-label>Lead Type</mat-label>
+                    <mat-select name="leadType" formControlName="leadType">
+                        <mat-option *ngFor="let leadType of leadTypes" [value]="leadType.leadType">
+                            {{ leadType.leadTypeName }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formStep2.get('leadInfo.leadType')?.invalid">Lead Type is required</mat-error>
+                </mat-form-field>
+                <label>Do you own this property?</label>
+                <mat-radio-group name="isPropertyOwner" formControlName="isPropertyOwner" appearance="standard">
+                    <mat-radio-button value="yes">Yes</mat-radio-button>
+                    <mat-radio-button value="no">No</mat-radio-button>
+                </mat-radio-group>
+                <mat-form-field appearance="standard">
+                    <mat-label>What sort of issues are you having with your property?</mat-label>
+                    <input matInput name="issueDescription" formControlName="issueDescription">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>When did you first notice the issue?</mat-label>
+                    <input matInput name="issueNoticed" formControlName="issueNoticed">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>When would you like to have this work done?</mat-label>
+                    <mat-select name="desiredStartDate" formControlName="desiredStartDate">
+                        <mat-option value="asap">ASAP</mat-option>
+                        <mat-option value="after purchase of home">After Purchase of Home</mat-option>
+                        <mat-option value="no specific time">No specific time</mat-option>
+                        <mat-option value="other">Other</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formStep2.get('leadInfo.desiredStartDate')?.invalid">This field is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-label>Have you ever recieved a bid from or had work done by Helitech?</mat-label>
+                <mat-radio-group name="previousCustomer" formControlName="previousCustomer" appearance="standard">
+                    <mat-radio-button value="yes">Yes</mat-radio-button>
+                    <mat-radio-button value="no">No</mat-radio-button>
+                </mat-radio-group>
+                <mat-form-field appearance="standard">
+                    <mat-label>If you have never worked with Helitech, how did you hear about us?</mat-label>
+                    <input matInput name="issueNoticed" formControlName="issueNoticed">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="column">
+            <div class="form-group notes" formGroupName="notesForSales">
+                <h2>7. Notes for Sales Rep</h2>
+                <mat-divider></mat-divider>
+                <mat-form-field appearance="standard">
+                    <mat-label>Notes for Sales Rep</mat-label>
+                    <textarea matInput name="notes" formControlName="notes"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="submit-btns">
+                <h2>8. Okay {{ jobInfo?.customer | titlecase }}, I do want to let you know that the inspection will take at least 90
+                    minutes and
+                    we ask that all homeowners be available. If you would, give me just a moment to take a look at the
+                    schedule
+                    and see when we can get you scheduled.</h2>
+                <mat-divider></mat-divider>
+                <button mat-raised-button color="accent" (click)="saveLead('dashboard')">Schedule Later</button>
+                <button mat-raised-button color="accent" (click)="saveLead('appointment/scheduling')">Schedule Now</button>
+            </div>
+        </div>
+        <div class="job-info" *ngIf="jobInfo">
+            <div class="card">
+                <p class="card-title">{{ jobInfo?.customer | titlecase }}</p>
+                <p><b>Property Address</b></p>
+                <p>{{ jobInfo?.jobAddress }} {{ jobInfo?.jobCity }}, {{ jobInfo?.jobState
+                }}, {{ jobInfo?.jobZip}}</p>
+                <p><b>Mobile:</b> {{ jobInfo.phone | mask: '(000) 000-0000' }}</p>
+                <p><b>Email Address:</b> {{ jobInfo?.email }}</p>
+                <p><b>Zone/Geo Zone</b> {{ jobInfo?.zoneName }} / {{ jobInfo?.geoZoneName }}</p>
+            </div>
+        </div>
+    </form>    
+</div>

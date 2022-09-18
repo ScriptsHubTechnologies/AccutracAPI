@@ -1,0 +1,182 @@
+.mat-divider {
+    border-width: 2px;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.details {
+    display: grid;
+    grid-template-areas: "header header" "details mailing";
+    gap: 1rem;
+}
+
+.card-header {
+    grid-area: header;
+}
+
+.customer-details {
+    grid-area: details;
+}
+
+.job {
+    grid-area: job;
+}
+
+.mailing {
+    grid-area: mailing;
+}
+
+.imgg {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    height: auto !important;
+    width: auto !important;
+}
+
+.img-button {
+    margin-left: auto;
+    margin-right: 1rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.mat-raised-button.mat-accent {
+    color: white;
+}
+
+.customcard {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin: 1rem 2rem;
+    background-color: white;
+    padding: 1rem;
+    min-width: 510px;
+    min-height: 400px;
+}
+
+.custcard {
+    display: flex;
+    justify-content: space-between;
+}
+
+.addbutton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.img-btn {
+    margin-top: 145px;
+}
+
+
+/*.material-icons {
+    font-size: 100px !important;
+}*/
+
+.mat-icon {
+    height: 100px !important;
+    width: 100px !important;
+    color: red;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 100px;
+}
+
+.image {
+    display: block;
+    width: 90px;
+    height: 100px;
+    margin: 10px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: 8px;
+    height: 100%;
+    width: 93%;
+    opacity: 0;
+    transition: .3s ease;
+    background-color: rgb(51 46 46 / 90%);
+    border-radius: 5px;
+}
+
+.container:hover .overlay {
+    opacity: 1;
+}
+
+.icon {
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.imgicon {
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.fa-user:hover {
+    color: #eee;
+}
+
+.allAttachments {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.attchpdf {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 3px solid #e0e0e0;
+    padding-bottom: 15px
+}
+
+.attchpng {
+    display: flex;
+    padding-top: 15px
+}
+
+.openpdficon {
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}

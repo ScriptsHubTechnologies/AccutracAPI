@@ -1,0 +1,54 @@
+.pageWrapper {
+  margin-top: 50px;
+}
+
+button {
+  padding: 15px;
+}
+
+p,
+td {
+  font: 400 10px / 11px Roboto, "Helvetica Neue", sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+.mat-body,
+.mat-body-1,
+.mat-typography .mat-body,
+.mat-typography .mat-body-1,
+.mat-typography {
+  font: 400 10px / 11px Roboto, "Helvetica Neue", sans-serif !important;
+  letter-spacing: normal;
+}
+
+kendo-pdf-export {
+  font-family: "DejaVu Sans", "Arial", sans-serif;
+  // font-size: 16px;
+}
+
+.content {
+  // width: 800px;
+  // margin: 0 auto;
+  // line-height: 20px;
+  background-color: white;
+  text-align: left !important;
+}
+
+.crop {
+  width: 200px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.crop img {
+  width: 200px;
+  height: 50px;
+  margin: 0px -1px;
+}
+.mat-raised-button {
+  font-size: 10px;
+  padding: 0px 5px;
+  height: 35px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}

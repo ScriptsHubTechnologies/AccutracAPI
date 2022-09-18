@@ -1,0 +1,20 @@
+<mat-sidenav-container class="sidenav-container" *ngIf="this.isAuthenticated else noSideMenu">
+    <mat-sidenav #sidenav class="sidenav" [mode]="media.isActive('xs') ? 'over' : 'side'" [opened]="media.isActive('xs') ? false : true">
+        <app-sidenav [sidenavReference]="sidenav" (pathChange)="getPath($event)"></app-sidenav>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <app-nav [sidenavReference2]="sidenav"></app-nav>
+
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<ng-template #noSideMenu>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</ng-template>

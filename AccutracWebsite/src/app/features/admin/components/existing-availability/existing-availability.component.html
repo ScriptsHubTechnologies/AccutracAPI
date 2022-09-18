@@ -1,0 +1,73 @@
+<ng-container>
+    <form [formGroup]="availabilityForm" class="form card" (submit)="onSubmit()">
+        <div class="row">
+            <mat-form-field appearance="standard">
+                <mat-label>Day of week</mat-label>
+                <mat-select formControlName="dayOfWeek">
+                    <mat-option *ngFor="let day of days" [value]="day.wkDayNumber">
+                        {{ day.wkDayName }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="availabilityForm.get('dayOfWeek')?.invalid">Day of week is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Start Time</mat-label>
+                <input matInput type="time" class="start-time" placeholder="Start time"
+                    formControlName="startTime">
+                <mat-error *ngIf="availabilityForm.get('startTime')?.invalid">Start time is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>End Time</mat-label>
+                <input matInput type="time" class="end-time" placeholder="End time" formControlName="endTime">
+                <mat-error *ngIf="availabilityForm.get('endTime')?.invalid">End time is required</mat-error>
+            </mat-form-field>            
+            <mat-form-field appearance="standard">
+                <mat-label>Start Date</mat-label>
+                <input matInput [matDatepicker]="startTimePicker" formControlName="startDate">
+                <mat-datepicker-toggle matSuffix [for]="startTimePicker"></mat-datepicker-toggle>
+                <mat-datepicker #startTimePicker></mat-datepicker>
+                <mat-error *ngIf="availabilityForm.get('startDate')?.invalid">Start date is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="duration">
+                <mat-label>Appointment Duration</mat-label>
+                <input matInput type="number" placeholder="Appointment Duration"
+                    formControlName="appointmentDuration">
+                <mat-error *ngIf="availabilityForm.get('appointmentDuration')?.invalid">Appointment duration is
+                    required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="standard">
+                <mat-label>Starting Location</mat-label>
+                <input id="location-input" matInput ngx-google-places-autocomplete
+                    [options]="autoCompleteOptions" formControlName="startLocation"
+                    (onAddressChange)="fillAddress($event)">
+                <mat-error *ngIf="availabilityForm.get('startLocation')?.invalid">Starting location is
+                    required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>GeoZones</mat-label>
+                <mat-select formControlName="geoZones" multiple>
+                    <mat-option *ngFor="let zone of geoZones" [value]="zone.id.toString()">{{ zone.name }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="availabilityForm.get('geoZones')?.invalid">GeoZone(s) are required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="standard">
+                <mat-label>Lead Types</mat-label>
+                <mat-select formControlName="leadTypes" multiple>
+                    <mat-option *ngFor="let type of leadTypes" [value]="type.leadType">{{ type.leadTypeName }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="availabilityForm.get('leadTypes')?.invalid">Lead types(s) are required
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="buttons">
+            <button mat-raised-button color="accent" type="button" class="button" (click)="deleteAvailability()" *ngIf="edit">Delete Availability</button>
+            <button mat-raised-button color="accent" type="submit" class="button" *ngIf="edit">Update Availability</button>
+        </div>
+    </form>
+</ng-container>
