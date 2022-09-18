@@ -2,9 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import saveAs from 'file-saver';
+import { Attachment } from 'src/app/core/interfaces/customer/attachment';
 import { DialogData } from 'src/app/core/interfaces/customer/DialogData';
 import { ApiService } from 'src/app/core/services/api/api.service';
-import { Attachment } from 'd:/Projects/Helitric/AccutracAPI/AccutracWeb/ClientApp/src/app/core/interfaces/customer/attachment';
 
 @Component({
   selector: 'app-view-image',

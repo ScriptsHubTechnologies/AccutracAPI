@@ -21,26 +21,23 @@ export class CustomerAttachmentsComponent implements OnInit {
   trigger: Subject<void> = new Subject();
 
   jobAddress: JobAddressInfo;
-  previewCapturedImage: string = '';
-  status: string = '';
-  pdfpath: Attachment;
-  btnLabel: string = "Capture Image";
-  attachments: any = [];
+  attachments = [] as Attachment[];
+  selectedAttachment: Attachment;
   uploadingFiles: string[] = [];
-  
+  btnLabel: string = "Capture Image";
+
   showAttachments = true;
   showMediaOptions = false;
   showCameraOptions = false;
   showCamera = false;
-  isOpen = false;
   
   get $trigger(): Observable<void> {
     return this.trigger.asObservable();
   }
+
   constructor(private apiService: ApiService,
     private localStorage: LocalStorageService,
     public dialog: MatDialog) { }
-
 
   ngOnInit(): void {
     this.apiService.getJobAddressInfo(this.customerId).subscribe({
@@ -50,6 +47,7 @@ export class CustomerAttachmentsComponent implements OnInit {
       }
     })
   }
+
   openImage(img: Attachment): void {
         const dialogRef = this.dialog.open(ViewImageComponent, {
           width: '800px',
@@ -57,6 +55,7 @@ export class CustomerAttachmentsComponent implements OnInit {
           data: { pdfPath: img,attachments:this.attachments}
         });
   }
+
   getImagesByJobAddress(jobid?: number) {
     this.apiService.getAttachments(this.customerId, jobid).subscribe({
       next: (data: Attachment[]) => {
@@ -70,30 +69,24 @@ export class CustomerAttachmentsComponent implements OnInit {
 
   snapshot(event: WebcamImage) {
     this.showCamera = false; 
-    this.previewCapturedImage = event.imageAsDataUrl;
-    this.btnLabel = "Re-Take Image";
-  }
-
-  buildAttachment() {
-    let attachment: Attachment = {
+    this.selectedAttachment = {
       company_Code: this.localStorage.get('companyCode'),
       customerId: this.customerId,
       jobAddressId: this.jobAddress.jobAddressId,
-      functionTable: '', 
+      functionTable: '',
       functionId: 0,
-      attachmentType: '',
+      attachmentType: event.imageAsDataUrl.substring(event.imageAsDataUrl.indexOf(':') + 1, event.imageAsDataUrl.indexOf(';')),
       attachmentName: this.customerId + '_' + this.jobAddress.jobAddressId,
-      attachmentBase64String: this.previewCapturedImage,
+      attachmentBase64String: event.imageAsDataUrl,
       attachmentPath: '',
     }
-    return attachment;
+    this.btnLabel = "Re-Capture Image";
   }
 
   useImage() {
-    let attachment = this.buildAttachment();
-    this.apiService.saveAttachment(attachment).subscribe({
+    this.apiService.saveAttachment(this.selectedAttachment).subscribe({
       next: (data) => {
-        this.backTomainpage();
+        this.backToMainpage();
         this.ngOnInit();
       },
       error: (e) => {
@@ -110,7 +103,6 @@ export class CustomerAttachmentsComponent implements OnInit {
 
   capture() {
     this.showCamera = false;
-    this.btnLabel = "Capture Image";
     this.trigger.next();
   }
 
@@ -119,11 +111,11 @@ export class CustomerAttachmentsComponent implements OnInit {
     this.showMediaOptions = true;
   }
 
-  openCamera() {
+  openCamera(reCapture:boolean) {
     this.showMediaOptions = false;
     this.showCameraOptions = true;
     this.showCamera = true;
-    this.btnLabel = "Capture Image";
+    this.btnLabel = reCapture ? "Re Capture Image" : "Capture Image";
   }
 
   chooseFile(event: any) {
@@ -132,7 +124,7 @@ export class CustomerAttachmentsComponent implements OnInit {
     }
   }
 
-  backTomainpage() {
+  backToMainpage() {
     this.showAttachments = true;
     this.showMediaOptions = false;
     this.showCameraOptions = false;
@@ -149,7 +141,7 @@ export class CustomerAttachmentsComponent implements OnInit {
     this.apiService.saveFiles(formData, this.customerId, jobaddressId).subscribe({
       next: (data) => {
         this.ngOnInit();
-        this.backTomainpage();
+        this.backToMainpage();
       }
     });
   }
