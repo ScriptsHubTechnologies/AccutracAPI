@@ -18,7 +18,7 @@ import { SalesCalendarEvent } from '../../interfaces/calendar/sales-calendar-dat
 import { LocalStorageService } from '../local-storage/local-storage.service';
 import { User } from '../../interfaces/auth/user';
 import { EstimatorAvailability } from '../../interfaces/estimator-availability';
-import { NewUser } from '../../interfaces/auth/new-user';
+import { Attachements, NewUser } from '../../interfaces/auth/new-user';
 import { Role } from '../../interfaces/role';
 import { GeoZoneFull } from '../../interfaces/geo-zone-full';
 import { Estimator } from '../../interfaces/calendar/estimator';
@@ -97,8 +97,8 @@ export class ApiService {
     return this.http.get<Attachment[]>(this.getAttachmentInfoUrl, { params });
   }
 
-  saveAttachment(jobAddressInfo: Attachment): Observable<string> {
-    return this.http.post<string>(this.insertAttachmentUrl, jobAddressInfo);
+  saveAttachment(jobAddressInfo: Attachment): Observable<Attachment> {
+    return this.http.post<Attachment>(this.insertAttachmentUrl, jobAddressInfo);
   }
 
   saveFiles(formData: any, customerId?: string, jobAddressId?: number): Observable<any> {

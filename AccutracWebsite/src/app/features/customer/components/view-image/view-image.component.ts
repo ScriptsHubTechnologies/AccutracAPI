@@ -4,6 +4,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import saveAs from 'file-saver';
 import { Attachment } from 'src/app/core/interfaces/customer/attachment';
 import { DialogData } from 'src/app/core/interfaces/customer/DialogData';
+import { ApiService } from 'src/app/core/services/api/api.service';
 
 @Component({
   selector: 'app-view-image',
@@ -15,7 +16,8 @@ export class ViewAttachmentComponent implements OnInit {
   currentAT: Attachment;
   constructor(public dialogRef: MatDialogRef<ViewAttachmentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private sanitizer: DomSanitizer) { }
+    private sanitizer: DomSanitizer,
+    private apiService:ApiService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -33,8 +35,20 @@ export class ViewAttachmentComponent implements OnInit {
     this.setCurrentAttachment();
   }
 
-  downloadAttachment() {
-    saveAs("data:" + this.currentAT.attachmentType + ";base64," + this.currentAT.attachmentByteArray, this.currentAT.attachmentName);
+  downloadAttachment(attachment:Attachment) {
+    if (attachment.attachmentType != "application/pdf") {
+      saveAs("data:" + attachment.attachmentType + ";base64," + attachment.attachmentByteArray, attachment.attachmentName);
+    }
+    else{
+      if(attachment.attachmentByteArray==null){
+        this.apiService.getFile(attachment.attachmentId).subscribe((data:Attachment)=>{
+          saveAs("data:" + attachment.attachmentType + ";base64," + data.attachmentByteArray, attachment.attachmentName);
+        })
+      }
+      else{
+        saveAs("data:" + attachment.attachmentType + ";base64," + attachment.attachmentByteArray, attachment.attachmentName);
+      }
+    }
   }
 
   prevAttachment() {
@@ -48,9 +62,16 @@ export class ViewAttachmentComponent implements OnInit {
     if (this.currentAT.attachmentType != "application/pdf") {
       this.currentAttachmentToPreview = this.sanitizer.bypassSecurityTrustResourceUrl("data:" + this.currentAT.attachmentType + ";base64," + this.currentAT.attachmentByteArray);
     }
-    else {
-      this.currentAttachmentToPreview = "data:" + this.currentAT.attachmentType + ";base64," + this.currentAT.attachmentByteArray;
-    } 
+    else{
+      if(this.currentAT.attachmentByteArray==null){
+        this.apiService.getFile(this.currentAT.attachmentId).subscribe((data:Attachment)=>{
+          this.currentAttachmentToPreview = "data:" + this.currentAT.attachmentType + ";base64," + data.attachmentByteArray, this.currentAT.attachmentName;
+        })
+      }
+      else{
+        this.currentAttachmentToPreview = "data:" + this.currentAT.attachmentType + ";base64," + this.currentAT.attachmentByteArray, this.currentAT.attachmentName;
+      }
+    }
   }
 
   checkIndex(i: number): boolean {

@@ -114,9 +114,9 @@ h2 {
     bottom: 0;
     left: 0;
     right: 0;
-    margin-left: 8px;
+    margin-left: 10%;
     height: 100%;
-    width: 93%;
+    width: 80%;
     opacity: 0;
     transition: .3s ease;
     background-color: rgb(51 46 46 / 90%);
@@ -131,7 +131,7 @@ h2 {
     color: white;
     font-size: 50px;
     position: absolute;
-    top: 75%;
+    top: 54%;
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -179,4 +179,12 @@ h2 {
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     text-align: center;
+}
+
+mat-grid-tile:hover .overlay {
+    opacity: 1;
+}
+
+.mt-2 {
+    margin-top: 0.5rem;
 }

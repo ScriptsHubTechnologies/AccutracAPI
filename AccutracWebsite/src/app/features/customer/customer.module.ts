@@ -26,7 +26,7 @@ import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ViewAttachmentComponent } from './components/view-image/view-image.component';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 @NgModule({
   declarations: [
     CustomerDetailsComponent,
@@ -56,7 +56,8 @@ import { ViewAttachmentComponent } from './components/view-image/view-image.comp
     AngularSignaturePadModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatGridListModule
   ],
   providers: []
 })

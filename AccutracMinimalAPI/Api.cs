@@ -74,15 +74,16 @@ namespace AccutracMinimalAPI
                 string todaysDate = now.Year.ToString() + "" + now.Month.ToString() + "" + now.Day.ToString() + "" + now.Hour.ToString() + "" + now.Minute.ToString() + "" + now.Second.ToString();
 
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Assets\Images\"); //Path
-
+                var attachmentsList = new List<AttachmentModel>();
                 foreach (var file in request.Form.Files)
                 {
+                    AttachmentModel attachment = new AttachmentModel();
                     var fileName = custid + "_" + id + "_" + todaysDate + GetFileType(file.ContentType);
                     using (var stream = new FileStream(filePath + fileName, FileMode.Create))
                     {
                         file.CopyTo(stream);
                         var imagePath = "Assets/Images/";
-                        AttachmentModel attachment = new AttachmentModel();
+                        
                         attachment.Company_Code = cc;
                         attachment.CustomerId = int.Parse(custid);
                         attachment.JobAddressId = int.Parse(id);
@@ -90,9 +91,13 @@ namespace AccutracMinimalAPI
                         attachment.AttachmentType = file.ContentType;
                         attachment.AttachmentPath = imagePath + fileName;
                         var results = data.InsertAttachments(attachment);
+                        attachment.AttachmentId = results.Result;
+             
                     }
+                    attachment.AttachmentByteArray = File.ReadAllBytes("wwwroot/Assets/Images/" + fileName);
+                    attachmentsList.Add(attachment);
                 }
-                return Results.Ok(new { data = "Ok" });
+                return Results.Ok(attachmentsList);
             });
         }
         #region Administration
@@ -848,16 +853,20 @@ namespace AccutracMinimalAPI
                     File.WriteAllBytes(Path.Combine(filePath, attachment.AttachmentName), imageBytes);
                 }
 
-                var results = await data.InsertAttachments(attachment);                return Results.Ok(results);            }            catch (Exception ex)            {                return Results.Problem(ex.Message);            }        }
+                var results = await data.InsertAttachments(attachment);
+                attachment.AttachmentId = results;                return Results.Ok(attachment);            }            catch (Exception ex)            {                return Results.Problem(ex.Message);            }        }
 
         private static async Task<IResult> GetAttachementByCompany(string cc, string id, string custid, IAttachmentData data)
         {
             try
             {
                 var results = await data.GetAttachementByCompany(cc, id, custid);
-                foreach (var item in results)
-                {
-                    item.AttachmentByteArray = GetByteArray(item.AttachmentPath);
+                if (results != null){
+                    foreach (var item in results)
+                    {
+                        if(item.AttachmentType!="application/pdf" && item.AttachmentPath!=null)
+                            item.AttachmentByteArray = GetByteArray(item.AttachmentPath);
+                    }
                 }
                 return Results.Ok(results);
             }
