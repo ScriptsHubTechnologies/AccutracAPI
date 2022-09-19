@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccutracMinimalAPI", "Accut
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackCode", "BackCode\BackCode.csproj", "{1F9D36E7-74CD-4D4E-86B6-D9775DB202CD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccutracWeb", "AccutracWeb\AccutracWeb.csproj", "{88F24D5A-5F33-4BCB-8267-A6BE89CF1FB4}"
-EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AccutracDatabase", "AccutracDatabase\AccutracDatabase.sqlproj", "{B5D10DFC-E8AC-47FF-B015-8DF27A6F396B}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "AccutracWebsite", "AccutracWebsite\AccutracWebsite.esproj", "{FFE534F6-F815-44AF-885B-BC8A1D1339D1}"
@@ -47,10 +45,6 @@ Global
 		{1F9D36E7-74CD-4D4E-86B6-D9775DB202CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F9D36E7-74CD-4D4E-86B6-D9775DB202CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F9D36E7-74CD-4D4E-86B6-D9775DB202CD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{88F24D5A-5F33-4BCB-8267-A6BE89CF1FB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88F24D5A-5F33-4BCB-8267-A6BE89CF1FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88F24D5A-5F33-4BCB-8267-A6BE89CF1FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88F24D5A-5F33-4BCB-8267-A6BE89CF1FB4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B5D10DFC-E8AC-47FF-B015-8DF27A6F396B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B5D10DFC-E8AC-47FF-B015-8DF27A6F396B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5D10DFC-E8AC-47FF-B015-8DF27A6F396B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
