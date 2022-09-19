@@ -17,7 +17,6 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { AuthModule } from './features/auth/auth.module';
-import { ViewImageComponent } from './features/view-image/view-image.component';
 import { MatIconModule } from '@angular/material/icon';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,8 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ViewImageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -43,10 +41,7 @@ import { MatButtonModule } from '@angular/material/button';
     HttpClientModule,
     SidenavModule,
     NavModule,
-    AuthModule,
-    MatIconModule,
-    PdfViewerModule,
-    MatButtonModule
+    AuthModule
   ],
   bootstrap: [AppComponent]
 })

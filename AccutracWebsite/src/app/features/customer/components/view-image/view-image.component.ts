@@ -10,10 +10,10 @@ import { DialogData } from 'src/app/core/interfaces/customer/DialogData';
   templateUrl: './view-image.component.html',
   styleUrls: ['./view-image.component.scss']
 })
-export class ViewImageComponent implements OnInit {
+export class ViewAttachmentComponent implements OnInit {
   currentAttachmentToPreview: SafeResourceUrl;
   currentAT: Attachment;
-  constructor(public dialogRef: MatDialogRef<ViewImageComponent>,
+  constructor(public dialogRef: MatDialogRef<ViewAttachmentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private sanitizer: DomSanitizer) { }
 

@@ -6,9 +6,8 @@ import { Observable, Subject } from 'rxjs';
 import { JobAddressInfo } from 'src/app/core/interfaces/job-address/job-address-info';
 import { ApiService } from 'src/app/core/services/api/api.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
-import { ViewImageComponent } from 'src/app/features/view-image/view-image.component';
-import { environment } from 'src/environments/environment';
 import { Attachment } from '../../../../core/interfaces/customer/attachment';
+import { ViewAttachmentComponent } from '../view-image/view-image.component';
 
 @Component({
   selector: 'app-customer-attachments',
@@ -18,7 +17,6 @@ import { Attachment } from '../../../../core/interfaces/customer/attachment';
 export class CustomerAttachmentsComponent implements OnInit {
 
   @Input() customerId: string;
-  apiurl = environment.apiurl;
   trigger: Subject<void> = new Subject();
 
   jobAddress: JobAddressInfo;
@@ -51,7 +49,7 @@ export class CustomerAttachmentsComponent implements OnInit {
   }
 
   openImage(img: Attachment): void {
-        const dialogRef = this.dialog.open(ViewImageComponent, {
+        const dialogRef = this.dialog.open(ViewAttachmentComponent, {
           width: '800px',
           height: '700px',
           data: { pdfPath: img,attachments:this.attachments}

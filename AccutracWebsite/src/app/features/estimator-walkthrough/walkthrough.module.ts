@@ -10,7 +10,7 @@ import { VideoComponent } from './components/steps/video/video.component';
 import { InitialWalkthroughComponent } from './components/steps/initial-walkthrough/initial-walkthrough.component';
 import { ChecklistComponent } from './components/steps/checklist/checklist.component';
 import { ProposalComponent } from './components/steps/proposal/proposal.component';
-import { AttachmentsComponent_W } from './components/steps/attachments/attachments.component';
+import { AttachmentsComponent_EW } from './components/steps/attachments/attachments.component';
 import { SketchComponent } from './components/steps/sketch/sketch.component';
 import { ReviewAndSignComponent } from './components/steps/review-and-sign/review-and-sign.component';
 import { FollowUpComponent } from './components/steps/follow-up/follow-up.component';
@@ -27,7 +27,7 @@ import { MatRadioModule } from '@angular/material/radio';
     InitialWalkthroughComponent,
     ChecklistComponent,
     ProposalComponent,
-    AttachmentsComponent_W,
+    AttachmentsComponent_EW,
     SketchComponent,
     ReviewAndSignComponent,
     FollowUpComponent

@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './attachments.component.html',
   styleUrls: ['./attachments.component.scss']
 })
-export class AttachmentsComponent_W implements OnInit {
+export class AttachmentsComponent_EW implements OnInit {
 
   constructor() { }
 

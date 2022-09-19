@@ -23,6 +23,10 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgxPrintModule } from 'ngx-print';
 import { MatCardModule } from '@angular/material/card';
 import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { ViewAttachmentComponent } from './components/view-image/view-image.component';
+
 @NgModule({
   declarations: [
     CustomerDetailsComponent,
@@ -34,6 +38,7 @@ import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
     JobAddressFormComponent,
     CustomerAttachmentsComponent,
     GenerateContract,
+    ViewAttachmentComponent
   ],
   imports: [
     CommonModule,
@@ -50,6 +55,8 @@ import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
     NgxPrintModule,
     AngularSignaturePadModule,
     MatCardModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: []
 })
