@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
 import { WebcamImage } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
 import { JobAddressInfo } from 'src/app/core/interfaces/job-address/job-address-info';
@@ -37,6 +38,7 @@ export class CustomerAttachmentsComponent implements OnInit {
 
   constructor(private apiService: ApiService,
     private localStorage: LocalStorageService,
+    private sanitizer: DomSanitizer,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -60,9 +62,10 @@ export class CustomerAttachmentsComponent implements OnInit {
     this.apiService.getAttachments(this.customerId, jobid).subscribe({
       next: (data: Attachment[]) => {
         data.forEach(element => {
-          element.attachmentUrl = this.apiurl + '/' + element.attachmentPath
+          element.attachmentUrl = this.sanitizer.bypassSecurityTrustResourceUrl("data:" + element.attachmentType + ";base64," + element.attachmentByteArray);
         });
         this.attachments = data.reverse();
+        console.log(this.attachments);
       }
     })
   }
@@ -140,10 +143,9 @@ export class CustomerAttachmentsComponent implements OnInit {
     let jobaddressId = this.jobAddress.jobAddressId;
     this.apiService.saveFiles(formData, this.customerId, jobaddressId).subscribe({
       next: (data) => {
-        this.ngOnInit();
+        this.getImagesByJobAddress(this.jobAddress.jobAddressId);
         this.backToMainpage();
       }
     });
-  }
-  
+  }  
 }

@@ -11,7 +11,7 @@
         <div class="customcard">
           <label class="btn btn-secondary">
             Choose File
-            <input #file type="file" multiple class="img-btn" accept=".png,.pdf" (change)="chooseFile($event)" />
+            <input #file type="file" multiple class="img-btn" accept=".png,.jpeg,.jpg,.pdf" (change)="chooseFile($event)" />
             <button mat-raised-button (click)="uploadFiles()">Upload Images</button>
           </label>
         </div>

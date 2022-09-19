@@ -59,11 +59,11 @@ namespace AccutracMinimalAPI
             //*************** Paid Leads *********************************
             app.MapPost("/Leads/ThreeShip", InsertPaidLead);
             app.MapGet("/Leads/ThreeShip", GetPaidLeads);
+
+            //*************** Attachments ***************************
             app.MapPost("/Attchment", AttachmentsSaveData);
             app.MapGet("/Attachment/download/{attachmentId}", GetAttachmentByteArray);
             app.MapGet("/Attachment/{company_code,jobaddressid,customerid}", GetAttachementByCompany);
-            //app.MapPost("/ChooseFile/{formdata}", SaveChooseFileData);
-
             app.MapPost("/Files/uploadFiles/{company_code,jobaddressid,customerid}", (HttpRequest request, string cc, string id, string custid, IAttachmentData data) =>
             {
                 //request.ContentType = "multipart/form-data";
@@ -77,7 +77,7 @@ namespace AccutracMinimalAPI
 
                 foreach (var file in request.Form.Files)
                 {
-                    var fileName = custid + "_" + id + "_" + todaysDate + (string.Equals(file.ContentType, "application/pdf") ? ".pdf" : ".png");
+                    var fileName = custid + "_" + id + "_" + todaysDate + GetFileType(file.ContentType);
                     using (var stream = new FileStream(filePath + fileName, FileMode.Create))
                     {
                         file.CopyTo(stream);
@@ -837,7 +837,7 @@ namespace AccutracMinimalAPI
                         System.IO.Directory.CreateDirectory(filePath); //Create directory if it doesn't exist
                     }
 
-                    attachment.AttachmentName = attachment.CustomerId + "_" + attachment.JobAddressId + "_" + todaysDate + ".png";
+                    attachment.AttachmentName = attachment.CustomerId + "_" + attachment.JobAddressId + "_" + todaysDate + GetFileType(attachment.AttachmentType);
 
                     //set the image path                    
                     attachment.AttachmentPath = imagePath + attachment.AttachmentName;
@@ -855,12 +855,23 @@ namespace AccutracMinimalAPI
             try
             {
                 var results = await data.GetAttachementByCompany(cc, id, custid);
+                foreach (var item in results)
+                {
+                    item.AttachmentByteArray = GetByteArray(item.AttachmentPath);
+                }
                 return Results.Ok(results);
             }
             catch (Exception ex)
             {
                 return Results.Problem(ex.Message);
             }
+        }
+
+        private static byte[] GetByteArray(string attachmentPath)
+        {
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\");
+            string pdfFilePath = filePath + attachmentPath;
+            return File.ReadAllBytes(pdfFilePath);
         }
 
         private static async Task<IResult> GetAttachmentByteArray(string attachmentId, IAttachmentData data)
@@ -877,6 +888,32 @@ namespace AccutracMinimalAPI
             {
                 return Results.Problem(ex.Message);
             }
+        }
+
+        private static string GetFileType(string mimeType)
+        {
+            string fileType = string.Empty;
+
+            switch (mimeType)
+            {
+                case "application/pdf":
+                    fileType = ".pdf";
+                    break;
+                case "image/png":
+                    fileType = ".png";
+                    break;
+                case "image/jpeg":
+                    fileType = ".jpeg";
+                    break;
+                case "image/jpg":
+                    fileType = ".jpg";
+                    break;
+                default:
+                    fileType = string.Empty;
+                    break;
+            }
+
+            return fileType;
         }
 
         #endregion

@@ -4,7 +4,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import saveAs from 'file-saver';
 import { Attachment } from 'src/app/core/interfaces/customer/attachment';
 import { DialogData } from 'src/app/core/interfaces/customer/DialogData';
-import { ApiService } from 'src/app/core/services/api/api.service';
 
 @Component({
   selector: 'app-view-image',
@@ -12,12 +11,11 @@ import { ApiService } from 'src/app/core/services/api/api.service';
   styleUrls: ['./view-image.component.scss']
 })
 export class ViewImageComponent implements OnInit {
-  currentImage: SafeResourceUrl;
+  currentAttachmentToPreview: SafeResourceUrl;
   currentAT: Attachment;
   constructor(public dialogRef: MatDialogRef<ViewImageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private sanitizer: DomSanitizer,
-    private apiService: ApiService) { }
+    private sanitizer: DomSanitizer) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -25,58 +23,36 @@ export class ViewImageComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentAT = this.data.pdfPath;
-    this.apiService.getFile(this.data.pdfPath.attachmentId).subscribe((res: any) => {
-      if (this.currentAT.attachmentType != "application/pdf") {
-        this.currentImage = this.sanitizer.bypassSecurityTrustResourceUrl("data:application/" + this.currentAT.attachmentType + ";base64," + res.attachmentByteArray);
-      }
-      else {
-        this.currentImage = "data:" + this.currentAT.attachmentType + ";base64," + res.attachmentByteArray;
-      }
-    })
+    this.setCurrentAttachment();
   }
 
   nextAttachment() {
     var index = this.data.attachments.indexOf(this.currentAT);
     index = index + 1;
     this.currentAT = this.data.attachments[index];
-    this.apiService.getFile(this.currentAT.attachmentId).subscribe((res: any) => {
-      if (this.currentAT.attachmentType != "application/pdf") {
-        this.currentImage = this.sanitizer.bypassSecurityTrustResourceUrl("data:application/" + this.currentAT.attachmentType + ";base64," + res.attachmentByteArray);
-      }
-      else {
-        this.currentImage = "data:" + this.currentAT.attachmentType + ";base64," + res.attachmentByteArray;
-      }
-    })
-
+    this.setCurrentAttachment();
   }
 
-  downloadAttachment(img: any) {
-    this.apiService.getFile(img.attachmentId).subscribe({
-      next: (data: Attachment) => {
-        if (this.currentAT.attachmentType == "application/pdf") {
-          saveAs("data:application/pdf;base64," + data.attachmentByteArray, data.attachmentName);
-        }
-        else {
-          saveAs("data:application/" + img.attachmentType + ";base64," + data.attachmentByteArray, data.attachmentName);
-        }
-      }
-    })
+  downloadAttachment() {
+    saveAs("data:" + this.currentAT.attachmentType + ";base64," + this.currentAT.attachmentByteArray, this.currentAT.attachmentName);
   }
 
   prevAttachment() {
     var index = this.data.attachments.indexOf(this.currentAT);
     index = index - 1;
     this.currentAT = this.data.attachments[index];
-    this.apiService.getFile(this.currentAT.attachmentId).subscribe((res: any) => {
-      if (this.currentAT.attachmentType != "application/pdf") {
-        this.currentImage = this.sanitizer.bypassSecurityTrustResourceUrl("data:application/" + this.currentAT.attachmentType + ";base64," + res.attachmentByteArray);
-      }
-      else {
-        this.currentImage = "data:" + this.currentAT.attachmentType + ";base64," + res.attachmentByteArray;
-      }
-    })
+    this.setCurrentAttachment();
   }
-  
+
+  setCurrentAttachment() {
+    if (this.currentAT.attachmentType != "application/pdf") {
+      this.currentAttachmentToPreview = this.sanitizer.bypassSecurityTrustResourceUrl("data:" + this.currentAT.attachmentType + ";base64," + this.currentAT.attachmentByteArray);
+    }
+    else {
+      this.currentAttachmentToPreview = "data:" + this.currentAT.attachmentType + ";base64," + this.currentAT.attachmentByteArray;
+    } 
+  }
+
   checkIndex(i: number): boolean {
     var index = this.data.attachments.indexOf(this.currentAT);
     if (i == 0) {

@@ -1,3 +1,5 @@
+import { SafeResourceUrl } from "@angular/platform-browser";
+
 export interface Attachment {
   attachmentId?: number;
   company_Code: string;
@@ -9,6 +11,6 @@ export interface Attachment {
   attachmentName: string;
   attachmentPath?: string;
   attachmentBase64String?: string;
-  attachmentUrl?: string;
+  attachmentUrl?: SafeResourceUrl;
   attachmentByteArray?: any[]
 }
